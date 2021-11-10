@@ -1,0 +1,68 @@
+main {
+  @include flexCol(initial, "cen");
+
+  //border: 3px solid blue;
+  padding-top: 50px;
+
+  background: $addColor_dark;
+}
+
+.userConnect {
+  width: auto;
+  max-width: 1000px;
+  height: auto;
+
+  @include flexRow("spE", "cen");
+
+  margin: 50px auto 0px auto;
+  padding: 20px;
+
+  background: $addColor;
+
+  border: 1px solid $colorPrimary;
+  border-radius: 20px;
+
+  &__img {
+    margin: 10px;
+    border: 1px solid $colorPrimary;
+    border-radius: 20px;
+  }
+}
+
+.connect {
+  width: 100%;
+  @include flexCol("SpE", "cen");
+  margin: 0 40px;
+  padding: 0 30px;
+  //border: 1px red solid;
+
+  &__form {
+    width: 100%;
+    margin: 20px;
+    @include flexCol(initial, "flexS");
+
+    //border: 1px green solid;
+    & label {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    & input {
+      height: 25px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    & select {
+      height: 25px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    &--newUser {
+      @include flexRow("cen", "cen");
+
+      & :nth-child(1) {
+        padding-right: 30px;
+      }
+    }
+  }
+}

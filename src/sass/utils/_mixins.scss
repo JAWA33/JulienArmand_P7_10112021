@@ -1,0 +1,118 @@
+//* FLEXBOX mixins ------------------------------------------//
+
+//Flexbox Column
+@mixin flexCol($justify: initial, $align: initial) {
+  display: flex;
+  flex-direction: column;
+
+  @if ($justify == "cen") {
+    justify-content: center;
+  }
+  @elseif ($justify == "spA") {
+    justify-content: space-around;
+  }
+  @elseif ($justify == "spB") {
+    justify-content: space-between;
+  }
+  @elseif ($justify == "spE") {
+    justify-content: space-evenly;
+  }
+  @elseif ($justify == "base") {
+    justify-content: baseline;
+  } @else {
+    justify-content: $justify;
+  }
+
+  @if ($align == "cen") {
+    align-items: center;
+  }
+  @elseif ($align == "flexS") {
+    align-items: flex-start;
+  }
+  @elseif ($align == "flexE") {
+    align-items: flex-end;
+  }
+  @elseif ($align == "st") {
+    align-items: stretch;
+  }
+  @elseif ($align == "base") {
+    align-items: baseline;
+  } @else {
+    align-items: $align;
+  }
+}
+
+//Flexbox Row
+@mixin flexRow($justify: initial, $align: initial) {
+  display: flex;
+  flex-direction: row;
+
+  @if ($justify == "cen") {
+    justify-content: center;
+  }
+  @elseif ($justify == "spA") {
+    justify-content: space-around;
+  }
+  @elseif ($justify == "spB") {
+    justify-content: space-between;
+  }
+  @elseif ($justify == "spE") {
+    justify-content: space-evenly;
+  }
+  @elseif ($justify == "base") {
+    justify-content: baseline;
+  } @else {
+    justify-content: $justify;
+  }
+
+  @if ($align == "cen") {
+    align-items: center;
+  }
+  @elseif ($align == "flexS") {
+    align-items: flex-start;
+  }
+  @elseif ($align == "flexE") {
+    align-items: flex-end;
+  }
+  @elseif ($align == "st") {
+    align-items: stretch;
+  }
+  @elseif ($align == "base") {
+    align-items: baseline;
+  } @else {
+    align-items: $align;
+  }
+}
+
+//* BREAKPOINTS mixins for mobile First ---------------------------//
+
+//For Tablet
+
+@mixin mobile-limit {
+  @media screen and (min-width: map-get($breakpoints, mobile)) {
+    @content;
+  }
+}
+
+//For tablet-only
+
+@mixin tablet-only {
+  @media screen and (min-width: map-get($breakpoints, mobile)) and (max-width: map-get($breakpoints, tablet)) {
+    @content;
+  }
+}
+//For Desktop
+
+@mixin tablet-limit {
+  @media screen and (min-width: map-get($breakpoints, tablet)) {
+    @content;
+  }
+}
+
+//For big desktop
+
+@mixin desktop-limit {
+  @media screen and (min-width: map-get($breakpoints, desktop)) {
+    @content;
+  }
+}

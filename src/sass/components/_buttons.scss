@@ -1,0 +1,23 @@
+.btn {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  margin: 10px 0;
+
+  &:hover {
+    transition: all 0.2s;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+
+  &--callToAction {
+    background: $colorPrimary;
+    color: $textColor_light;
+  }
+  &--secondaryAction {
+    background: $colorSecondary;
+    color: $textColor_dark;
+  }
+}

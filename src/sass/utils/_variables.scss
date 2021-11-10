@@ -1,0 +1,34 @@
+//* ############# COLORS ############ *//
+
+//----- Graphic charter-----//
+
+$colorPrimary: #081f43;
+$colorSecondary: #ffd7d6;
+$colorTertiary: #d4d4d4;
+
+//-----Option Color : Red Variations-------//
+
+$optionColor: #d1515a;
+$optionColor_light: #ff2a00;
+
+//---- Additionnal colors : Grey variations------ //
+$addColor: rgb(235, 235, 235);
+$addColor_light: darken($addColor, 5%);
+$addColor_dark: darken($addColor, 17%);
+
+//---- Text Colors ---------//
+
+$textColor_light: rgb(248, 248, 248);
+$textColor_dark: rgb(2, 2, 2);
+
+//* ############# DIMENSIONS ############ *//
+
+$dim_header: 80px;
+$dim_footer: 80px;
+
+//* ########### Breakpoints maps ###### */
+$breakpoints: (
+  mobile: 420px,
+  tablet: 850px,
+  desktop: 1200px,
+);

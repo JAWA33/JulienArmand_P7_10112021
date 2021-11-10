@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+// ########### Footer always at the end of the page ####### //
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+// ########### Footer always at the end of the page ####### //

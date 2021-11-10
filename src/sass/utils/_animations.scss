@@ -1,0 +1,15 @@
+//* Exemple d'animation du Logo : Rotation ###########################//
+.animIcon {
+  animation: spin 3s ease-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+//* Exemple fin : Rotation ###########################//
