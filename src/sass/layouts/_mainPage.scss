@@ -9,12 +9,12 @@ main {
 
 .userConnect {
   width: auto;
-  max-width: 1000px;
+  max-width: 700px;
   height: auto;
 
-  @include flexRow("spE", "cen");
+  @include flexCol("cen", "cen");
 
-  margin: 50px auto 0px auto;
+  margin: auto;
   padding: 20px;
 
   background: $addColor;
@@ -23,7 +23,7 @@ main {
   border-radius: 20px;
 
   &__img {
-    margin: 10px;
+    //margin: 10px;
     border: 1px solid $colorPrimary;
     border-radius: 20px;
   }
@@ -31,14 +31,14 @@ main {
 
 .connect {
   width: 100%;
-  @include flexCol("SpE", "cen");
-  margin: 0 40px;
-  padding: 0 30px;
+  @include flexCol("cen", "cen");
+
+  padding: 10px;
   //border: 1px red solid;
 
   &__form {
     width: 100%;
-    margin: 20px;
+    margin-top: 20px;
     @include flexCol(initial, "flexS");
 
     //border: 1px green solid;
@@ -59,10 +59,42 @@ main {
 
     &--newUser {
       @include flexRow("cen", "cen");
-
-      & :nth-child(1) {
-        padding-right: 30px;
-      }
     }
   }
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.error {
+  width: 100%;
+  height: 25px;
+  padding: 2px;
+  background-color: rgb(255, 209, 209);
+  border: 2px red solid;
+  border-radius: 10px;
+}
+
+.success {
+  width: 100%;
+  height: 25px;
+  padding: 2px;
+  background-color: rgb(235, 255, 235);
+  border: 2px green solid;
+  border-radius: 10px;
 }

@@ -14,10 +14,12 @@ img {
   max-width: 100%;
 }
 
-#root {
+#app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 main {
@@ -127,20 +129,19 @@ main {
 
 .userConnect {
   width: auto;
-  max-width: 1000px;
+  max-width: 700px;
   height: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 50px auto 0px auto;
+  margin: auto;
   padding: 20px;
   background: #ebebeb;
   border: 1px solid #081f43;
   border-radius: 20px;
 }
 .userConnect__img {
-  margin: 10px;
   border: 1px solid #081f43;
   border-radius: 20px;
 }
@@ -149,14 +150,13 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: "SpE";
+  justify-content: center;
   align-items: center;
-  margin: 0 40px;
-  padding: 0 30px;
+  padding: 10px;
 }
 .connect__form {
   width: 100%;
-  margin: 20px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: initial;
@@ -182,6 +182,38 @@ main {
   justify-content: center;
   align-items: center;
 }
-.connect__form--newUser :nth-child(1) {
-  padding-right: 30px;
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+li:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+.error {
+  width: 100%;
+  height: 25px;
+  padding: 2px;
+  background-color: #ffd1d1;
+  border: 2px red solid;
+  border-radius: 10px;
+}
+
+.success {
+  width: 100%;
+  height: 25px;
+  padding: 2px;
+  background-color: #ebffeb;
+  border: 2px green solid;
+  border-radius: 10px;
 }/*# sourceMappingURL=main.css.map */
