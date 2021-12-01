@@ -5,6 +5,7 @@ import { UidContext } from "../../routes/AppContext.js";
 
 function Connect() {
   const uid = useContext(UidContext);
+
   return (
     <div>
       {uid ? (

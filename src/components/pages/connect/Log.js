@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignIn from "./SignIn.js";
 import SignUp from "./SignUp.js";
+import axios from "axios";
 
 const Log = () => {
   const [signUpForm, setSignUpForm] = useState(false);
@@ -15,6 +16,23 @@ const Log = () => {
       setSignUpForm(false);
     }
   };
+
+  const getJobs = async () => {
+    await axios({
+      method: "get",
+      url: process.env.REACT_APP_API_URL + "api/job/",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        sessionStorage.setItem("jobs", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  getJobs();
+
   return (
     <div className="userConnect">
       <div>

@@ -10,28 +10,40 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let signInForm = document.getElementById("signInForm");
+  const infoError = document.getElementById("infoError");
+
+  // ########  Controle pré-requête lors de la saisie :
 
   if (signInForm) {
     signInForm.email.addEventListener("change", function () {
       validEmail(this);
+      if (!validEmail(this)) {
+        infoError.innerHTML = "Format Email : xxxxx@groupomania.xx(x)";
+        infoError.classList.add("error");
+      } else {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
     });
 
     signInForm.password.addEventListener("change", function () {
       validPassword(this);
+      if (!validPassword(this)) {
+        infoError.innerHTML =
+          "Votre mot de passe doit contenir au minimum : un nombre, une lettre minuscule, une lettre majuscule et avoir entre 6 et 16 caractères";
+        infoError.classList.add("error");
+      } else {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
     });
   } else {
     //rien à vérifier
   }
 
+  // ########  Soumission de la requête uniquement si les saisies sont validées :
   const sendForm = (e) => {
     e.preventDefault();
-
-    const emailError = document.getElementById("emailError");
-    const passwordError = document.getElementById("passwordError");
-    const infoError = document.getElementById("infoError");
-    emailError.innerHTML = "";
-    passwordError.innerHTML = "";
-    infoError.innerHTML = "";
 
     if (validEmail(signInForm.email) && validPassword(signInForm.password)) {
       console.log("Tous ok");
@@ -62,15 +74,10 @@ const SignIn = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if (!validEmail(signInForm.email)) {
-      infoError.innerHTML = "Le format de votre email n'est pas correct";
-      infoError.classList.add("error");
-    } else if (!validPassword(signInForm.password)) {
-      infoError.innerHTML = "Le format de votre mot de passe n'est pas correct";
-      infoError.classList.add("error");
     }
   };
 
+  // ######## Affichage du HTML :
   return (
     // SignIn.js :
     <div className="connect">
@@ -96,7 +103,7 @@ const SignIn = () => {
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         ></input>
-        <div id="emailError"></div>
+        <p></p>
         <br />
         <label htmlFor="password">Mot de passe</label>
         <input
@@ -106,9 +113,9 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         ></input>
-        <div id="passwordError"></div>
+        <p></p>
         <br />
-        <div id="infoError"></div>
+        <p id="infoError"></p>
         <br />
         <input
           type="submit"

@@ -2,50 +2,126 @@ import React, { useState } from "react";
 import Icon from "../../svgComponents/Icon";
 import axios from "axios";
 import SignIn from "./SignIn";
+import {
+  validPassword,
+  validEmail,
+  validName,
+  validId,
+} from "../../Utils/regExp.js";
 
 const SignUp = () => {
-  // axios({
-  //   method: "get",
-  //   url: process.env.REACT_APP_API_URL + "api/job/",
-  //   withCredentials: true,
-  // })
-  //   .then((res) => {
-  //     console.log(res);
-  //     localStorage.setItem("jobs", JSON.stringify(res.data));
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
   const [formSubmit, setFormSubmit] = useState(false);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const [controlPass, setControlPass] = useState("");
   const [firstname, setFirstname] = useState("");
-  const [job, setJob] = useState("");
+  const [id_job, setId_job] = useState("");
+
+  let signUpForm = document.getElementById("signUpForm");
+  const infoError = document.getElementById("infoError");
+  const terms = document.getElementById("terms");
+  const selectJobs = document.getElementById("selectjobs");
+  const jobs = JSON.parse(sessionStorage.getItem("jobs"));
+  // const getJobs = () => {
+  //   axios({
+  //     method: "get",
+  //     url: process.env.REACT_APP_API_URL + "api/job/",
+  //     withCredentials: true,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       sessionStorage.setItem("jobs", JSON.stringify(res.data));
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // getJobs();
+  console.log("jobs : #######");
+  console.log(jobs.map((job) => job.id_job));
+
+  //selectJobs.innerHTML = `<option value=2>Monjob</option>`;
+  // selectJobs.insertAdjacentHTML(
+  //   "afterbegin",
+  //   "<option>Sélectionner votre poste</option>"
+  // );
+
+  // ########  Controle pré-requête lors de la saisie :
+
+  if (signUpForm) {
+    signUpForm.email.addEventListener("change", function () {
+      validEmail(this);
+      if (!validEmail(this)) {
+        infoError.innerHTML = "Format Email : xxxxx@groupomania.xx(x)";
+        infoError.classList.add("error");
+      } else {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
+    });
+
+    signUpForm.password.addEventListener("change", function () {
+      validPassword(this);
+      if (!validPassword(this)) {
+        infoError.innerHTML =
+          "Votre mot de passe doit contenir au minimum : un nombre, une lettre minuscule, une lettre majuscule et avoir entre 6 et 16 caractères";
+        infoError.classList.add("error");
+      } else {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
+    });
+
+    signUpForm.firstname.addEventListener("change", function () {
+      validName(this);
+      if (!validName(this)) {
+        infoError.innerHTML =
+          "Votre prénom doit contenir au minimum 3 caractères, et être constitué de lettres, majuscules et/ou minuscules. Pour les prénoms composés vous pouvez utiliser un -";
+        infoError.classList.add("error");
+      } else {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
+    });
+
+    signUpForm.id_job.addEventListener("change", function () {
+      validId(this);
+    });
+
+    // insertion des valeurs dans la liste déroulante : #########
+    selectJobs.innerHTML = jobs
+      .map((job) => `<option value=${job.id_job}>${job.job_name}</option>`)
+      .join("");
+    selectJobs.insertAdjacentHTML(
+      "afterbegin",
+      '<option value ="none" >Sélectionner votre poste</option>'
+    );
+
+    if (password !== controlPass) {
+      infoError.innerHTML = "Les mots de passe ne correspondent pas";
+      infoError.classList.add("error");
+    } else {
+      infoError.innerHTML = "";
+      infoError.classList.remove("error");
+    }
+  } else {
+    //rien à vérifier
+  }
 
   const sendForm = (e) => {
     e.preventDefault();
 
-    const terms = document.getElementById("terms");
-    const termsError = document.getElementById("termsError");
-    const emailError = document.getElementById("emailError");
-    const passwordError = document.getElementById("passwordError");
-    const firstnameError = document.getElementById("firstnameError");
-    const jobError = document.getElementById("jobError");
-    const confirmPassError = document.getElementById("confirmPassError");
-    const infoError = document.getElementById("infoError");
-
-    confirmPassError.innerHTML = "";
-    termsError.innerHTML = "";
-    infoError.innerHTML = "";
-
-    if (password !== confirmPass || !terms.checked) {
-      if (password !== confirmPass)
-        confirmPassError.innerHTML = "Les mots de passe ne correspondent pas";
+    if (password !== controlPass || !terms.checked) {
+      if (password !== controlPass)
+        infoError.innerHTML = "Les mots de passe ne correspondent pas";
       if (!terms.checked)
-        termsError.innerHTML = "Merci de valider les conditions générales";
-    } else {
+        infoError.innerHTML = "Merci de valider les conditions générales";
+    } else if (
+      validName(signUpForm.firstname) &&
+      validEmail(signUpForm.email) &&
+      validPassword(signUpForm.password) &&
+      validId(signUpForm.id_job)
+    ) {
       axios({
         method: "post",
         url: process.env.REACT_APP_API_URL + "api/user/signup",
@@ -53,53 +129,18 @@ const SignUp = () => {
           email,
           firstname,
           password,
-          controlPass: confirmPass,
-          id_job: job,
+          controlPass,
+          id_job,
         },
       })
         .then((res) => {
-          if (res.data.regexpError) {
-            console.log(res.data.regexpError);
-            let i = 0;
-            for (i = 0; i < res.data.regexpError.length; i++) {
-              if (res.data.regexpError[i].includes("email")) {
-                emailError.innerHTML = "Email non valide";
-                infoError.insertAdjacentHTML(
-                  "afterbegin",
-                  "<p>- " +
-                    res.data.regexpError[i].split(" :: ")[1] +
-                    "<p><br/>"
-                );
-              } else if (res.data.regexpError[i].includes("password")) {
-                passwordError.innerHTML = "Mot de passe non valide";
-                infoError.insertAdjacentHTML(
-                  "afterbegin",
-                  "<p>- " +
-                    res.data.regexpError[i].split(" :: ")[1] +
-                    "<p><br/>"
-                );
-              } else if (res.data.regexpError[i].includes("name")) {
-                firstnameError.innerHTML = "Prénom non valide";
-                infoError.insertAdjacentHTML(
-                  "afterbegin",
-                  "<p>- " +
-                    res.data.regexpError[i].split(" :: ")[1] +
-                    "<p><br/>"
-                );
-              } else if (res.data.regexpError[i].includes("id")) {
-                jobError.innerHTML = "Job non valide";
-                infoError.insertAdjacentHTML(
-                  "afterbegin",
-                  "<p>- " +
-                    res.data.regexpError[i].split(" :: ")[1] +
-                    "<p><br/>"
-                );
-              }
-            }
-          } else if (res.status === 201) {
+          if (res.status === 201) {
             setFormSubmit(true);
           } else if (res.data.message) {
             infoError.innerHTML = res.data.message;
+            infoError.classList.add("error");
+            signUpForm.email.classList.remove("success");
+            signUpForm.email.classList.add("error");
           }
         })
         .catch((err) => {
@@ -107,6 +148,9 @@ const SignUp = () => {
         });
     }
   };
+
+  console.log("id_job  ");
+  console.log(id_job);
 
   return (
     <>
@@ -129,7 +173,12 @@ const SignUp = () => {
             width="150"
           ></Icon>
           <h2>Enregistrez-vous !</h2>
-          <form action="" onSubmit={sendForm} className="connect__form">
+          <form
+            action=""
+            onSubmit={sendForm}
+            className="connect__form"
+            id="signUpForm"
+          >
             <div className="connect__form">
               <label htmlFor="firstname">Mon prénom</label>
               <input
@@ -139,17 +188,17 @@ const SignUp = () => {
                 onChange={(e) => setFirstname(e.target.value)}
                 value={firstname}
               ></input>
-              <div id="firstnameError" className="error"></div>
+              <p></p>
               <br />
-              <label htmlFor="job">Mon poste "id"</label>
-              <input
-                type="text"
-                name="job"
-                id="job"
-                onChange={(e) => setJob(e.target.value)}
-                value={job}
-              ></input>
-              <div id="jobError" className="error"></div>
+              <label htmlFor="id_job">Mon poste</label>
+              <select
+                type="select"
+                name="id_job"
+                id="selectjobs"
+                onChange={(e) => setId_job(e.target.value)}
+                value={id_job}
+              ></select>
+              <p></p>
               <br />
               <label htmlFor="email">Mon email</label>
               <input
@@ -159,7 +208,7 @@ const SignUp = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               ></input>
-              <div id="emailError" className="error"></div>
+              <p></p>
               <br />
               <label htmlFor="password">Mon mot de passe</label>
               <input
@@ -169,21 +218,22 @@ const SignUp = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               ></input>
-              <div id="passwordError" className="error"></div>
+              <p></p>
               <br />
-              <label htmlFor="confirmPass">
+              <label htmlFor="controlPass">
                 Confirmation de votre mot de passe
               </label>
               <input
                 type="password"
-                name="confirmPass"
-                id="confirmPass"
-                onChange={(e) => setConfirmPass(e.target.value)}
-                value={confirmPass}
+                name="controlPass"
+                id="controlPass"
+                onChange={(e) => setControlPass(e.target.value)}
+                value={controlPass}
               ></input>
-              <div id="confirmPassError" className="error"></div>
+              <p></p>
               <br />
             </div>
+            <p id="infoError"></p>
             <div className="connect__form--newUser">
               <input type="checkbox" id="terms" />
               <label htmlFor="terms">
@@ -193,8 +243,7 @@ const SignUp = () => {
                 </a>
               </label>
             </div>
-            <div id="termsError" className="error"></div>
-            <div id="infoError" className="error"></div>
+            <p></p>
             <br />
             <input
               type="submit"
