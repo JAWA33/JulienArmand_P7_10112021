@@ -18,12 +18,24 @@ header {
 }
 
 .userInfo {
-  width: 200px;
+  width: 300px;
   height: auto;
 
-  margin-right: 20px;
+  margin: 20px;
 
-  @include flexRow("spB", "cen");
+  @include flexRow("spE", "cen");
+
+  & img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+
+  & button {
+    color: black;
+    margin-top: 10px;
+  }
 }
 
 .userIcon {

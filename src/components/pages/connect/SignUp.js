@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../../svgComponents/Icon";
 import axios from "axios";
 import SignIn from "./SignIn";
@@ -10,6 +10,7 @@ import {
 } from "../../Utils/regExp.js";
 
 const SignUp = () => {
+  //* Hooks pour formulaire :
   const [formSubmit, setFormSubmit] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,36 +18,15 @@ const SignUp = () => {
   const [firstname, setFirstname] = useState("");
   const [id_job, setId_job] = useState("");
 
+  //* Hooks pour liste déroulante :
+  const [jobList, setJobList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   let signUpForm = document.getElementById("signUpForm");
   const infoError = document.getElementById("infoError");
   const terms = document.getElementById("terms");
-  const selectJobs = document.getElementById("selectjobs");
-  const jobs = JSON.parse(sessionStorage.getItem("jobs"));
-  // const getJobs = () => {
-  //   axios({
-  //     method: "get",
-  //     url: process.env.REACT_APP_API_URL + "api/job/",
-  //     withCredentials: true,
-  //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //       sessionStorage.setItem("jobs", JSON.stringify(res.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // getJobs();
-  console.log("jobs : #######");
-  console.log(jobs.map((job) => job.id_job));
 
-  //selectJobs.innerHTML = `<option value=2>Monjob</option>`;
-  // selectJobs.insertAdjacentHTML(
-  //   "afterbegin",
-  //   "<option>Sélectionner votre poste</option>"
-  // );
-
-  // ########  Controle pré-requête lors de la saisie :
+  //* ########  Controle pré-requête lors de la saisie du formulaire :
 
   if (signUpForm) {
     signUpForm.email.addEventListener("change", function () {
@@ -88,15 +68,6 @@ const SignUp = () => {
       validId(this);
     });
 
-    // insertion des valeurs dans la liste déroulante : #########
-    selectJobs.innerHTML = jobs
-      .map((job) => `<option value=${job.id_job}>${job.job_name}</option>`)
-      .join("");
-    selectJobs.insertAdjacentHTML(
-      "afterbegin",
-      '<option value ="none" >Sélectionner votre poste</option>'
-    );
-
     if (password !== controlPass) {
       infoError.innerHTML = "Les mots de passe ne correspondent pas";
       infoError.classList.add("error");
@@ -108,6 +79,7 @@ const SignUp = () => {
     //rien à vérifier
   }
 
+  //* #######   Envoi du formulaire :
   const sendForm = (e) => {
     e.preventDefault();
 
@@ -149,12 +121,40 @@ const SignUp = () => {
     }
   };
 
-  console.log("id_job  ");
-  console.log(id_job);
+  //* ####### Attente du chargement pour remplissage de la liste déroulante
+  const listingJobs = !loading ? (
+    jobList.map((data) => (
+      <option key={data.id_job.toString()} value={data.id_job}>
+        {data.job_name}
+      </option>
+    ))
+  ) : (
+    <option value="charge">En chargement ...</option>
+  );
+
+  //* ####### Chargement de la liste déroulante :
+  useEffect(() => {
+    const getJobs = () => {
+      axios({
+        method: "get",
+        url: process.env.REACT_APP_API_URL + "api/job/",
+        withCredentials: true,
+      })
+        .then((res) => {
+          setJobList(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getJobs();
+  }, []);
 
   return (
     <>
       {formSubmit ? (
+        //si le formulaire est correctement rempli, retour sur le signIn + message
         <>
           <SignIn />
           <p className="success">
@@ -163,7 +163,7 @@ const SignUp = () => {
           <br />
         </>
       ) : (
-        // SignUp.js :
+        //sinon , affichage du formulaire SignUp.js :
         <div className="connect">
           <Icon
             animation="animIcon"
@@ -197,7 +197,10 @@ const SignUp = () => {
                 id="selectjobs"
                 onChange={(e) => setId_job(e.target.value)}
                 value={id_job}
-              ></select>
+              >
+                <option value="none">Sélectionner votre poste</option>
+                {listingJobs}
+              </select>
               <p></p>
               <br />
               <label htmlFor="email">Mon email</label>

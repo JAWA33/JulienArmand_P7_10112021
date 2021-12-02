@@ -4,6 +4,7 @@ import axios from "axios";
 
 const UserInfo = () => {
   const uid = useContext(UidContext);
+
   const name = JSON.parse(sessionStorage.getItem("connectedUser"));
 
   const logout = () => {
@@ -15,7 +16,7 @@ const UserInfo = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        sessionStorage.removeItem("connectedUser");
+        //sessionStorage.removeItem("connectedUser");
         window.location = "/";
       })
       .catch((err) => {
@@ -27,10 +28,11 @@ const UserInfo = () => {
     <div>
       {uid ? (
         <div className="userInfo">
-          <p>Bienvenue {name.user_firstname}</p>
-          <button onClick={() => logout()}>Me déconnecter</button>
-          <p id="disconnected"></p>
           <img src={name.user_url_image} alt={name.user_firstname}></img>
+          <div>
+            <p>Bienvenue {name.user_firstname}</p>
+            <button onClick={() => logout()}>Me déconnecter</button>
+          </div>
         </div>
       ) : (
         ""
