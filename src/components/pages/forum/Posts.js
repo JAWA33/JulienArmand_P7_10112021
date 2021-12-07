@@ -1,23 +1,41 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPosts,
   likePost,
   dislikePost,
 } from "../../../actions/post.actions";
-import { isEmpty } from "../../Utils/isEmpty";
+import { isEmpty } from "../../Utils/isEmpty.js";
+import { nowToDate } from "../../Utils/nowToDate.js";
 
 const Posts = () => {
   //* Hooks :
-
-  const postData = useSelector((state) => state.postReducer);
+  const [loadPosts, setLoadPosts] = useState(true);
+  const [count, setCount] = useState(3);
+  let addDisplayPosts = 1;
 
   const dispatch = useDispatch();
+  const postData = useSelector((state) => state.postReducer);
 
-  console.log(postData);
+  const loadMore = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >
+      document.scrollingElement.scrollHeight
+    ) {
+      setLoadPosts(true);
+    }
+  };
 
-  isEmpty(postData) ? dispatch(getAllPosts()) : console.log("déjà chargé");
+  useEffect(() => {
+    if (loadPosts) {
+      dispatch(getAllPosts(count));
+      setLoadPosts(false);
+      setCount(count + addDisplayPosts);
+    }
+
+    window.addEventListener("scroll", loadMore);
+    return () => window.removeEventListener("scroll", loadMore);
+  }, [loadPosts, dispatch, count, addDisplayPosts]);
 
   //* Liker le post :
   const ILikePost = (idpost) => {
@@ -32,8 +50,8 @@ const Posts = () => {
   return (
     <div>
       {!isEmpty(postData) &&
-        postData.map((data, index) => (
-          <div key={index} className="post" id={"post" + data.id_post}>
+        postData.map((data) => (
+          <div key={data.id_post} className="post" id={"post" + data.id_post}>
             <div className="post__userInfo">
               <img
                 src={data.user_url_image}
@@ -43,12 +61,18 @@ const Posts = () => {
               <div className="post__userInfo__text">
                 <p>
                   <strong>
-                    {data.user_firstname + " " + data.user_lastname}
+                    {data.user_firstname +
+                      " " +
+                      (data.user_lastname !== null ? data.user_lastname : "")}
                   </strong>
                 </p>
                 <p>{data.job_name}</p>
-                <p>{data.post_create}</p>
+                <p>{nowToDate(data.post_create)}</p>
               </div>
+            </div>
+            <div>
+              <button>Edit post</button>
+              <button>Delete post</button>
             </div>
             <hr />
             <div className="post__container">
@@ -99,7 +123,6 @@ const Posts = () => {
             </div>
           </div>
         ))}
-      ;
     </div>
   );
 };

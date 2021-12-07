@@ -38,7 +38,7 @@ const App = () => {
       }
     };
     verifToken();
-  }, [uid]);
+  }, [uid, dispatch]);
 
   return (
     <UidContext.Provider value={uid}>

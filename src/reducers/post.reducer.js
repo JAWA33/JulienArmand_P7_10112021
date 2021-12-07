@@ -2,14 +2,12 @@ import {
   GET_ALL_POSTS,
   LIKE_POST,
   DISLIKE_POST,
+  CREATE_POST,
 } from "../actions/post.actions.js";
 
 const initialState = {};
 
 export default function postReducer(state = initialState, action) {
-  console.log("state ou action");
-  console.log(state);
-  console.log("state ou action");
   switch (action.type) {
     case GET_ALL_POSTS:
       return action.payload;
@@ -39,6 +37,9 @@ export default function postReducer(state = initialState, action) {
           return data;
         }
       });
+
+    case CREATE_POST:
+      return [action.payload, ...state];
 
     default:
       return state;
