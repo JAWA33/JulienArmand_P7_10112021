@@ -34,7 +34,7 @@ const validId = (input) => {
 // Mini 3 caractères,autorise: lettres, chiffres et certains caractères spéciaux, exclusion : / et ' et _
 const validParagraph = (input) => {
   let regexParagraph = new RegExp(
-    "^[A-Za-zéè0-9-@#$%^€,;!?' )(&+=.-:]{3,}$"
+    "^[A-Za-zéè0-9-@#$%^€,;!?' )(&+=.-:\n\t][^/\\\\/]{3,}$"
   ).test(input.value);
   return returnResponse(input, regexParagraph);
 };

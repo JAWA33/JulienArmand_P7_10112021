@@ -207,7 +207,7 @@ li:hover {
 
 .error {
   width: 100%;
-  height: 25px;
+  min-height: 25px;
   padding: 2px;
   background-color: #ffd1d1;
   border: 2px red solid;
@@ -216,7 +216,7 @@ li:hover {
 
 .success {
   width: 100%;
-  height: 25px;
+  min-height: 25px;
   padding: 2px;
   background-color: #ebffeb;
   border: 2px green solid;
@@ -276,6 +276,16 @@ li:hover {
   justify-content: center;
   align-items: center;
 }
+.post__action__container:hover {
+  color: green;
+  cursor: pointer;
+}
+.post__action__container--liked {
+  color: blue;
+}
+.post__action__container--disliked {
+  color: black;
+}
 
 .postInfo {
   height: 40px;
@@ -286,4 +296,39 @@ li:hover {
 }
 .postInfo__count {
   margin: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+.createPost {
+  width: 500px;
+  height: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.createPost__title {
+  border: 1px blue solid;
+  width: 100%;
+  height: 50px;
+  background-color: #d8d8ff;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.createPost__container {
+  border: 1px blue solid;
+  width: 100%;
+  height: auto;
+  background-color: white;
+}
+.createPost__container__form {
+  width: 100%;
+  padding: 10px;
 }/*# sourceMappingURL=main.css.map */

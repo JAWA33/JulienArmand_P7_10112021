@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import { UidContext } from "../routes/AppContext.js";
+import React, { Fragment } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { isEmpty } from "../Utils/isEmpty.js";
 
 const UserInfo = () => {
-  const uid = useContext(UidContext);
-
-  const name = JSON.parse(sessionStorage.getItem("connectedUser"));
+  const userData = useSelector((state) => state.userReducer);
 
   const logout = () => {
     axios({
@@ -16,7 +15,6 @@ const UserInfo = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        //sessionStorage.removeItem("connectedUser");
         window.location = "/";
       })
       .catch((err) => {
@@ -25,17 +23,20 @@ const UserInfo = () => {
   };
 
   return (
-    <div>
-      {uid ? (
-        <div className="userInfo">
-          <img src={name.user_url_image} alt={name.user_firstname}></img>
+    <div className="userInfo">
+      {isEmpty(userData) ? (
+        <div>"en chargement"</div>
+      ) : (
+        <Fragment>
+          <img
+            src={userData[0].user_url_image}
+            alt={userData[0].user_firstname}
+          ></img>
           <div>
-            <p>Bienvenue {name.user_firstname}</p>
+            <p>Bienvenue {userData[0].user_firstname}</p>
             <button onClick={() => logout()}>Me déconnecter</button>
           </div>
-        </div>
-      ) : (
-        ""
+        </Fragment>
       )}
     </div>
   );

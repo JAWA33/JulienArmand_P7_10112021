@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UidContext } from "../../routes/AppContext.js";
 
 import Posts from "./Posts.js";
+import CreatePost from "./CreatePost.js";
 
 const Forum = () => {
   const uid = useContext(UidContext);
@@ -10,6 +11,7 @@ const Forum = () => {
     <div>
       {uid ? (
         <div id="forumPage">
+          <CreatePost />
           <Posts />
         </div>
       ) : (

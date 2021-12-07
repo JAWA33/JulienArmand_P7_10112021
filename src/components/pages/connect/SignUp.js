@@ -22,7 +22,7 @@ const SignUp = () => {
   const [jobList, setJobList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  let signUpForm = document.getElementById("signUpForm");
+  const signUpForm = document.getElementById("signUpForm");
   const infoError = document.getElementById("infoError");
   const terms = document.getElementById("terms");
 
@@ -68,13 +68,12 @@ const SignUp = () => {
       validId(this);
     });
 
-    if (password !== controlPass) {
-      infoError.innerHTML = "Les mots de passe ne correspondent pas";
-      infoError.classList.add("error");
-    } else {
-      infoError.innerHTML = "";
-      infoError.classList.remove("error");
-    }
+    signUpForm.controlPass.addEventListener("change", function () {
+      if (controlPass === "") {
+        infoError.innerHTML = "";
+        infoError.classList.remove("error");
+      }
+    });
   } else {
     //rien à vérifier
   }
@@ -86,8 +85,13 @@ const SignUp = () => {
     if (password !== controlPass || !terms.checked) {
       if (password !== controlPass)
         infoError.innerHTML = "Les mots de passe ne correspondent pas";
+      infoError.classList.add("error");
       if (!terms.checked)
         infoError.innerHTML = "Merci de valider les conditions générales";
+      infoError.classList.add("error");
+    } else if (password === controlPass && terms.checked) {
+      infoError.innerHTML = "";
+      infoError.classList.remove("error");
     } else if (
       validName(signUpForm.firstname) &&
       validEmail(signUpForm.email) &&
