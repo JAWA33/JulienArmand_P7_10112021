@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Icon from "../../svgComponents/Icon";
+import AnimeGroupomania from "../../svgComponents/AnimeGroupomania.js";
 import axios from "axios";
 import dotenv from "dotenv";
 import { validPassword, validEmail } from "../../Utils/regExp.js";
@@ -82,13 +82,13 @@ const SignIn = () => {
   return (
     // SignIn.js :
     <div className="connect">
-      <Icon
+      <AnimeGroupomania
         animation="animIcon"
         fillColor="#ffd7d6"
         lineColor="#081f43"
         height="150"
         width="150"
-      ></Icon>
+      ></AnimeGroupomania>
       <h2>Connectez-vous !</h2>
       <form
         action=""

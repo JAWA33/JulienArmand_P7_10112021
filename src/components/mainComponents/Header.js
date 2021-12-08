@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Icon from "../svgComponents/Icon";
+import AnimeGroupomania from "../svgComponents/AnimeGroupomania.js";
 import UserInfo from "../mainComponents/UserInfo";
 import { UidContext } from "../routes/AppContext";
 
@@ -12,12 +12,12 @@ const Header = () => {
   return (
     <header>
       <div className="logo">
-        <Icon
+        <AnimeGroupomania
           fillColor="white"
           lineColor="transparent"
           height="80"
           width="80"
-        ></Icon>
+        ></AnimeGroupomania>
         <h1>Groupomania</h1>
       </div>
       {uid ? <UserInfo /> : ""}

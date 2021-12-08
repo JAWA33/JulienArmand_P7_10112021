@@ -249,6 +249,16 @@ li:hover {
 .post__userInfo__text p {
   margin-bottom: 5px;
 }
+.post__edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 10px;
+}
+.post__edit :nth-child(1n) {
+  margin: 5px;
+}
 .post__container {
   width: 100%;
   min-height: 80px;
@@ -331,4 +341,12 @@ textarea {
 .createPost__container__form {
   width: 100%;
   padding: 10px;
+}
+
+input[type=file] {
+  position: absolute;
+  width: 160px;
+  opacity: 0;
+  transform: translate(-155px, 10px);
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

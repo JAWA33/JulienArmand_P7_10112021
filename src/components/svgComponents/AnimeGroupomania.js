@@ -1,6 +1,4 @@
-import React from "react";
-
-const Icon = (props) => {
+const AnimeGroupomania = (props) => {
   return (
     <svg
       className={props.animation}
@@ -27,4 +25,4 @@ const Icon = (props) => {
   );
 };
 
-export default Icon;
+export default AnimeGroupomania;

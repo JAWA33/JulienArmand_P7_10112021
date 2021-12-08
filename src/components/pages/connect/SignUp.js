@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Icon from "../../svgComponents/Icon";
+import AnimeGroupomania from "../../svgComponents/AnimeGroupomania.js";
 import axios from "axios";
 import SignIn from "./SignIn";
 import {
@@ -169,13 +169,13 @@ const SignUp = () => {
       ) : (
         //sinon , affichage du formulaire SignUp.js :
         <div className="connect">
-          <Icon
+          <AnimeGroupomania
             animation="animIcon"
             fillColor="#ffd7d6"
             lineColor="#081f43"
             height="150"
             width="150"
-          ></Icon>
+          ></AnimeGroupomania>
           <h2>Enregistrez-vous !</h2>
           <form
             action=""

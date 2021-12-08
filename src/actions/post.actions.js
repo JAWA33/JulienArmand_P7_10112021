@@ -61,22 +61,18 @@ export const createPost = (data) => {
       withCredentials: true,
     })
       .then((res) => {
-        console.log("res.data");
-        console.log(res.data);
-        console.log("data");
-        console.log(data);
-
         const newPost = {
           id_post: res.data.data.id_post,
           post_create: Date.now(),
           post_text: res.data.data.post_text,
           post_url_image: res.data.data.post_url_image,
-          post_id_user: data.userData.id_user,
-          user_firstname: data.userData.user_firstname,
-          user_lastname: data.userData.user_lastname,
-          user_url_image: data.userData.user_url_image,
-          job_name: data.userData.job_name,
-          service_name: data.userData.service_name,
+          post_video: res.data.data.post_video,
+          post_id_user: data.get("post_id_user"),
+          user_firstname: data.get("user_firstname"),
+          user_lastname: data.get("user_lastname"),
+          user_url_image: data.get("user_url_image"),
+          job_name: data.get("job_name"),
+          service_name: data.get("service_name"),
           nbr_likes: 0,
           nbr_comments: 0,
           i_like_post: "no",

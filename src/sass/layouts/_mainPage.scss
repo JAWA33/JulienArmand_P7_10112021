@@ -123,6 +123,15 @@ li {
     }
   }
 
+  &__edit {
+    @include flexRow("spE", "cen");
+    margin-right: 10px;
+
+    :nth-child(1n) {
+      margin: 5px;
+    }
+  }
+
   &__container {
     width: 100%;
     min-height: 80px;
@@ -200,4 +209,12 @@ textarea {
       padding: 10px;
     }
   }
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 160px;
+  opacity: 0;
+  transform: translate(-155px, 10px);
+  cursor: pointer;
 }
