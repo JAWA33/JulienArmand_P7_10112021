@@ -18,11 +18,11 @@ export const nowToDate = (date) => {
   } else if (inHours >= 1 && inHours < 24) {
     return "il y a " + inHours + " heure" + (inHours <= 1 ? "" : "s");
   } else if (inDays >= 1 && inDays < 30) {
-    return "il y a " + inDays + " jour" + (inDays < 1 ? "" : "s");
+    return "il y a " + inDays + " jour" + (inDays <= 1 ? "" : "s");
   } else if (inMonths >= 1 && inMonths < 12) {
     return "il y a " + inMonths + " mois";
   } else if (inYears >= 1) {
-    return "il y a " + inYears + " année" + (inYears < 1 ? "" : "s");
+    return "il y a " + inYears + " année" + (inYears <= 1 ? "" : "s");
   } else {
     return "Erreur";
   }

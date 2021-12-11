@@ -4,15 +4,30 @@ import {
   getAllPosts,
   likePost,
   dislikePost,
+  updatePost,
+  deletePost,
 } from "../../../actions/post.actions";
 import EditIcon from "../../svgComponents/EditIcon.js";
 import TrashIcon from "../../svgComponents/TrashIcon.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import { nowToDate } from "../../Utils/nowToDate.js";
+import PictureIcon from "../../svgComponents/PictureIcon.js";
+import Comments from "./Comments.js";
+import CreateComments from "./CreateComment";
 
 const Posts = () => {
   //* Hooks :
   const [loadPosts, setLoadPosts] = useState(true);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [toUpdated, setToUpdated] = useState("");
+  const [textUpdate, setTextUpdate] = useState(null);
+  const [linkUpdate, setLinkUpdate] = useState("");
+  const [videoUpdate, setVideoUpdate] = useState(null);
+  const [pictureUpdate, setPictureUpdate] = useState(null);
+  const [fileUpdate, setFileUpdate] = useState();
+  const [makeComment, setMakeComment] = useState("");
+  const [whatComments, setWhatComments] = useState("");
+
   const [count, setCount] = useState(3);
   let addDisplayPosts = 3;
 
@@ -20,6 +35,7 @@ const Posts = () => {
   const postData = useSelector((state) => state.postReducer);
   const userData = useSelector((state) => state.userReducer);
 
+  //* Gestion du infinite-scroll:
   const loadMore = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >
@@ -29,6 +45,66 @@ const Posts = () => {
     }
   };
 
+  //* Lance la transformation du lien de Youtube en lien lisible par le navigateur:
+  useEffect(() => {
+    if (!isEmpty(linkUpdate)) {
+      if (
+        linkUpdate.includes("https://www.youtube") ||
+        linkUpdate.includes("https://youtube")
+      ) {
+        let embed = linkUpdate.replace("watch?v=", "embed/");
+        setVideoUpdate(embed.split("&")[0]);
+        setPictureUpdate("");
+      }
+    }
+  }, [linkUpdate]);
+
+  //* Création du fichier lors d'un update :
+  const handlePicture = (e) => {
+    setPictureUpdate(URL.createObjectURL(e.target.files[0]));
+    setFileUpdate(e.target.files[0]);
+    setVideoUpdate("");
+  };
+
+  //* Mise à jour du post :
+  const updateMyPost = async (idpost) => {
+    if (textUpdate || videoUpdate || pictureUpdate) {
+      const updateData = new FormData();
+      if (textUpdate) updateData.append("post_text", textUpdate);
+      if (videoUpdate) updateData.append("post_video", videoUpdate);
+      if (fileUpdate) updateData.append("file", fileUpdate);
+
+      postData.map((data) => {
+        if (data.id_post == idpost) {
+          if (!fileUpdate)
+            updateData.append("post_url_image", data.post_url_image);
+          if (!videoUpdate) updateData.append("post_video", data.post_video);
+          if (!textUpdate) updateData.append("post_text", data.post_text);
+          return updateData;
+        } else {
+          return data;
+        }
+      });
+
+      await dispatch(updatePost(idpost, updateData));
+      await setIsUpdated(false);
+      await setToUpdated("");
+      await setTextUpdate(null);
+      await setVideoUpdate(null);
+      await setPictureUpdate(null);
+      await setFileUpdate();
+    } else {
+      alert("Pas de modification sans changement");
+      toggleUpdate(idpost);
+    }
+  };
+
+  //* Effacer un post :
+  const deleteMyPost = async (idpost) => {
+    await dispatch(deletePost(idpost));
+  };
+
+  //* useEffect pour l'infinite-scroll :
   useEffect(() => {
     if (loadPosts) {
       dispatch(getAllPosts(count));
@@ -48,6 +124,23 @@ const Posts = () => {
   //* Disliker le post :
   const IDislikePost = (idpost) => {
     dispatch(dislikePost(idpost));
+  };
+
+  //* Activation/désactivation de la modification d'un post
+  const toggleUpdate = (idpost) => {
+    setIsUpdated(!isUpdated);
+    setToUpdated(idpost);
+    setTextUpdate(null);
+    setVideoUpdate(null);
+    setPictureUpdate(null);
+  };
+
+  const showComments = (idpost) => {
+    idpost === whatComments ? setWhatComments("") : setWhatComments(idpost);
+  };
+
+  const addComment = (idpost) => {
+    idpost === makeComment ? setMakeComment("") : setMakeComment(idpost);
   };
 
   return (
@@ -77,45 +170,139 @@ const Posts = () => {
 
             <hr />
             <div className="post__container">
-              {!isEmpty(data.post_text) && (
-                <div className="post__container__text">
+              <div className="post__container__text">
+                {(!isUpdated || toUpdated !== data.id_post) && (
                   <p>{data.post_text}</p>
+                )}
+                {isUpdated && toUpdated === data.id_post ? (
+                  <div>
+                    <textarea
+                      defaultValue={data.post_text}
+                      onChange={(e) => setTextUpdate(e.target.value)}
+                    />
+                  </div>
+                ) : null}
+              </div>
+              {/* //? Affiche la video si elle existe et si pas d'update du post */}
+              {(!isUpdated || toUpdated != data.id_post) &&
+                !isEmpty(data.post_video) && (
+                  <iframe
+                    src={data.post_video}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={data.post_video}
+                  ></iframe>
+                )}
+              {/* //? Affiche la modification de video si elle existe et si update du post en cours */}
+              {isUpdated && toUpdated == data.id_post ? (
+                <div>
+                  {!isEmpty(data.post_video) && (
+                    <div>
+                      <iframe
+                        height="200"
+                        width="200"
+                        src={
+                          isEmpty(videoUpdate) ? data.post_video : videoUpdate
+                        }
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title={data.post_video}
+                      ></iframe>
+                      <input
+                        type="text"
+                        //defaultValue={data.post_video}
+                        //value={!isEmpty(videoUpdate) ? videoUpdate : ""}
+                        placeholder="Coller votre lien Youtube"
+                        onInput={(e) => setLinkUpdate(e.target.value)}
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
-
-              {!isEmpty(data.post_video) && (
-                <iframe
-                  src={data.post_video}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={data.post_video}
-                ></iframe>
-              )}
-              {!isEmpty(data.post_url_image) && (
-                <img
-                  src={data.post_url_image}
-                  alt={"photo" + data.id_post}
-                  className="post__container__img"
-                ></img>
-              )}
+              ) : null}
+              {/* //? Affiche l'image si elle existe et si pas d'update du post */}
+              {(!isUpdated || toUpdated !== data.id_post) &&
+                !isEmpty(data.post_url_image) && (
+                  <img
+                    src={data.post_url_image}
+                    alt={"photo" + data.id_post}
+                    className="post__container__img"
+                  ></img>
+                )}
+              {/* //? Affiche la modification de video si elle existe et si update du post en cours */}
+              {isUpdated && toUpdated === data.id_post ? (
+                <div>
+                  {!isEmpty(data.post_url_image) && (
+                    <div>
+                      <div>
+                        <img
+                          src={
+                            !isEmpty(pictureUpdate)
+                              ? pictureUpdate
+                              : data.post_url_image
+                          }
+                          alt={"photo" + data.id_post}
+                          className="post__container__img"
+                        ></img>
+                      </div>
+                      <div>
+                        <PictureIcon
+                          fillColor="#081f43"
+                          lineColor="transparent"
+                          height="40"
+                          width="40"
+                        ></PictureIcon>
+                        {/* <label htmlFor="filePost">Modifiez votre image :</label> */}
+                        <input
+                          type="file"
+                          //id="changeFile"
+                          name="file"
+                          accept=".jpg, .jpeg, .png"
+                          onInput={(e) => handlePicture(e)}
+                        ></input>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : null}
             </div>
+            {isUpdated && toUpdated === data.id_post ? (
+              <div>
+                <button onClick={() => updateMyPost(data.id_post)}>
+                  Valider les modifications
+                </button>
+              </div>
+            ) : null}
+
             {userData[0].user_status === "Moderateur" ||
             userData[0].id_user === data.post_id_user ? (
               <div className="post__edit">
-                <EditIcon
-                  fillColor="#081f43"
-                  lineColor="#081f43"
-                  height="24"
-                  width="24"
-                ></EditIcon>
+                <div onClick={() => toggleUpdate(data.id_post)}>
+                  <EditIcon
+                    fillColor="#081f43"
+                    lineColor="#081f43"
+                    height="24"
+                    width="24"
+                  ></EditIcon>
+                </div>
                 <br />
-                <TrashIcon
-                  fillColor="#081f43"
-                  lineColor="#081f43"
-                  height="24"
-                  width="24"
-                ></TrashIcon>
+                <div
+                  onClick={() => {
+                    if (
+                      window.confirm("Voulez-vous vraiment supprimer ce post ?")
+                    ) {
+                      deleteMyPost(data.id_post);
+                    }
+                  }}
+                >
+                  <TrashIcon
+                    fillColor="#081f43"
+                    lineColor="#081f43"
+                    height="24"
+                    width="24"
+                  ></TrashIcon>
+                </div>
               </div>
             ) : (
               ""
@@ -127,11 +314,14 @@ const Posts = () => {
                 <p className="postInfo__count">
                   <strong>{data.nbr_likes}</strong> J'aime
                 </p>
-                <p className="postInfo__count">
-                  <strong>{data.nbr_comments}</strong> Commentaires
+                <p
+                  className="postInfo__count"
+                  onClick={() => showComments(data.id_post)}
+                >
+                  <strong>{data.nbr_comments}</strong> Commentaire
+                  {data.nbr_comments <= 1 ? "" : "s"}
                 </p>
               </div>
-              <div>module modif à afficher</div>
             </div>
             <hr />
             <div className="post__action">
@@ -152,11 +342,27 @@ const Posts = () => {
                   <p>J'aime</p>
                 </div>
               )}
-              <div className="post__action__container">
+              <div
+                className="post__action__container"
+                onClick={() => {
+                  addComment(data.id_post);
+                }}
+              >
                 <p>O -</p>
                 <p>Commenter</p>
               </div>
             </div>
+            {makeComment === data.id_post ? (
+              <CreateComments data={data} key={"CC" + data.id_post} />
+            ) : (
+              ""
+            )}
+
+            {whatComments === data.id_post ? (
+              <Comments data={data} key={"super" + data.id_post} />
+            ) : (
+              ""
+            )}
           </div>
         ))}
     </div>

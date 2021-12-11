@@ -6,6 +6,8 @@ export const GET_ALL_POSTS = "GET_ALL_POSTS";
 export const LIKE_POST = "LIKE_POST";
 export const DISLIKE_POST = "DISLIKE_POST";
 export const CREATE_POST = "CREATE_POST";
+export const UPDATE_POST = "UPDATE_POST";
+export const DELETE_POST = "DELETE_POST";
 
 export const getAllPosts = (num) => {
   return async (dispatch) => {
@@ -80,6 +82,49 @@ export const createPost = (data) => {
         };
 
         dispatch({ type: CREATE_POST, payload: newPost });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const updatePost = (idpost, data) => {
+  return async (dispatch) => {
+    return await axios({
+      method: "put",
+      url: process.env.REACT_APP_API_URL + "api/post/update/" + idpost,
+      data: data,
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log("res.data");
+        console.log(res.data);
+        console.log(res.data.data.id_post);
+        const updateData = {
+          id_post: res.data.data.id_post,
+          post_text: res.data.data.post_text,
+          post_url_image: res.data.data.post_url_image,
+          post_video: res.data.data.post_video,
+          //post_id_user: res.data.data.id_user,
+        };
+
+        dispatch({ type: UPDATE_POST, payload: updateData });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const deletePost = (idpost) => {
+  return async (dispatch) => {
+    return await axios({
+      method: "delete",
+      url: process.env.REACT_APP_API_URL + "api/post/delete/" + idpost,
+      withCredentials: true,
+    })
+      .then((res) => {
+        const deleteData = {
+          id_post: res.data.data.id_post,
+        };
+        dispatch({ type: DELETE_POST, payload: deleteData });
       })
       .catch((err) => console.log(err));
   };
