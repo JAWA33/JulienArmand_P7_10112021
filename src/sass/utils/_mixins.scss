@@ -8,16 +8,16 @@
   @if ($justify == "cen") {
     justify-content: center;
   }
-  @elseif ($justify == "spA") {
+  @if ($justify == "spA") {
     justify-content: space-around;
   }
-  @elseif ($justify == "spB") {
+  @if ($justify == "spB") {
     justify-content: space-between;
   }
-  @elseif ($justify == "spE") {
+  @if ($justify == "spE") {
     justify-content: space-evenly;
   }
-  @elseif ($justify == "base") {
+  @if ($justify == "base") {
     justify-content: baseline;
   } @else {
     justify-content: $justify;
@@ -26,16 +26,16 @@
   @if ($align == "cen") {
     align-items: center;
   }
-  @elseif ($align == "flexS") {
+  @if ($align == "flexS") {
     align-items: flex-start;
   }
-  @elseif ($align == "flexE") {
+  @if ($align == "flexE") {
     align-items: flex-end;
   }
-  @elseif ($align == "st") {
+  @if ($align == "st") {
     align-items: stretch;
   }
-  @elseif ($align == "base") {
+  @if ($align == "base") {
     align-items: baseline;
   } @else {
     align-items: $align;
@@ -50,16 +50,16 @@
   @if ($justify == "cen") {
     justify-content: center;
   }
-  @elseif ($justify == "spA") {
+  @if ($justify == "spA") {
     justify-content: space-around;
   }
-  @elseif ($justify == "spB") {
+  @if ($justify == "spB") {
     justify-content: space-between;
   }
-  @elseif ($justify == "spE") {
+  @if ($justify == "spE") {
     justify-content: space-evenly;
   }
-  @elseif ($justify == "base") {
+  @if ($justify == "base") {
     justify-content: baseline;
   } @else {
     justify-content: $justify;
@@ -68,16 +68,16 @@
   @if ($align == "cen") {
     align-items: center;
   }
-  @elseif ($align == "flexS") {
+  @if ($align == "flexS") {
     align-items: flex-start;
   }
-  @elseif ($align == "flexE") {
+  @if ($align == "flexE") {
     align-items: flex-end;
   }
-  @elseif ($align == "st") {
+  @if ($align == "st") {
     align-items: stretch;
   }
-  @elseif ($align == "base") {
+  @if ($align == "base") {
     align-items: baseline;
   } @else {
     align-items: $align;

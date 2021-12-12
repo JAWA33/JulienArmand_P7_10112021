@@ -80,18 +80,31 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: "spB";
   align-items: center;
+  align-items: "cen";
   color: #f8f8f8;
   background: #081f43;
 }
 
 .logo {
-  width: 320px;
+  width: 250px;
   margin-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: initial;
   align-items: center;
+  align-items: "cen";
+}
+
+.current div {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ffd7d6;
+}
+.current div img {
+  width: 30px;
+  height: 30px;
 }
 
 .userInfo {
@@ -100,25 +113,40 @@ header {
   margin: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
+}
+.userInfo div {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
 }
 .userInfo img {
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
-  border: 2px solid white;
 }
 .userInfo button {
   color: black;
   margin-top: 10px;
 }
 
-.userIcon {
-  width: 50px;
-  height: 50px;
-  border: 2px solid white;
-  border-radius: 50%;
+.navigation {
+  width: 80%;
+  padding-left: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: "spB";
+  align-items: center;
+  align-items: "cen";
 }
 
 footer {
@@ -133,6 +161,7 @@ main {
   flex-direction: column;
   justify-content: initial;
   align-items: center;
+  align-items: "cen";
   padding-top: 50px;
   background: silver;
 }
@@ -143,7 +172,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
   margin: auto;
   padding: 20px;
   background: #ebebeb;
@@ -156,7 +187,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
   padding: 10px;
 }
 .connect__form {
@@ -166,6 +199,7 @@ main {
   flex-direction: column;
   justify-content: initial;
   align-items: flex-start;
+  align-items: "flexS";
 }
 .connect__form label {
   margin-bottom: 10px;
@@ -185,7 +219,9 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
 }
 
 li {
@@ -234,6 +270,7 @@ li:hover {
   flex-direction: row;
   justify-content: "flexS";
   align-items: center;
+  align-items: "cen";
 }
 .post__userInfo__img {
   width: 80px;
@@ -252,7 +289,9 @@ li:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  justify-content: "spE";
   align-items: center;
+  align-items: "cen";
   margin-right: 10px;
 }
 .post__edit :nth-child(1n) {
@@ -270,20 +309,26 @@ li:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: "spB";
   align-items: center;
+  align-items: "cen";
 }
 .post__action {
   min-height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  justify-content: "spE";
   align-items: center;
+  align-items: "cen";
 }
 .post__action__container {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
 }
 .post__action__container:hover {
   color: green;
@@ -301,7 +346,9 @@ li:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  justify-content: "spE";
   align-items: center;
+  align-items: "cen";
 }
 .postInfo__count {
   margin: 5px;
@@ -318,7 +365,9 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
 }
 .createPost__title {
   width: 100%;
@@ -328,7 +377,9 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: "cen";
   align-items: center;
+  align-items: "cen";
 }
 .createPost__container {
   width: 100%;
@@ -354,13 +405,16 @@ input[type=file] {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: "spB";
   align-items: center;
+  align-items: "cen";
 }
 .commentContainer__comment {
   display: flex;
   flex-direction: row;
   justify-content: "flexS";
   align-items: center;
+  align-items: "cen";
 }
 .commentContainer__image {
   width: 50px;
@@ -376,7 +430,9 @@ input[type=file] {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  justify-content: "spE";
   align-items: center;
+  align-items: "cen";
 }
 .createComment__input {
   color: black;

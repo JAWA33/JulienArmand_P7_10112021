@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../../actions/post.actions.js";
 import PictureIcon from "../../svgComponents/PictureIcon.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
+import Compressor from "compressorjs";
 //import axios from "axios";
 
 //import { validParagraph } from "../../Utils/regExp.js";
@@ -74,9 +75,23 @@ const CreatePost = () => {
   };
 
   const handlePicture = (e) => {
-    setPostPicture(URL.createObjectURL(e.target.files[0]));
-    setFile(e.target.files[0]);
+    makeCompressor(e.target.files[0], {
+      maxWidth: 500,
+      quality: 0.6,
+      success(imgBlob) {
+        setPostPicture(URL.createObjectURL(imgBlob));
+        setFile(imgBlob);
+      },
+      error(err) {
+        console.log(err.message);
+      },
+    });
+
     setPostVideo("");
+  };
+
+  const makeCompressor = (file, options) => {
+    return new Compressor(file, options);
   };
 
   useEffect(() => {

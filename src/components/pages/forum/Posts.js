@@ -14,6 +14,7 @@ import { nowToDate } from "../../Utils/nowToDate.js";
 import PictureIcon from "../../svgComponents/PictureIcon.js";
 import Comments from "./Comments.js";
 import CreateComments from "./CreateComment";
+import Compressor from "compressorjs";
 
 const Posts = () => {
   //* Hooks :
@@ -61,9 +62,23 @@ const Posts = () => {
 
   //* Création du fichier lors d'un update :
   const handlePicture = (e) => {
-    setPictureUpdate(URL.createObjectURL(e.target.files[0]));
-    setFileUpdate(e.target.files[0]);
+    makeCompressor(e.target.files[0], {
+      maxWidth: 500,
+      quality: 0.6,
+      success(imgBlob) {
+        setPictureUpdate(URL.createObjectURL(imgBlob));
+        setFileUpdate(imgBlob);
+      },
+      error(err) {
+        console.log(err.message);
+      },
+    });
     setVideoUpdate("");
+  };
+
+  //* Compressor file :
+  const makeCompressor = (file, options) => {
+    return new Compressor(file, options);
   };
 
   //* Mise à jour du post :
@@ -76,10 +91,13 @@ const Posts = () => {
 
       postData.map((data) => {
         if (data.id_post == idpost) {
+          if (fileUpdate)
+            updateData.append("url_image_toDelete", data.post_url_image);
           if (!fileUpdate)
             updateData.append("post_url_image", data.post_url_image);
           if (!videoUpdate) updateData.append("post_video", data.post_video);
           if (!textUpdate) updateData.append("post_text", data.post_text);
+
           return updateData;
         } else {
           return data;

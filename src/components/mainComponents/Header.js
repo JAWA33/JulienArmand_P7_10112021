@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AnimeGroupomania from "../svgComponents/AnimeGroupomania.js";
-import UserInfo from "../mainComponents/UserInfo";
 import { UidContext } from "../routes/AppContext";
+import Navigation from "./Navigation.js";
 
 const Header = () => {
   const uid = useContext(UidContext);
@@ -20,7 +20,7 @@ const Header = () => {
         ></AnimeGroupomania>
         <h1>Groupomania</h1>
       </div>
-      {uid ? <UserInfo /> : ""}
+      {uid ? <Navigation /> : ""}
     </header>
   );
 };
