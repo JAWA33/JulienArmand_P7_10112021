@@ -19,6 +19,8 @@ const Navigation = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        sessionStorage.removeItem("id_user");
+        sessionStorage.removeItem("connectedUser");
         window.location = "/";
       })
       .catch((err) => {
@@ -46,7 +48,7 @@ const Navigation = () => {
                 <img src={allUsers} alt="Tous les utilisateurs" />
               </div>
             </NavLink>
-            <NavLink exact to="/myprofil" activeClassName="current">
+            <NavLink exact to="/mypage" activeClassName="current">
               <div>
                 <img
                   src={userData[0].user_url_image}

@@ -9,6 +9,9 @@ import {
   validId,
 } from "../../Utils/regExp.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getJobs } from "../../../actions/job.actions.js";
+
 const SignUp = () => {
   //* Hooks pour formulaire :
   const [formSubmit, setFormSubmit] = useState(false);
@@ -19,12 +22,14 @@ const SignUp = () => {
   const [id_job, setId_job] = useState("");
 
   //* Hooks pour liste déroulante :
-  const [jobList, setJobList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const signUpForm = document.getElementById("signUpForm");
   const infoError = document.getElementById("infoError");
   const terms = document.getElementById("terms");
+
+  const dispatch = useDispatch();
+  const jobData = useSelector((state) => state.jobReducer);
 
   //* ########  Controle pré-requête lors de la saisie du formulaire :
 
@@ -89,15 +94,16 @@ const SignUp = () => {
       if (!terms.checked)
         infoError.innerHTML = "Merci de valider les conditions générales";
       infoError.classList.add("error");
-    } else if (password === controlPass && terms.checked) {
-      infoError.innerHTML = "";
-      infoError.classList.remove("error");
     } else if (
+      password === controlPass &&
+      terms.checked &&
       validName(signUpForm.firstname) &&
       validEmail(signUpForm.email) &&
       validPassword(signUpForm.password) &&
       validId(signUpForm.id_job)
     ) {
+      infoError.innerHTML = "";
+      infoError.classList.remove("error");
       axios({
         method: "post",
         url: process.env.REACT_APP_API_URL + "api/user/signup",
@@ -122,12 +128,14 @@ const SignUp = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      console.log("Problème d'envoi");
     }
   };
 
   //* ####### Attente du chargement pour remplissage de la liste déroulante
   const listingJobs = !loading ? (
-    jobList.map((data) => (
+    jobData.map((data) => (
       <option key={data.id_job.toString()} value={data.id_job}>
         {data.job_name}
       </option>
@@ -137,23 +145,12 @@ const SignUp = () => {
   );
 
   //* ####### Chargement de la liste déroulante :
-  useEffect(() => {
-    const getJobs = () => {
-      axios({
-        method: "get",
-        url: process.env.REACT_APP_API_URL + "api/job/",
-        withCredentials: true,
-      })
-        .then((res) => {
-          setJobList(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getJobs();
-  }, []);
+  useEffect(async () => {
+    if (loading) {
+      await dispatch(getJobs());
+      await setLoading(false);
+    }
+  }, [loading, dispatch]);
 
   return (
     <>

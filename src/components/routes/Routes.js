@@ -12,7 +12,7 @@ import Footer from "../mainComponents/Footer";
 import AllUsers from "../pages/allUsers/AllUsers.js";
 import Connect from "../pages/connect/Connect.js";
 import Forum from "../pages/forum/Forum.js";
-import MyProfil from "../pages/myProfil/MyProfil.js";
+import MyPage from "../pages/myProfil/MyPage.js";
 
 const Routes = () => {
   return (
@@ -23,7 +23,7 @@ const Routes = () => {
           <Route exact path="/" component={Connect} />
           <Route exact path="/forum" component={Forum} />
           <Route exact path="/allusers" component={AllUsers} />
-          <Route exact path="/myprofil" component={MyProfil} />
+          <Route exact path="/mypage" component={MyPage} />
           <Redirect to="/" />
         </Switch>
       </main>

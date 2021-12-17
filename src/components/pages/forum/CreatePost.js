@@ -6,7 +6,7 @@ import { isEmpty } from "../../Utils/isEmpty.js";
 import Compressor from "compressorjs";
 //import axios from "axios";
 
-//import { validParagraph } from "../../Utils/regExp.js";
+import { validParagraph } from "../../Utils/regExp.js";
 
 const CreatePost = () => {
   //* Hooks pour formulaire :
@@ -23,28 +23,11 @@ const CreatePost = () => {
 
   //* ########  Controle pré-requête lors de la saisie du formulaire :
 
-  // if (CreatePostForm) {
-  //   CreatePostForm.textPost.addEventListener("change", function () {
-  //     validParagraph(this);
-
-  // if (!validParagraph(this)) {
-  //   if (CreatePostForm.textPost.value === "") {
-  //     alertMessage.innerHTML = "";
-  //     alertMessage.classList.remove("error");
-  //     alertMessage.classList.remove("success");
-  //     CreatePostForm.textPost.classList.remove("error");
-  //     CreatePostForm.textPost.classList.remove("success");
-  //   } else {
-  //     alertMessage.innerHTML =
-  //       "Votre message comporte des caractères non autorisés";
-  //     alertMessage.classList.add("error");
-  //   }
-  // } else {
-  //   alertMessage.innerHTML = "";
-  //   alertMessage.classList.remove("error");
-  // }
-  //   });
-  // }
+  if (CreatePostForm) {
+    CreatePostForm.textPost.addEventListener("change", function () {
+      validParagraph(this);
+    });
+  }
 
   const handleVideo = () => {
     let findLink = textPost.split(" ");
@@ -174,7 +157,7 @@ const CreatePost = () => {
             </div>
 
             {isEmpty(postVideo) ? (
-              <div>
+              <div className="iconImage">
                 <PictureIcon
                   fillColor="#081f43"
                   lineColor="transparent"

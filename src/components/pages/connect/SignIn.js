@@ -67,6 +67,7 @@ const SignIn = () => {
             // data dans le local storage
             infoError.classList.remove("error");
             sessionStorage.setItem("connectedUser", JSON.stringify(res.data));
+            sessionStorage.setItem("id_user", JSON.stringify(res.data.id_user));
 
             window.location = "/forum";
           }

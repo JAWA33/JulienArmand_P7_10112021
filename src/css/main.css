@@ -250,6 +250,14 @@ li:hover {
   border-radius: 10px;
 }
 
+.error_text {
+  width: 100%;
+  min-height: 25px;
+  padding: 2px;
+  color: red;
+  border-radius: 10px;
+}
+
 .success {
   width: 100%;
   min-height: 25px;
@@ -394,7 +402,7 @@ textarea {
 input[type=file] {
   position: absolute;
   width: 160px;
-  opacity: 0;
+  opacity: 1;
   transform: translate(-155px, 10px);
   cursor: pointer;
 }
@@ -439,4 +447,156 @@ input[type=file] {
 }
 .createComment__btn {
   color: black;
+}
+
+.myPage {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+
+.myProfil {
+  background: whitesmoke;
+  width: 70%;
+  max-width: 700px;
+  border-radius: 10px;
+  border: 1px #081f43 solid;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__contact {
+  margin: 10px;
+}
+.myProfil__contact__name {
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__contact__info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__contact__info h3 {
+  margin-bottom: 10px;
+}
+.myProfil__myInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: "flexS";
+  align-items: stretch;
+  align-items: "st";
+}
+.myProfil__myInfo__age {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: "flexS";
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+.myProfil__myInfo__age h2 {
+  width: 80px;
+}
+.myProfil__myInfo__age p {
+  width: calc(100%-80px);
+}
+.myProfil__myInfo__bio {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.myProfil__myInfo__bio h2 {
+  margin-bottom: 10px;
+}
+.myProfil__myInfo__bio p {
+  margin-bottom: 10px;
+}
+.myProfil__modif {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__modif button {
+  width: 100%;
+  height: 40px;
+  background-color: #081f43;
+  color: whitesmoke;
+  border-radius: 10px;
+}
+
+.imageCard {
+  text-align: center;
+}
+.imageCard img {
+  width: 600px;
+}
+
+.backdrop {
+  position: fixed;
+  background: #000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.crop-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+}
+
+.controls {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 80px;
+}
+
+.controls-upper-area {
+  text-align: center;
+}
+
+.slider {
+  width: 50%;
+}
+
+.button-area {
+  text-align: center;
+  margin-top: 20px;
+}
+.button-area button {
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #000;
+  color: white;
+  border: 2px solid yellow;
+  font-size: 20px;
 }/*# sourceMappingURL=main.css.map */

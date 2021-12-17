@@ -90,6 +90,9 @@ const Posts = () => {
       if (fileUpdate) updateData.append("file", fileUpdate);
 
       postData.map((data) => {
+        console.log("DATA ID POST");
+        console.log(data.id_post);
+        console.log(idpost);
         if (data.id_post == idpost) {
           if (fileUpdate)
             updateData.append("url_image_toDelete", data.post_url_image);
