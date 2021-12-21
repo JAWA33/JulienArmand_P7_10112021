@@ -95,7 +95,7 @@
     @include flexCol("cen", "cen");
     width: 100%;
     padding: 30px;
-    color: $textColor_light;
+    
 
     &__part{
       @include flexCol("cen", "flexS");
@@ -103,12 +103,15 @@
       
       & label{
         margin-bottom: 5px;
+        color: $textColor_light;
       }
 
       & input {
         width: 100%;
         height: 28px;
-        border-radius: 10px;
+        color: $textColor_dark;
+        
+        border-radius: 30px;
         padding: 10px;
         font-style: oblique;
       }
