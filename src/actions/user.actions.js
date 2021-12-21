@@ -5,7 +5,7 @@ dotenv.config({ path: "../.env" });
 export const GET_USER = "GET_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
-
+//for git
 export const getUser = (uid) => {
   return async (dispatch) => {
     return await axios

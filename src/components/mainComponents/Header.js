@@ -9,11 +9,11 @@ const Header = () => {
   //* #######  Simulation de connexion ######## *//
 
   //* ---------  Simulation de connection : FIN ----------- *//
-
+  //for git
   return (
     <header>
       <div className="logoContainer">
-        <img src={icon} className="logoContainer__icon"/>
+        <img src={icon} className="logoContainer__icon" />
         <h1 className="logoContainer__title">Groupomania</h1>
       </div>
       {uid ? <Navigation /> : ""}

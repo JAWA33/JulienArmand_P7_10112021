@@ -4,7 +4,7 @@ import {
   DELETE_COMMENT,
   UPDATE_COMMENT,
 } from "../actions/comment.action.js";
-
+// For Git
 const initialState = {};
 
 export default function commentsReducer(state = initialState, action) {

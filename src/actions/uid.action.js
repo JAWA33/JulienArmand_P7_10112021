@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
 
 export const GET_UID = "GET_UID";
-
+//for git
 export const getUid = () => {
   return async (dispatch) => {
     return await axios({

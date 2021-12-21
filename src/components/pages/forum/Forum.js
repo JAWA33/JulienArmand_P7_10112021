@@ -3,7 +3,7 @@ import { UidContext } from "../../routes/AppContext.js";
 
 import Posts from "./Posts.js";
 import CreatePost from "./CreatePost.js";
-
+//for git
 const Forum = () => {
   const uid = useContext(UidContext);
 

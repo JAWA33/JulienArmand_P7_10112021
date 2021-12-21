@@ -1,4 +1,5 @@
 const TrashIcon = (props) => {
+  //for git
   return (
     <svg
       className="TrashIcon"

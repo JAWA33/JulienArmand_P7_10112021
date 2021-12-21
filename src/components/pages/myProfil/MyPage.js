@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from "react";
 import { UidContext } from "../../routes/AppContext.js";
 import MyProfil from "./MyProfil";
 import { useSelector } from "react-redux";
-
+//for git
 const MyPage = () => {
   const uid = useContext(UidContext);
 

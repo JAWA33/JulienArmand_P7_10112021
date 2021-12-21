@@ -17,7 +17,7 @@ import {
 } from "../../Utils/regExpProfil.js";
 import { stringToDate } from "../../Utils/stringToDate";
 import ImageCropDialog from "./ImageCropDialog.js";
-
+//for git
 const MyProfil = ({ data, modif }) => {
   console.log("MODIFIY");
   console.log(modif);

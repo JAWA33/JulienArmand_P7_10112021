@@ -6,4 +6,4 @@ export const getUserProfile = (data) => {
       console.log(data), dispatch({ type: GET_USER_PROFIL, payload: data })
     );
   };
-};
+}; //for git

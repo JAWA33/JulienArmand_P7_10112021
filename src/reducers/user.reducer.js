@@ -1,5 +1,5 @@
 import { GET_USER, UPDATE_USER, DELETE_USER } from "../actions/user.actions.js";
-
+// For Git
 const initialState = {};
 
 export default function userReducer(state = initialState, action) {

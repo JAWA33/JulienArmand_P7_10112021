@@ -1,4 +1,5 @@
 export const nowToDate = (date) => {
+  //for git
   let startingDate = new Date(date);
   let today = Date.now();
 

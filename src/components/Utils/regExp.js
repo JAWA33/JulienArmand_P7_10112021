@@ -1,6 +1,6 @@
 //* DEFINITION DES REGEXP #####################################################
 //! Vérifer si la Regexp existe ou si elle correspond à ce que vous souhaitez valider, ou ajouter une nouvelle :
-
+//for git
 //? Regex de type password : ############################# //
 const validPassword = (input) => {
   let regexPassword = new RegExp(

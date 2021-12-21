@@ -10,7 +10,7 @@ import TrashIcon from "../../svgComponents/TrashIcon.js";
 import EditIcon from "../../svgComponents/EditIcon.js";
 
 //
-
+//for git
 //
 const Comments = ({ data }) => {
   const [loadComments, setLoadComments] = useState(true);

@@ -3,7 +3,7 @@ import AnimeGroupomania from "../../svgComponents/AnimeGroupomania.js";
 import axios from "axios";
 import dotenv from "dotenv";
 import { validPassword, validEmail } from "../../Utils/regExp.js";
-
+//for git
 dotenv.config({ path: "../../../../.env" });
 
 const SignIn = () => {
@@ -116,7 +116,6 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Saisissez votre mot de passe"
-
           ></input>
           <p></p>
         </div>

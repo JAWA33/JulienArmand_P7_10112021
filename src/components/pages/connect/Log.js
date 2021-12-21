@@ -15,7 +15,7 @@ const Log = () => {
       setSignUpForm(false);
     }
   };
-
+  //for git
   return (
     <div className="logForm">
       {signInForm && <SignIn />}

@@ -1,6 +1,6 @@
 //* DEFINITION DES REGEXP #####################################################
 //! Vérifer si la Regexp existe ou si elle correspond à ce que vous souhaitez valider, ou ajouter une nouvelle :
-
+//for git
 //? Regex de type "nom" : 3 lettres mini, pas de chiffre ni caractères spéciaux sauf "-" ############## //
 const validName = (input) => {
   console.log("TEST NAME");
