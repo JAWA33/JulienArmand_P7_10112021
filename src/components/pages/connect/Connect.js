@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Log from "./Log.js";
 import Forum from "../forum/Forum.js";
 import { UidContext } from "../../routes/AppContext.js";
@@ -7,16 +7,24 @@ function Connect() {
   const uid = useContext(UidContext);
 
   return (
-    <div>
+    <Fragment>
       {uid ? (
         <Forum />
       ) : (
-        <div>
-          <h1> Bienvenue sur Groupcom</h1>
+        <section className="loginPage">
+          <div className="loginPage__info">
+            <h2 className="loginPage__info__title textLog--title">
+              Bienvenue sur Group'com !
+            </h2>
+            <p className="loginPage__info__text textLog--text">
+              Rejoignez votre réseau interne d’entreprise, dédié aux employés de
+              Groupomania. <hr /> Discutez, échangez, communiquez !
+            </p>
+          </div>
           <Log />
-        </div>
+        </section>
       )}
-    </div>
+    </Fragment>
   );
 }
 

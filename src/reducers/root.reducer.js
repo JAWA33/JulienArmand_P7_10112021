@@ -4,6 +4,8 @@ import postReducer from "./post.reducer.js";
 import commentsReducer from "./comment.reducer.js";
 import jobReducer from "./job.reducer.js";
 import uidReducer from "./uid.reducer.js";
+import allUsersReducer from "./allusers.reducer.js";
+import userProfilReducer from "./userProfil.reducer.js";
 
 export default combineReducers({
   userReducer,
@@ -11,4 +13,6 @@ export default combineReducers({
   commentsReducer,
   jobReducer,
   uidReducer,
+  allUsersReducer,
+  userProfilReducer,
 });

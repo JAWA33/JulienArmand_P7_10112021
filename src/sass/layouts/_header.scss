@@ -1,21 +1,99 @@
 header {
-  width: 100%;
+  position: fixed;
+  top: 1rem;
+  left: 2%;
+  right: 2%;
+  z-index: 1;
+  width: 96%;
   height: auto;
 
-  @include flexRow("spB", "cen");
+  color: $textColor_dark;
+  border-radius: 20px;
+  margin: auto;
+  background: linear-gradient(145deg, $graphicPrimary, $graphicSecondary);
+  box-shadow: 2px 2px 2px $shadowDark, -2px -2px 2px $shadowLight;
 
-  color: $textColor_light;
-  background: $colorPrimary;
+  @include flexRow("cen", "cen");
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    margin: 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, $graphicPrimary, $graphicSecondary);
+    box-shadow: inset 1px 1px 6px $shadowDark, inset -1px -1px 6px $shadowLight;
+  }
 }
 
-.logo {
-  width: 250px;
+.logoContainer {
+  width: 30%;
+  max-width: 400px;
+  height: 80%;
+  margin: 10px 15px;
+  padding: 5px;
+  z-index: 1;
 
-  //border: 2px solid red;
-  margin-left: 20px;
+  @include flexRow("cen", "cen");
 
-  @include flexRow(initial, "cen");
+  &__icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  &__title {
+    color: $textColor_light;
+    margin: 0px 15px;
+    font-size: 35px;
+  }
 }
+// header {
+//   position: fixed;
+//   top: 0;
+//   z-index: 1;
+//   width: 100%;
+//   height: auto;
+
+//   color: $textColor_dark;
+//   border-radius: 0px 0 30px 30px;
+//   background: linear-gradient(145deg, $bg_Tertiary, $bg_Primary);
+//   box-shadow: 6px 6px 6px $colorPrimary, -6px -6px 6px $bg_Tertiary;
+
+//   @include flexRow("spB", "cen");
+// }
+
+// .logoContainer {
+//   width: 30%;
+//   max-width: 400px;
+//   height: 80%;
+//   margin: 10px 15px;
+//   padding: 5px;
+//   //border: 2px solid red;
+//   border-radius: 20px;
+//   background: $bg_Primary;
+//   box-shadow: inset 3px 3px 3px $colorPrimary, inset -3px -3px 3px $bg_Tertiary;
+
+//   @include flexRow("cen", "cen");
+
+//   &__icon {
+//     //border: 2px solid red;
+//     width: 60px;
+//     height: 60px;
+
+//     &__logo path {
+//       fill: $colorPrimary;
+//       stroke: transparent;
+//     }
+//   }
+
+//   &__title {
+//     color: $optionColor;
+//     margin: 0px 15px;
+//     font-size: 35px;
+//     text-shadow: -1px -1px 1px $bg_Tertiary, 2px 2px 1px $colorPrimary;
+//   }
+// }
 
 .current div {
   width: 40px;
@@ -31,21 +109,32 @@ header {
 .userInfo {
   width: 300px;
   height: auto;
+  z-index: 1;
 
   margin: 20px;
 
   @include flexRow("cen", "cen");
 
   & div {
-    width: 40px;
-    height: 40px;
     margin-right: 20px;
-    border-radius: 50%;
     @include flexRow("cen", "cen");
   }
 
   & img {
     border-radius: 50%;
+  }
+
+  &__btn {
+    width: 50px;
+    height: 50px;
+    //border: 1px solid red;
+    border-radius: 50%;
+    background: $bg_Primary;
+    box-shadow: 3px 3px 2px $colorPrimary, -2px -2px 2px #ffffff;
+    &__icon {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   & button {
@@ -56,7 +145,12 @@ header {
 
 .navigation {
   width: 80%;
-  padding-left: 15%;
+  padding-left: 10%;
   @include flexRow("spB", "cen");
   //justify-content: flex-end;
+
+  &__user {
+    color: $colorPrimary;
+    font-size: 20px;
+  }
 }

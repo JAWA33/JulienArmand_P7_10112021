@@ -2,29 +2,49 @@
 
 //----- Graphic charter-----//
 
-$colorPrimary: #081f43;
-$colorSecondary: #ffd7d6;
-$colorTertiary: #d4d4d4;
+$graphicPrimary: rgb(9,25,33);
+$graphicSecondary: rgb(8,31,67);
+$graphicTertiary: rgb(4,187,252);
+// $graphicPrimary: #091921;
+// $graphicSecondary: #081f43;
+// $graphicTertiary: #04bbfc;
 
-//-----Option Color : Red Variations-------//
+//---- Addcolor ---------//
 
-$optionColor: #d1515a;
-$optionColor_light: #ff2a00;
+$errorColor: #ff421c;
+$successColor: #00b594;
 
-//---- Additionnal colors : Grey variations------ //
-$addColor: rgb(235, 235, 235);
-$addColor_light: darken($addColor, 5%);
-$addColor_dark: darken($addColor, 17%);
+//--- Shadow color ---------//
+
+$shadowLight: rgb(214, 214, 214);
+$shadowDark: #04bbfc;
 
 //---- Text Colors ---------//
 
 $textColor_light: rgb(248, 248, 248);
 $textColor_dark: rgb(2, 2, 2);
 
-//* ############# DIMENSIONS ############ *//
+//! ############# OLD  ############ *//
+//! ############# OLD  ############ *//
+//! ############# OLD  ############ *//
+//! ############# OLD  ############ *//
+//! ############# OLD  ############ *//
 
-$dim_header: 80px;
-$dim_footer: 80px;
+//----- Graphic charter-----//
+
+$colorPrimary: #081f43;
+$colorSecondary: #ffd7d6;
+$colorTertiary: #d4d4d4;
+
+//-----Option Color : Red Variations-------//
+
+$optionColor: #d94530;
+$optionColor_light: #ff2a00;
+
+//---- Additionnal colors : Grey variations------ //
+$addColor: #f5f5f5;
+$addColor_light: darken($addColor, 5%);
+$addColor_dark: darken($addColor, 17%);
 
 //* ########### Breakpoints maps ###### */
 $breakpoints: (
@@ -32,3 +52,15 @@ $breakpoints: (
   tablet: 850px,
   desktop: 1200px,
 );
+
+//? ######## NEW #########
+
+//---- Bg colors : Grey variations------ //
+$bg_Primary: #e6e6e6;
+$bg_Secondary: darken($bg_Primary, 35%);
+$bg_Tertiary: lighten($bg_Primary, 6%);
+
+//* ############# DIMENSIONS ############ *//
+
+$dim_header: 60px;
+$dim_footer: 60px;

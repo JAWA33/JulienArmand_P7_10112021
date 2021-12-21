@@ -16,7 +16,11 @@ const MyPage = () => {
       {uid ? (
         userData[0] ? (
           <div className="myPage">
-            <MyProfil data={userData} key={"myprofil" + userData[0].id_user} />
+            <MyProfil
+              data={userData}
+              key={"myprofil" + userData[0].id_user}
+              modif={true}
+            />
           </div>
         ) : (
           ""

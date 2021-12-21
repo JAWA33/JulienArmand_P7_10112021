@@ -1,26 +1,22 @@
-main {
-  @include flexCol(initial, "cen");
-
-  //border: 3px solid blue;
-  padding-top: 50px;
-
-  background: $addColor_dark;
+#app {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(
+      270deg,
+      rgba($graphicPrimary, 0.85),
+      rgba($graphicSecondary, 0.85)
+    ),
+    url("./bg/bg_main.jpg") repeat center center;
 }
 
-.userConnect {
-  //width: auto;
-  width: 450px;
+main {
+  width: 100%;
   height: auto;
 
   @include flexCol("cen", "cen");
 
-  margin: auto;
-  padding: 20px;
-
-  background: $addColor;
-
-  border: 1px solid $colorPrimary;
-  border-radius: 20px;
+  //border: 3px solid blue;
+  padding-top: 50px;
 }
 
 .connect {
@@ -55,24 +51,6 @@ main {
     &--newUser {
       @include flexRow("cen", "cen");
     }
-  }
-}
-
-li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 40px;
-  background-color: white;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-
-  &:hover {
-    background-color: blue;
-    color: white;
-    cursor: pointer;
   }
 }
 
@@ -392,3 +370,43 @@ input[type="file"] {
 }
 
 //Cropper React :
+
+//! AllUsers Page : ###################
+
+.allUsers {
+  width: 100%;
+  @include flexRow("SpB", "flexS");
+
+  &__organization {
+    min-width: 50%;
+    @include flexCol("flexS", "cen");
+  }
+}
+
+.service {
+  width: 100%;
+  min-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 20px;
+  @include flexCol("flexS", "cen");
+
+  &__jobs {
+    min-width: 100%;
+    border: 2px solid green;
+    @include flexCol("cen", "flexS");
+    padding: 10px;
+  }
+}
+
+.user {
+  width: 200px;
+  height: auto;
+}
+
+.selected {
+  background-color: rgb(255, 209, 209);
+  border: 2px red solid;
+}
+//! AllUsers Page : ###################

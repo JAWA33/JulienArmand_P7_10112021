@@ -1,0 +1,123 @@
+.loginPage {
+  position: relative;
+  width: 90%;
+  height: auto;
+  @include flexRow("cen", "cen");
+
+  &__info {
+    width: 40%;
+    height: 50%;
+    color: $textColor_light;
+    margin: 40px;
+    @include flexCol("cen", "spE");
+
+    &__title {
+      margin-bottom: 30px;
+    }
+
+    &__text {
+      margin-left: 30px;
+      line-height: 40px;
+
+      & hr {
+        margin: 30px 0;
+      }
+    }
+  }
+}
+
+.logForm {
+  width: 30%;
+  max-width: 400px;
+  min-width: 300px;
+
+  //min-width: 300px;
+
+  @include flexCol("cen", "cen");
+
+  color: $textColor_dark;
+  border-radius: 30px;
+  background: linear-gradient(90deg, $graphicSecondary, $graphicPrimary);
+  box-shadow: 2px 2px 2px $shadowDark, -2px -2px 2px $shadowLight;
+
+  &__button {
+    @include flexCol("cen", "cen");
+  }
+}
+
+.btn__changeLog {
+  max-width: 90%;
+  height: auto;
+  padding: 5px 10px;
+  margin-bottom: 25px;
+  color: $textColor_light;
+  border: 1px solid $textColor_light;
+  border-radius: 20px;
+
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background: linear-gradient(180deg, $successColor, $graphicSecondary);
+    box-shadow: 2px 2px 4px $shadowLight, -2px -2px 4px $shadowLight;
+
+    color: $textColor_light;
+    transform: scale(1.08);
+    transition: ease-out 0.3s;
+  }
+}
+
+.signin {
+  width: 100%;
+  @include flexCol("cen", "cen");
+
+  &__title{
+    width: 100%;
+    height: 65px;
+    border-radius: 29px 29px 0px 0px;
+    background-color: $successColor;
+    color: $textColor_light;
+    box-shadow: 0px 2px 2px $shadowLight;
+
+    @include flexCol("cen", "cen");
+  }
+
+  &__icon {
+    fill: transparent;
+    stroke: $textColor_light;
+    stroke-width: 2px;
+    height: 120px;
+    width: 120px;
+    margin-top: 20px;
+  }
+
+  &__form{
+    @include flexCol("cen", "cen");
+    width: 100%;
+    padding: 30px;
+    color: $textColor_light;
+
+    &__part{
+      @include flexCol("cen", "flexS");
+      width: 85%;
+      
+      & label{
+        margin-bottom: 5px;
+      }
+
+      & input {
+        width: 100%;
+        height: 28px;
+        border-radius: 10px;
+        padding: 10px;
+        font-style: oblique;
+      }
+
+      & p{
+        margin-bottom: 20px;
+      }
+    }
+
+    
+  }
+}

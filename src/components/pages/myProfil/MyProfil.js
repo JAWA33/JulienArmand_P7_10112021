@@ -18,7 +18,9 @@ import {
 import { stringToDate } from "../../Utils/stringToDate";
 import ImageCropDialog from "./ImageCropDialog.js";
 
-const MyProfil = ({ data }) => {
+const MyProfil = ({ data, modif }) => {
+  console.log("MODIFIY");
+  console.log(modif);
   const uid = useContext(UidContext);
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateFirstname, setUpdateFirstname] = useState("");
@@ -105,7 +107,6 @@ const MyProfil = ({ data }) => {
   const updateProfil = async (e, iduser) => {
     e.preventDefault();
 
-    console.log("#### Verification des données");
     if (
       (isEmpty(updateFirstname) || validName(updateFirstname)) &&
       (isEmpty(updateLastname) || validName(updateLastname)) &&
@@ -267,7 +268,7 @@ const MyProfil = ({ data }) => {
       type: file.type,
     });
     makeCompressor(myFile, {
-      maxWidth: 500,
+      maxWidth: 150,
       quality: 0.8,
       success(imgBlob) {
         setUpdateUserImage(URL.createObjectURL(imgBlob));
@@ -427,7 +428,9 @@ const MyProfil = ({ data }) => {
               </div>
             </div>
             <div id="textErrors"></div>
-            {data[0].user_status === "Moderateur" || data[0].id_user === uid ? (
+            {modif === true &&
+            (data[0].user_status === "Moderateur" ||
+              data[0].id_user === uid) ? (
               <div className="myProfil__modif">
                 <input type="submit" />
                 <br />
@@ -503,7 +506,8 @@ const MyProfil = ({ data }) => {
             </div>
           </div>
 
-          {data[0].user_status === "Moderateur" || data[0].id_user === uid ? (
+          {modif === true &&
+          (data[0].user_status === "Moderateur" || data[0].id_user === uid) ? (
             <div className="myProfil__modif">
               <button onClick={() => setIsUpdating(true)}>
                 Modifier mon profil

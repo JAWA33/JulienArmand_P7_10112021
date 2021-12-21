@@ -17,19 +17,19 @@ const Log = () => {
   };
 
   return (
-    <div className="userConnect">
+    <div className="logForm">
       {signInForm && <SignIn />}
       {signUpForm && <SignUp />}
 
       <div>
-        <ul>
+        <ul className="logForm__button">
           {signInForm ? (
-            <li onClick={handleForm} id="register">
-              Je n'ai pas encore de compte
+            <li className="btn__changeLog" onClick={handleForm} id="register">
+              Vous n'avez pas encore de compte ?
             </li>
           ) : (
-            <li onClick={handleForm} id="login">
-              J'ai déjà un compte
+            <li className="btn__changeLog" onClick={handleForm} id="login">
+              J'ai déjà un compte !
             </li>
           )}
         </ul>

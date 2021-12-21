@@ -1,6 +1,27 @@
 footer {
-  width: 100%;
-  height: $dim_footer;
-  color: $textColor_light;
-  background: $colorPrimary;
+  position: relative;
+  bottom: 1rem;
+  left: 2%;
+  right: 2%;
+  z-index: 1;
+  width: 96%;
+  height: 60px;
+
+  color: $textColor_dark;
+  border-radius: 20px;
+
+  background: linear-gradient(145deg, $graphicPrimary, $graphicSecondary);
+  box-shadow: 2px 2px 2px $shadowDark, -2px -2px 2px $shadowLight;
+
+  @include flexCol("cen", "cen");
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-radius: 15px;
+    background: linear-gradient(145deg, $graphicPrimary, $graphicSecondary);
+    box-shadow: inset 1px 1px 6px $shadowDark, inset -1px -1px 6px $shadowLight;
+  }
 }

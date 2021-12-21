@@ -35,29 +35,39 @@ const Navigation = () => {
       ) : (
         <div className="navigation">
           <div>
-            <p>Bienvenue {userData[0].user_firstname}</p>
+            <h2 className="navigation__user">
+              Bienvenue {userData[0].user_firstname}
+            </h2>
           </div>
           <div className="userInfo">
             <NavLink exact to="/" activeClassName="current">
-              <div>
-                <img src={home} alt="Forum" />
+              <div className="userInfo__btn">
+                <img src={home} alt="Forum" className="userInfo__btn__icon" />
               </div>
             </NavLink>
             <NavLink exact to="/allusers" activeClassName="current">
-              <div>
-                <img src={allUsers} alt="Tous les utilisateurs" />
+              <div className="userInfo__btn">
+                <img
+                  src={allUsers}
+                  alt="Tous les utilisateurs"
+                  className="userInfo__btn__icon"
+                />
               </div>
             </NavLink>
             <NavLink exact to="/mypage" activeClassName="current">
-              <div>
+              <div className="userInfo__btn">
                 <img
                   src={userData[0].user_url_image}
                   alt={userData[0].user_firstname}
                 ></img>
               </div>
             </NavLink>
-            <div onClick={() => logout()}>
-              <img src={logOut} alt={userData[0].user_firstname}></img>
+            <div className="userInfo__btn" onClick={() => logout()}>
+              <img
+                src={logOut}
+                alt={userData[0].user_firstname}
+                className="userInfo__btn__icon"
+              ></img>
             </div>
           </div>
         </div>

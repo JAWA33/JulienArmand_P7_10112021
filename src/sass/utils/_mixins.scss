@@ -17,6 +17,9 @@
   @if ($justify == "spE") {
     justify-content: space-evenly;
   }
+  @if ($justify == "flexS") {
+    justify-content: flex-start;
+  }
   @if ($justify == "base") {
     justify-content: baseline;
   } @else {

@@ -15,6 +15,7 @@ import PictureIcon from "../../svgComponents/PictureIcon.js";
 import Comments from "./Comments.js";
 import CreateComments from "./CreateComment";
 import Compressor from "compressorjs";
+import { Spin } from 'antd';
 
 const Posts = () => {
   //* Hooks :

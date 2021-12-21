@@ -42,6 +42,7 @@ const SignIn = () => {
   }
 
   // ########  Soumission de la requête uniquement si les saisies sont validées :
+
   const sendForm = (e) => {
     e.preventDefault();
 
@@ -82,40 +83,43 @@ const SignIn = () => {
   // ######## Affichage du HTML :
   return (
     // SignIn.js :
-    <div className="connect">
-      <AnimeGroupomania
-        animation="animIcon"
-        fillColor="#ffd7d6"
-        lineColor="#081f43"
-        height="150"
-        width="150"
-      ></AnimeGroupomania>
-      <h2>Connectez-vous !</h2>
+    <div className="signin">
+      <div className="signin__title">
+        <h2>Connectez-vous !</h2>
+      </div>
+      <AnimeGroupomania className="signin__icon animIcon"></AnimeGroupomania>
       <form
         action=""
         onSubmit={sendForm}
-        className="connect__form"
+        className="signin__form"
         id="signInForm"
       >
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        ></input>
-        <p></p>
+        <div className="signin__form__part">
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            placeholder="Entrez votre e-mail Groupomania"
+          ></input>
+          <p></p>
+        </div>
         <br />
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        ></input>
-        <p></p>
+        <div className="signin__form__part">
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            placeholder="Saisissez votre mot de passe"
+
+          ></input>
+          <p></p>
+        </div>
         <br />
         <p id="infoError"></p>
         <br />

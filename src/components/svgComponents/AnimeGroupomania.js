@@ -1,16 +1,12 @@
 const AnimeGroupomania = (props) => {
   return (
     <svg
-      className={props.animation}
+      className={props.className}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 300 300"
-      height={props.height}
-      width={props.width}
     >
       <g
         id="640fb903-7c97-3a8b-d0a7-369102908d0a"
-        fill={props.fillColor}
-        stroke={props.lineColor}
         transform="matrix(0.8499999999999999,0,0,0.8499999999999999,22.500006484985377,22.50005836486818)"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-205 207 100 100">
