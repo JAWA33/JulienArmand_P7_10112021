@@ -71,7 +71,7 @@
   width: 100%;
   @include flexCol("cen", "cen");
 
-  &__title{
+  &__title {
     width: 100%;
     height: 65px;
     border-radius: 29px 29px 0px 0px;
@@ -91,17 +91,16 @@
     margin-top: 20px;
   }
 
-  &__form{
+  &__form {
     @include flexCol("cen", "cen");
     width: 100%;
     padding: 30px;
-    
 
-    &__part{
+    &__part {
       @include flexCol("cen", "flexS");
       width: 85%;
-      
-      & label{
+
+      & label {
         margin-bottom: 5px;
         color: $textColor_light;
       }
@@ -110,17 +109,15 @@
         width: 100%;
         height: 28px;
         color: $textColor_dark;
-        
-        border-radius: 30px;
+
+        border-radius: 20px;
         padding: 10px;
         font-style: oblique;
       }
 
-      & p{
+      & p {
         margin-bottom: 20px;
       }
     }
-
-    
   }
 }
