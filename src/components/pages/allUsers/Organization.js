@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { isEmpty } from "../../Utils/isEmpty";
 import { useDispatch } from "react-redux";
 import { getUserProfile } from "../../../actions/userProfil.action";
-//for git
+
 const Organization = ({ allusers, jobs }) => {
   const services = [];
   const [service, setService] = useState([]);

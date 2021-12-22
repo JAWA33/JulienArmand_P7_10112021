@@ -7,7 +7,7 @@ import {
   DELETE_POST,
 } from "../actions/post.actions.js";
 import { PLUS_COMMENT, LESS_COMMENT } from "../actions/comment.action.js";
-// For Git
+
 const initialState = {};
 
 export default function postReducer(state = initialState, action) {

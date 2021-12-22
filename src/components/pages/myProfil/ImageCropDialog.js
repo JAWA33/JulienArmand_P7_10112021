@@ -7,7 +7,7 @@ const aspectRatios = [
   { value: 4 / 3, text: "4/3" },
   { value: 16 / 9, text: "16/9" },
 ];
-//for git
+
 const ImageCropDialog = ({
   id,
   imageUrl,

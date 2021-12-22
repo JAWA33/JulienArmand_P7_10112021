@@ -6,7 +6,7 @@ import jobReducer from "./job.reducer.js";
 import uidReducer from "./uid.reducer.js";
 import allUsersReducer from "./allusers.reducer.js";
 import userProfilReducer from "./userProfil.reducer.js";
-// For Git
+
 export default combineReducers({
   userReducer,
   postReducer,

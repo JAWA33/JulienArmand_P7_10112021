@@ -1,5 +1,4 @@
 const PictureIcon = (props) => {
-  //for git
   return (
     <svg
       className="PictureIcon"

@@ -1,7 +1,7 @@
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
-//for git
+
 export const GET_COMMENTS = "GET_COMMENTS";
 export const CREATE_COMMENT = "CREATE_COMMENT";
 export const PLUS_COMMENT = "PLUS_COMMENT";

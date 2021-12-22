@@ -1,6 +1,6 @@
 import { GET_UID } from "../actions/uid.action.js";
 import { isEmpty } from "../components/Utils/isEmpty.js";
-// For Git
+
 const saveUid = sessionStorage.getItem("id_user");
 
 let initialState = !isEmpty(saveUid) ? JSON.parse(saveUid) : {};

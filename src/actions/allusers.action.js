@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
-//for git
 
 export const getAllUsers = () => {
   return async (dispatch) => {

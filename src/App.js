@@ -8,7 +8,7 @@ import { getUser } from "./actions/user.actions.js";
 import { getUid } from "./actions/uid.action.js";
 import { isEmpty } from "./components/Utils/isEmpty.js";
 dotenv.config({ path: "../../../../.env" });
-// For Git
+
 const App = () => {
   const dispatch = useDispatch();
 

@@ -1,5 +1,4 @@
 const AnimeGroupomania = (props) => {
-  //for git
   return (
     <svg
       className={props.className}

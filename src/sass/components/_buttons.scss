@@ -1,24 +1,97 @@
-.btn {
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  margin: 10px 0;
+.outer {
+  position: relative;
+  background: linear-gradient(90deg, $graphicSecondary, $graphicPrimary);
+  box-shadow: 2px 2px 2px $shadowDark, -2px -2px 2px $shadowLight;
 
   &:hover {
-    transition: all 0.2s;
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
-  }
-
-  &--callToAction {
-    background: $colorPrimary;
-    color: $textColor_light;
-  }
-  &--secondaryAction {
-    background: $colorSecondary;
-    color: $textColor_dark;
+    background: linear-gradient(
+      $graphicSecondary,
+      $shadowLight,
+      $graphicTertiary
+    );
+    animation: rotate_hue 1s linear infinite;
   }
 }
-// For Git
+
+.btn {
+  width: 95%;
+  max-width: 400px;
+  height: 45px;
+  border-radius: 15px;
+  margin-top: 30px;
+  @include flexRow("cen", "cen");
+}
+
+.outer .btn,
+.outer span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.outer input {
+  background-color: $graphicPrimary;
+  color: $textColor_light;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  letter-spacing: 2px;
+  //text-transform: uppercase;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btn input {
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border-radius: 15px;
+}
+
+.outer:hover span {
+  width: 100%;
+  height: 100%;
+  background: $graphicTertiary;
+
+  &:nth-child(1) {
+    filter: blur(7px);
+  }
+  &:nth-child(2) {
+    filter: blur(14px);
+  }
+}
+
+.btn span {
+  border-radius: 50px;
+}
+
+@keyframes rotate_hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.btn__changeLog {
+  max-width: 90%;
+  height: auto;
+  padding: 2px 10px;
+  margin-bottom: 25px;
+  color: $graphicTertiary;
+  border: 1px solid $graphicTertiary;
+  border-radius: 15px;
+
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background: linear-gradient(180deg, $graphicTertiary, $graphicSecondary);
+    box-shadow: 2px 2px 4px $shadowLight, -2px -2px 4px $shadowLight;
+
+    color: $textColor_light;
+    transform: scale(1.06);
+    transition: ease-out 0.3s;
+  }
+}

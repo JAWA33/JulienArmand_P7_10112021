@@ -15,10 +15,25 @@ label {
   &--title {
     font-style: bold;
     font-size: 2.8rem;
+    @include desktop-limit {
+      font-size: 2rem;
+    }
   }
   &--text {
-    font-style: bold;
+    font-style: oblique;
     font-size: 1.6rem;
+    @include desktop-limit {
+      font-size: 1.2rem;
+    }
   }
 }
-//for git
+
+input,
+select {
+  font-size: 1rem;
+
+  &::placeholder {
+    font-style: oblique;
+    font-size: 0.9rem;
+  }
+}

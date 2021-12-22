@@ -9,7 +9,6 @@ export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
-//for git
 export const getAllPosts = (num) => {
   return async (dispatch) => {
     return await axios({

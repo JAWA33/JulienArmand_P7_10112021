@@ -1,5 +1,4 @@
 export const isEmpty = (value) => {
-  //for git
   return (
     value === undefined ||
     value === null ||

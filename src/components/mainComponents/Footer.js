@@ -9,5 +9,5 @@ class Footer extends Component {
     );
   }
 }
-//for git
+
 export default Footer;

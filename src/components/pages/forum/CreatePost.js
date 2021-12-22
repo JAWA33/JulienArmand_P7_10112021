@@ -5,7 +5,7 @@ import PictureIcon from "../../svgComponents/PictureIcon.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import Compressor from "compressorjs";
 //import axios from "axios";
-//for git
+
 import { validParagraph } from "../../Utils/regExp.js";
 
 const CreatePost = () => {

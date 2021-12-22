@@ -1,6 +1,6 @@
 //* DEFINITION DES REGEXP #####################################################
 //! Vérifer si la Regexp existe ou si elle correspond à ce que vous souhaitez valider, ou ajouter une nouvelle :
-//for git
+
 //? Regex de type password : ############################# //
 const validPassword = (input) => {
   let regexPassword = new RegExp(
@@ -59,18 +59,18 @@ const validDate = (input) => {
 
 const returnResponse = (input, test) => {
   let errorText = input.nextElementSibling;
-  console.log(input);
-  console.log(test);
 
   if (test) {
     errorText.innerHTML = "";
-    input.classList.remove("error");
-    input.classList.add("success");
+    errorText.classList.remove("messageError");
+    input.classList.remove("inputError");
+    input.classList.add("inputSuccess");
     return true;
   } else {
-    errorText.innerHTML = "Saisie non valide";
-    input.classList.remove("success");
-    input.classList.add("error");
+    errorText.innerHTML = "Vérifiez votre saisie";
+    errorText.classList.add("messageError");
+    input.classList.remove("inputSuccess");
+    input.classList.add("inputError");
     return false;
   }
 };

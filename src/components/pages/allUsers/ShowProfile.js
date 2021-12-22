@@ -1,5 +1,5 @@
 import React from "react";
-//for git
+
 function ShowProfile() {
   return (
     <div>

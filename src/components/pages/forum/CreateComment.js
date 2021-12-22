@@ -7,7 +7,7 @@ import {
 import { isEmpty } from "../../Utils/isEmpty.js";
 
 //
-//for git
+
 //
 const CreateComments = ({ data }) => {
   const [loadComments, setLoadComments] = useState(true);

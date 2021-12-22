@@ -15,25 +15,27 @@ const Log = () => {
       setSignUpForm(false);
     }
   };
-  //for git
+
   return (
-    <div className="logForm">
+    <div
+      className={
+        signInForm ? "logForm logForm--signin" : " logForm logForm--signup"
+      }
+    >
       {signInForm && <SignIn />}
       {signUpForm && <SignUp />}
 
-      <div>
-        <ul className="logForm__button">
-          {signInForm ? (
-            <li className="btn__changeLog" onClick={handleForm} id="register">
-              Vous n'avez pas encore de compte ?
-            </li>
-          ) : (
-            <li className="btn__changeLog" onClick={handleForm} id="login">
-              J'ai déjà un compte !
-            </li>
-          )}
-        </ul>
-      </div>
+      <ul className="logForm__button">
+        {signInForm ? (
+          <li className="btn__changeLog" onClick={handleForm} id="register">
+            Vous n'avez pas encore de compte ?
+          </li>
+        ) : (
+          <li className="btn__changeLog" onClick={handleForm} id="login">
+            J'ai déjà un compte !
+          </li>
+        )}
+      </ul>
     </div>
   );
 };

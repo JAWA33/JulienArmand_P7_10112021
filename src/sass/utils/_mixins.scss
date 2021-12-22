@@ -1,5 +1,5 @@
 //* FLEXBOX mixins ------------------------------------------//
-// For Git
+
 //Flexbox Column
 @mixin flexCol($justify: initial, $align: initial) {
   display: flex;
@@ -92,7 +92,7 @@
 //For Tablet
 
 @mixin mobile-limit {
-  @media screen and (min-width: map-get($breakpoints, mobile)) {
+  @media screen and (max-width: map-get($breakpoints, mobile)) {
     @content;
   }
 }
@@ -107,7 +107,7 @@
 //For Desktop
 
 @mixin tablet-limit {
-  @media screen and (min-width: map-get($breakpoints, tablet)) {
+  @media screen and (max-width: map-get($breakpoints, tablet)) {
     @content;
   }
 }
@@ -115,7 +115,7 @@
 //For big desktop
 
 @mixin desktop-limit {
-  @media screen and (min-width: map-get($breakpoints, desktop)) {
+  @media screen and (max-width: map-get($breakpoints, desktop)) {
     @content;
   }
 }

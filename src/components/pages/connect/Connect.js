@@ -5,7 +5,7 @@ import { UidContext } from "../../routes/AppContext.js";
 
 function Connect() {
   const uid = useContext(UidContext);
-  //for git
+
   return (
     <Fragment>
       {uid ? (
@@ -18,7 +18,12 @@ function Connect() {
             </h2>
             <p className="loginPage__info__text textLog--text">
               Rejoignez votre réseau interne d’entreprise, dédié aux employés de
-              Groupomania. <hr /> Discutez, échangez, communiquez !
+              Groupomania.
+            </p>
+
+            <p className="loginPage__info__text textLog--text">
+              <hr />
+              Discutez, échangez, communiquez !
             </p>
           </div>
           <Log />

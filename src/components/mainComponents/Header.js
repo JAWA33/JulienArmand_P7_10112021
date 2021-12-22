@@ -9,7 +9,7 @@ const Header = () => {
   //* #######  Simulation de connexion ######## *//
 
   //* ---------  Simulation de connection : FIN ----------- *//
-  //for git
+
   return (
     <header>
       <div className="logoContainer">
