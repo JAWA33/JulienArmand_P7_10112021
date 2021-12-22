@@ -821,6 +821,10 @@ input[type=file] {
   border: 2px red solid;
 }
 
+.test {
+  background: #000;
+}
+
 .loginPage {
   position: relative;
   width: 90%;
