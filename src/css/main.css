@@ -823,6 +823,8 @@ input[type=file] {
 
 .test {
   background: #000;
+  -webkit-text-decoration: green;
+          text-decoration: green;
 }
 
 .loginPage {
