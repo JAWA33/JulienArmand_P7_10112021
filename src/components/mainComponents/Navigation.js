@@ -33,40 +33,50 @@ const Navigation = () => {
       {isEmpty(userData) ? (
         <div>"en chargement ... "</div>
       ) : (
-        <div className="navigation">
-          <div>
-            <h2 className="navigation__user">
-              Bienvenue {userData[0].user_firstname}
-            </h2>
+        <div className="nav">
+          <div className="nav__welcome">
+            <p className="nav__welcome__text">
+              Bienvenue, {userData[0].user_firstname} !
+            </p>
           </div>
-          <div className="userInfo">
-            <NavLink exact to="/" activeClassName="current">
-              <div className="userInfo__btn">
-                <img src={home} alt="Forum" className="userInfo__btn__icon" />
-              </div>
+          <div className="nav__link">
+            <NavLink
+              exact
+              to="/"
+              activeClassName="current"
+              className="nav__link__btn"
+            >
+              <img src={home} alt="Forum" className="nav__link__btn--icon" />
             </NavLink>
-            <NavLink exact to="/allusers" activeClassName="current">
-              <div className="userInfo__btn">
-                <img
-                  src={allUsers}
-                  alt="Tous les utilisateurs"
-                  className="userInfo__btn__icon"
-                />
-              </div>
+            <NavLink
+              exact
+              to="/allusers"
+              activeClassName="current"
+              className="nav__link__btn"
+            >
+              <img
+                src={allUsers}
+                alt="Tous les utilisateurs"
+                className="nav__link__btn--icon"
+              />
             </NavLink>
-            <NavLink exact to="/mypage" activeClassName="current">
-              <div className="userInfo__btn">
-                <img
-                  src={userData[0].user_url_image}
-                  alt={userData[0].user_firstname}
-                ></img>
-              </div>
+            <NavLink
+              exact
+              to="/mypage"
+              activeClassName="current"
+              className="nav__link__btn"
+            >
+              <img
+                src={userData[0].user_url_image}
+                alt={userData[0].user_firstname}
+                className="nav__link__btn--user"
+              ></img>
             </NavLink>
-            <div className="userInfo__btn" onClick={() => logout()}>
+            <div className="nav__link__btn" onClick={() => logout()}>
               <img
                 src={logOut}
                 alt={userData[0].user_firstname}
-                className="userInfo__btn__icon"
+                className="nav__link__btn--icon"
               ></img>
             </div>
           </div>

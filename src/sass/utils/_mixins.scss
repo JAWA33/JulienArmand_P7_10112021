@@ -112,6 +112,13 @@
   }
 }
 
+//For Logo
+
+@mixin logo-limit {
+  @media screen and (max-width: map-get($breakpoints, logo)) {
+    @content;
+  }
+}
 //For big desktop
 
 @mixin desktop-limit {
