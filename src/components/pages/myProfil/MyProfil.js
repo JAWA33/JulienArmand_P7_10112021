@@ -198,7 +198,7 @@ const MyProfil = ({ data, modif }) => {
       if (!isEmpty(updatePhone) && !validPhone(updatePhone)) {
         addError(
           UpdateProfilForm.phone,
-          "Format autorisé : 0X.XX.XX.XX.XX ou OXXXXXXXXX"
+          "Format autorisé : 0X.XX.XX.XX.XX ou 0XXXXXXXXX"
         );
       } else {
         removeError(UpdateProfilForm.phone);
@@ -294,7 +294,6 @@ const MyProfil = ({ data, modif }) => {
     <div className="myProfil">
       {isUpdating ? (
         <Fragment>
-          //* CROPPER ###################### :<h1>Cropper React </h1>
           {selectedCar ? (
             <ImageCropDialog
               id={selectedCar.id}
@@ -308,92 +307,112 @@ const MyProfil = ({ data, modif }) => {
               resetImage={resetImage}
             />
           ) : null}
-          {cars.map((car) => (
-            <div className="imageCard" key={car.id}>
-              <img
-                id="cropperImg"
-                src={car.croppedImageUrl ? car.croppedImageUrl : car.imageUrl}
-                onClick={() => setSelectedCar(car)}
-              />
-            </div>
-          ))}
-          //* CROPPER ###################### :
           <form
             action=""
-            className="updateProfil"
+            className="myProfil__form"
             id="UpdateProfilForm"
             onSubmit={(e) => updateProfil(e, data[0].id_user)}
           >
             <div className="myProfil__contact">
-              <div className="myProfil__contact__name">
-                <div>
-                  <label htmlFor="firstname">Mon nom :</label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    defaultValue={data[0].user_firstname}
-                    onChange={(e) => setUpdateFirstname(e.target.value)}
-                  ></input>
-                  <p className="errorText"></p>
+              {cars.map((car) => (
+                <div className="myProfil__contact__image">
+                  <div className="myProfil__contact__picture" key={car.id}>
+                    <img
+                      id="cropperImg"
+                      src={
+                        car.croppedImageUrl ? car.croppedImageUrl : car.imageUrl
+                      }
+                      onClick={() => setSelectedCar(car)}
+                    />
+                  </div>
+                  <p>
+                    Cliquez sur l'image <br />
+                    pour la modifier
+                  </p>
                 </div>
-                <div>
-                  <label htmlFor="lastname">Mon prénom :</label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    defaultValue={data[0].user_lastname}
-                    onChange={(e) => setUpdateLastname(e.target.value)}
-                  ></input>
-                  <p className="errorText"></p>
+              ))}
+
+              <div className="myProfil__contact__info">
+                <div className="containerModif">
+                  <label htmlFor="firstname">Votre nom :</label>
+                  <div className="containerModif__modif">
+                    <input
+                      type="text"
+                      name="firstname"
+                      defaultValue={data[0].user_firstname}
+                      onChange={(e) => setUpdateFirstname(e.target.value)}
+                    ></input>
+                    <div className="errorText"></div>
+                  </div>
                 </div>
-              </div>
-              <div className="myProfil__contact__info"></div>
-              {jobData ? (
-                <Fragment>
-                  <label htmlFor="job">Changer de poste :</label>
-                  <select
-                    name="job"
-                    type="select"
-                    defaultValue={data[0].id_job}
-                    onChange={(e) => setUpdateJobId(e.target.value)}
-                  >
-                    <option value="none">Sélectionner votre poste</option>
-                    {listingJobs}
-                  </select>
-                  <p className="errorText"></p>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <h3>En attente des différents postes ...</h3>
-                </Fragment>
-              )}
-              <br />
-              <h3>{data[0].user_email}</h3>
-              <div>
-                <label htmlFor="phone">Mon téléphone :</label>
-                <input
-                  type="text"
-                  name="phone"
-                  defaultValue={data[0].user_phone}
-                  onChange={(e) => setUpdatePhone(e.target.value)}
-                ></input>
-                <p className="errorText"></p>
+                <div className="containerModif">
+                  <label htmlFor="lastname">Votre prénom :</label>
+                  <div className="containerModif__modif">
+                    <input
+                      type="text"
+                      name="lastname"
+                      defaultValue={data[0].user_lastname}
+                      onChange={(e) => setUpdateLastname(e.target.value)}
+                    ></input>
+                    <p className="errorText"></p>
+                  </div>
+                </div>
+
+                {jobData ? (
+                  <div className="containerModif">
+                    <label htmlFor="job">Votre poste :</label>
+                    <div className="containerModif__modif">
+                      <select
+                        name="job"
+                        type="select"
+                        defaultValue={data[0].id_job}
+                        onChange={(e) => setUpdateJobId(e.target.value)}
+                      >
+                        <option value="none">Sélectionner votre poste</option>
+                        {listingJobs}
+                      </select>
+                      <p className="errorText"></p>
+                    </div>
+                  </div>
+                ) : (
+                  <Fragment>
+                    <h3>En attente des différents postes ...</h3>
+                  </Fragment>
+                )}
+
+                <div className="containerModif">
+                  <label htmlFor="phone">Votre téléphone :</label>
+                  <div className="containerModif__modif">
+                    <input
+                      type="text"
+                      name="phone"
+                      defaultValue={data[0].user_phone}
+                      onChange={(e) => setUpdatePhone(e.target.value)}
+                    ></input>
+                    <p className="errorText"></p>
+                  </div>
+                </div>
+                <div className="containerModif">
+                  <label>Votre e-mail :</label>
+                  <p>{data[0].user_email}</p>
+                </div>
               </div>
             </div>
             <div className="myProfil__myInfo">
-              <div className="myProfil__myInfo__age">
-                <div>
-                  <label htmlFor="date">Ma date de naissance :</label>
+              <div className="ageModif">
+                <label htmlFor="date">Votre date de naissance :</label>
+                <div className="ageModif__modif">
                   <input
                     type="date"
                     name="date"
                     value={updateAge ? updateAge : pickerAge(data[0].user_age)}
                     onChange={(e) => setUpdateAge(e.target.value)}
+                    max={new Date(Date.now()).toISOString().split("T")[0]}
                   ></input>
                   <p className="errorText"></p>
                 </div>
               </div>
-              <div className="myProfil__myInfo__bio">
+              <div className="bioModif">
                 <label htmlFor="bio">Ce qu'il faut savoir sur moi :</label>
                 <textarea
                   name="bio"
@@ -402,7 +421,7 @@ const MyProfil = ({ data, modif }) => {
                 ></textarea>
                 <p className="errorText"></p>
               </div>
-              <div className="myProfil__myInfo__bio">
+              <div className="bioModif">
                 <label htmlFor="skill">Mes compétences :</label>
                 <textarea
                   name="skill"
@@ -410,7 +429,7 @@ const MyProfil = ({ data, modif }) => {
                   onChange={(e) => setUpdateSkill(e.target.value)}
                 ></textarea>
                 <p className="errorText"></p>
-                <div className="myProfil__myInfo__bio">
+                <div className="bioModif">
                   <label htmlFor="hobbie">Mes hobbies :</label>
                   <textarea
                     name="hobbie"
@@ -426,9 +445,15 @@ const MyProfil = ({ data, modif }) => {
             (data[0].user_status === "Moderateur" ||
               data[0].id_user === uid) ? (
               <div className="myProfil__modif">
-                <input type="submit" />
-                <br />
-                <button onClick={() => setIsUpdating(false)}>
+                <input
+                  type="submit"
+                  className="btn__profil btn__profil--modify"
+                  value="Modifier"
+                />
+                <button
+                  className="btn__profil btn__profil--delete"
+                  onClick={() => setIsUpdating(false)}
+                >
                   Annuler la modification
                 </button>
               </div>

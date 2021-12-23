@@ -53,13 +53,13 @@ const validPhone = (input) => {
 };
 
 const addError = (form, text) => {
-  form.classList.add("error");
+  form.classList.add("inputError");
   form.nextElementSibling.innerHTML = text;
   form.nextElementSibling.classList.add("error_text");
 };
 
 const removeError = (form) => {
-  form.classList.remove("error");
+  form.classList.remove("inputError");
   form.nextElementSibling.innerHTML = "";
   form.nextElementSibling.classList.remove("error_text");
 };

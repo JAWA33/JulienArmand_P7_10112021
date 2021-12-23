@@ -78,19 +78,21 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   font-size: 1rem;
 }
-input::-moz-placeholder, select::-moz-placeholder {
+input::-moz-placeholder, select::-moz-placeholder, textarea::-moz-placeholder {
   font-style: oblique;
   font-size: 0.9rem;
 }
-input:-ms-input-placeholder, select:-ms-input-placeholder {
+input:-ms-input-placeholder, select:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-style: oblique;
   font-size: 0.9rem;
 }
 input::placeholder,
-select::placeholder {
+select::placeholder,
+textarea::placeholder {
   font-style: oblique;
   font-size: 0.9rem;
 }
@@ -1104,6 +1106,10 @@ input[type=file] {
     width: 90%;
   }
 }
+.myProfil__form {
+  width: 100%;
+  height: auto;
+}
 .myProfil__contact {
   width: 100%;
   display: flex;
@@ -1123,6 +1129,22 @@ input[type=file] {
     align-items: "cen";
   }
 }
+.myProfil__contact__image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__contact__image p {
+  width: 160px;
+  margin-top: 7px;
+  padding: 0px 5px;
+  font-size: 0.8rem;
+  font-style: oblique;
+  text-align: center;
+}
 .myProfil__contact__picture {
   width: 160px;
   height: 160px;
@@ -1135,6 +1157,7 @@ input[type=file] {
   justify-content: "cen";
   align-items: center;
   align-items: "cen";
+  cursor: pointer;
 }
 .myProfil__contact__picture img {
   background: linear-gradient(35deg, #081f43, #091921);
@@ -1143,7 +1166,7 @@ input[type=file] {
 }
 .myProfil__contact__info {
   width: calc(100% - 180px);
-  height: 160px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1211,7 +1234,7 @@ input[type=file] {
   align-items: baseline;
   margin-bottom: 20px;
 }
-.myProfil__myInfo__age h3 {
+.myProfil__myInfo__age h3, .myProfil__myInfo__age label {
   width: auto;
   padding: 10px 20px;
   color: #04bbfc;
@@ -1266,6 +1289,145 @@ input[type=file] {
     justify-content: "cen";
     align-items: center;
     align-items: "cen";
+  }
+}
+
+.containerModif {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: "spB";
+  align-items: flex-start;
+  align-items: "flexS";
+  padding-right: 15px;
+}
+@media screen and (max-width: 670px) {
+  .containerModif {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
+}
+.containerModif label {
+  width: 45%;
+  padding-left: 10px;
+  margin: 5px 0px;
+  color: #04bbfc;
+}
+@media screen and (max-width: 670px) {
+  .containerModif label {
+    width: 100%;
+    text-align: left;
+  }
+}
+.containerModif p {
+  font-style: oblique;
+}
+.containerModif__modif {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+@media screen and (max-width: 670px) {
+  .containerModif__modif {
+    width: 100%;
+  }
+}
+.containerModif__modif input, .containerModif__modif select {
+  width: 100%;
+  color: #020202;
+  margin: 5px 0px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.ageModif {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: "spB";
+  align-items: center;
+  align-items: "cen";
+}
+@media screen and (max-width: 670px) {
+  .ageModif {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
+}
+.ageModif label {
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 10px;
+  color: #04bbfc;
+  padding: 7px;
+}
+@media screen and (max-width: 670px) {
+  .ageModif label {
+    width: 100%;
+    text-align: center;
+  }
+}
+.ageModif__modif {
+  color: #020202;
+}
+@media screen and (max-width: 670px) {
+  .ageModif__modif {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .ageModif__modif input {
+    width: 100%;
+  }
+}
+.ageModif__modif input {
+  border-radius: 10px;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.bioModif {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.bioModif label {
+  width: 100%;
+  text-align: center;
+  color: #04bbfc;
+  padding: 7px;
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 10px;
+}
+.bioModif textarea {
+  width: 100%;
+  min-height: 120px;
+  margin: 10px 0px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #020202;
+}
+@media screen and (max-width: 670px) {
+  .bioModif textarea {
+    padding: 10px 10px;
   }
 }
 

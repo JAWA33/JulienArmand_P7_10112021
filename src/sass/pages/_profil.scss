@@ -18,6 +18,11 @@
     width: 90%;
   }
 
+  &__form {
+    width: 100%;
+    height: auto;
+  }
+
   &__contact {
     width: 100%;
     @include flexRow("spB", "flexS");
@@ -25,11 +30,25 @@
       @include flexCol("cen", "cen");
     }
 
+    &__image {
+      @include flexCol("cen", "cen");
+
+      & p {
+        width: 160px;
+        margin-top: 7px;
+        padding: 0px 5px;
+        font-size: 0.8rem;
+        font-style: oblique;
+        text-align: center;
+      }
+    }
+
     &__picture {
       width: 160px;
       height: 160px;
       @include container(15px, 145deg);
       @include flexCol("cen", "cen");
+      cursor: pointer;
 
       & img {
         @include container(10px, 35deg);
@@ -38,7 +57,7 @@
 
     &__info {
       width: calc(100% - 180px);
-      height: 160px;
+      min-height: 160px;
       @include flexCol("cen", "cen");
       @include container(15px, 35deg);
       @include tablet-limit {
@@ -86,7 +105,8 @@
       @include flexRow("flexS", "base");
 
       margin-bottom: 20px;
-      & h3 {
+      & h3,
+      & label {
         width: auto;
         padding: 10px 20px;
         color: $graphicTertiary;
@@ -129,6 +149,111 @@
 
     @include tablet-limit {
       @include flexCol("cen", "cen");
+    }
+  }
+}
+
+///pour Modification :
+
+.containerModif {
+  width: 100%;
+  @include flexRow("spB", "flexS");
+  padding-right: 15px;
+  @include logo-limit {
+    @include flexCol("cen", "cen");
+  }
+
+  & label {
+    width: 45%;
+    padding-left: 10px;
+    margin: 5px 0px;
+    color: $graphicTertiary;
+
+    @include logo-limit {
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  & p {
+    font-style: oblique;
+  }
+
+  &__modif {
+    width: 50%;
+    @include flexCol("cen", "cen");
+    @include logo-limit {
+      width: 100%;
+    }
+
+    & input,
+    & select {
+      width: 100%;
+      color: $textColor_dark;
+      margin: 5px 0px;
+      text-align: center;
+      border-radius: 10px;
+    }
+  }
+}
+
+.ageModif {
+  @include flexRow("spB", "cen");
+  @include logo-limit {
+    @include flexCol("cen", "cen");
+  }
+
+  & label {
+    @include container(10px, 120deg);
+    color: $graphicTertiary;
+    padding: 7px;
+    @include logo-limit {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__modif {
+    color: $textColor_dark;
+    @include logo-limit {
+      margin-top: 20px;
+      width: 100%;
+
+      & input {
+        width: 100%;
+      }
+    }
+
+    & input {
+      border-radius: 10px;
+      text-align: center;
+      padding-left: 10px;
+    }
+  }
+}
+
+.bioModif {
+  width: 100%;
+  margin-top: 20px;
+  @include flexCol("cen", "cen");
+
+  & label {
+    width: 100%;
+    text-align: center;
+    color: $graphicTertiary;
+    padding: 7px;
+    @include container(10px, 120deg);
+  }
+
+  & textarea {
+    width: 100%;
+    min-height: 120px;
+    margin: 10px 0px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: $textColor_dark;
+    @include logo-limit {
+      padding: 10px 10px;
     }
   }
 }

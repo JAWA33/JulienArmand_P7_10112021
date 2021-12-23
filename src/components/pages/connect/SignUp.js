@@ -11,6 +11,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { getJobs } from "../../../actions/job.actions.js";
+import { isEmpty } from "../../Utils/isEmpty.js";
 
 const SignUp = () => {
   //* Hooks pour formulaire :
@@ -87,7 +88,17 @@ const SignUp = () => {
   const sendForm = (e) => {
     e.preventDefault();
 
-    if (password !== controlPass || !terms.checked) {
+    if (
+      isEmpty(email) ||
+      isEmpty(password) ||
+      isEmpty(controlPass) ||
+      isEmpty(firstname) ||
+      isEmpty(id_job)
+    ) {
+      infoError.innerHTML =
+        "Merci de remplir correctement le formulaire pour créer un compte";
+      infoError.classList.add("globalError");
+    } else if (password !== controlPass || !terms.checked) {
       if (password !== controlPass)
         infoError.innerHTML = "Les mots de passe ne correspondent pas";
       infoError.classList.add("globalError");
@@ -97,6 +108,11 @@ const SignUp = () => {
     } else if (
       password === controlPass &&
       terms.checked &&
+      !isEmpty(email) &&
+      !isEmpty(password) &&
+      !isEmpty(controlPass) &&
+      !isEmpty(firstname) &&
+      !isEmpty(id_job) &&
       validName(signUpForm.firstname) &&
       validEmail(signUpForm.email) &&
       validPassword(signUpForm.password) &&
@@ -159,7 +175,8 @@ const SignUp = () => {
         <>
           <SignIn />
           <p className="signupSuccess">
-            Enregistrement réussi, <br/>Merci de vous connecter
+            Enregistrement réussi, <br />
+            Merci de vous connecter
           </p>
         </>
       ) : (
@@ -246,7 +263,7 @@ const SignUp = () => {
                   <label htmlFor="terms">
                     J'accepte les{" "}
                     <a href="/" target="_blank" rel="noopener noreferrer">
-                    conditions générales
+                      conditions générales
                     </a>
                   </label>
                   <p></p>

@@ -3,6 +3,7 @@ import AnimeGroupomania from "../../svgComponents/AnimeGroupomania.js";
 import axios from "axios";
 import dotenv from "dotenv";
 import { validPassword, validEmail } from "../../Utils/regExp.js";
+import { isEmpty } from "../../Utils/isEmpty.js";
 
 dotenv.config({ path: "../../../../.env" });
 
@@ -46,8 +47,17 @@ const SignIn = () => {
   const sendForm = (e) => {
     e.preventDefault();
 
-    if (validEmail(signInForm.email) && validPassword(signInForm.password)) {
-      console.log("Tous ok");
+    if (isEmpty(email) || isEmpty(password)) {
+      infoError.innerHTML =
+        "Merci de remplir les informations pour accéder à votre compte";
+      infoError.classList.add("globalError");
+    } else if (
+      !isEmpty(email) &&
+      !isEmpty(password) &&
+      validEmail(signInForm.email) &&
+      validPassword(signInForm.password)
+    ) {
+      //console.log("Tous ok");
       axios({
         method: "post",
         url: process.env.REACT_APP_API_URL + "api/user/login",
@@ -83,49 +93,49 @@ const SignIn = () => {
   // ######## Affichage du HTML :
   return (
     // SignIn.js :
-      <div className="sign">
-        <div className="sign__title">
-          <h2>Connectez-vous !</h2>
-        </div>
-        <AnimeGroupomania className="sign__icon animIcon"></AnimeGroupomania>
-        <form
-          action=""
-          onSubmit={sendForm}
-          className="sign__form"
-          id="signInForm"
-        >
-          <div className="sign__form__part">
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              placeholder="Entrez votre e-mail Groupomania"
-            ></input>
-            <p></p>
-          </div>
-          <div className="sign__form__part">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              placeholder="Saisissez votre mot de passe"
-            ></input>
-            <p></p>
-          </div>
-          <p id="infoError"></p>
-          <div className="outer btn">
-            <input type="submit" value="Connexion" />
-            <span></span>
-            <span></span>
-          </div>
-        </form>
+    <div className="sign">
+      <div className="sign__title">
+        <h2>Connectez-vous !</h2>
       </div>
+      <AnimeGroupomania className="sign__icon animIcon"></AnimeGroupomania>
+      <form
+        action=""
+        onSubmit={sendForm}
+        className="sign__form"
+        id="signInForm"
+      >
+        <div className="sign__form__part">
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            placeholder="Entrez votre e-mail Groupomania"
+          ></input>
+          <p></p>
+        </div>
+        <div className="sign__form__part">
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            placeholder="Saisissez votre mot de passe"
+          ></input>
+          <p></p>
+        </div>
+        <p id="infoError"></p>
+        <div className="outer btn">
+          <input type="submit" value="Connexion" />
+          <span></span>
+          <span></span>
+        </div>
+      </form>
+    </div>
   );
 };
 
