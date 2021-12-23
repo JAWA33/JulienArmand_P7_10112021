@@ -88,8 +88,15 @@
 }
 
 //* BREAKPOINTS mixins for mobile First ---------------------------//
+//For Small Mobile
 
-//For Tablet
+@mixin smallMobile {
+  @media screen and (max-width: map-get($breakpoints, smallMobile)) {
+    @content;
+  }
+}
+
+//For Mobile
 
 @mixin mobile-limit {
   @media screen and (max-width: map-get($breakpoints, mobile)) {
@@ -125,4 +132,18 @@
   @media screen and (max-width: map-get($breakpoints, desktop)) {
     @content;
   }
+}
+
+//box container
+@mixin container($radius: 15px, $bg_orient: 145deg) {
+  background: linear-gradient($bg_orient, $graphicSecondary, $graphicPrimary);
+  box-shadow: 2px 2px 2px $shadowDark, -2px -2px 2px $shadowLight;
+  border-radius: $radius;
+}
+
+//box container
+@mixin insetContainer($radius: 15px, $bg_orient: 145deg) {
+  background: linear-gradient($bg_orient, $graphicSecondary, $graphicPrimary);
+  box-shadow: inset 2px 2px 4px $shadowLight, inset -2px -2px 4px $shadowDark;
+  border-radius: $radius;
 }

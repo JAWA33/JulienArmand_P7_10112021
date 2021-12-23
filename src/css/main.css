@@ -55,7 +55,7 @@ p,
 label {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .textLog--title {
@@ -202,6 +202,43 @@ select::placeholder {
   transition: ease-out 0.3s;
 }
 
+.btn__profil {
+  border-radius: 15px;
+  width: 45%;
+  height: auto;
+  padding: 5px;
+  background-color: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.btn__profil:hover {
+  box-shadow: 2px 2px 4px #04bbfc, -2px -2px 4px #d6d6d6;
+  transform: scale(1.03);
+  transition: ease-out 0.3s;
+}
+.btn__profil--delete {
+  border: 3px solid #ff421c;
+  color: #ff421c;
+}
+.btn__profil--delete:hover {
+  background-color: #ff421c;
+  color: #f8f8f8;
+}
+.btn__profil--modify {
+  border: 3px solid #04bbfc;
+  color: #04bbfc;
+}
+.btn__profil--modify:hover {
+  color: #f8f8f8;
+  background-color: #04bbfc;
+}
+@media screen and (max-width: 850px) {
+  .btn__profil {
+    margin: 10px 0px;
+    width: 100%;
+  }
+}
+
 header {
   position: fixed;
   top: 1rem;
@@ -210,6 +247,7 @@ header {
   z-index: 1;
   width: 96%;
   height: auto;
+  min-height: 60px;
   color: #020202;
   border-radius: 20px;
   margin: auto;
@@ -231,6 +269,12 @@ header:after {
   border-radius: 15px;
   background: linear-gradient(145deg, #091921, #081f43);
   box-shadow: inset 1px 1px 6px #04bbfc, inset -1px -1px 6px #d6d6d6;
+}
+
+@media screen and (max-width: 670px) {
+  #connected {
+    display: none;
+  }
 }
 
 .logoContainer {
@@ -255,11 +299,6 @@ header:after {
     justify-content: "cen";
     align-items: center;
     align-items: "cen";
-  }
-}
-@media screen and (max-width: 670px) {
-  .logoContainer {
-    display: none;
   }
 }
 .logoContainer__icon {
@@ -360,6 +399,12 @@ header:after {
     align-items: "cen";
     margin-right: 15px;
     margin-left: 15px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .nav__link__btn {
+    margin-right: 8px;
+    margin-left: 8px;
   }
 }
 .nav__link__btn--icon {
@@ -675,106 +720,6 @@ input[type=file] {
   color: black;
 }
 
-.myPage {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  justify-content: "cen";
-  align-items: center;
-  align-items: "cen";
-}
-
-.myProfil {
-  background: whitesmoke;
-  width: 70%;
-  max-width: 700px;
-  border-radius: 10px;
-  border: 1px #081f43 solid;
-  padding: 20px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-content: "cen";
-  align-items: center;
-  align-items: "cen";
-}
-.myProfil__contact {
-  margin: 10px;
-}
-.myProfil__contact__name {
-  width: 100%;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-content: "cen";
-  align-items: center;
-  align-items: "cen";
-}
-.myProfil__contact__info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-content: "cen";
-  align-items: center;
-  align-items: "cen";
-}
-.myProfil__contact__info h3 {
-  margin-bottom: 10px;
-}
-.myProfil__myInfo {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  justify-content: "flexS";
-  align-items: stretch;
-  align-items: "st";
-}
-.myProfil__myInfo__age {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: "flexS";
-  align-items: baseline;
-  margin-bottom: 20px;
-}
-.myProfil__myInfo__age h2 {
-  width: 80px;
-}
-.myProfil__myInfo__age p {
-  width: calc(100%-80px);
-}
-.myProfil__myInfo__bio {
-  width: 100%;
-  margin-bottom: 20px;
-}
-.myProfil__myInfo__bio h2 {
-  margin-bottom: 10px;
-}
-.myProfil__myInfo__bio p {
-  margin-bottom: 10px;
-}
-.myProfil__modif {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-content: "cen";
-  align-items: center;
-  align-items: "cen";
-}
-.myProfil__modif button {
-  width: 100%;
-  height: 40px;
-  background-color: #081f43;
-  color: whitesmoke;
-  border-radius: 10px;
-}
-
 .imageCard {
   text-align: center;
 }
@@ -895,7 +840,7 @@ input[type=file] {
 }
 @media screen and (max-width: 1100px) {
   .loginPage {
-    margin-top: 60px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1031,6 +976,11 @@ input[type=file] {
   width: 100%;
   padding: 30px;
 }
+@media screen and (max-width: 420px) {
+  .sign__form {
+    padding: 10px;
+  }
+}
 .sign__form__section--one {
   margin-right: 20px;
 }
@@ -1118,6 +1068,205 @@ input[type=file] {
 
 #infoError {
   max-width: 90%;
+}
+
+.centerPage {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+
+.myProfil {
+  background: linear-gradient(145deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 20px;
+  width: 70%;
+  max-width: 700px;
+  border: 1px #081f43 solid;
+  padding: 20px;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+  color: #f8f8f8;
+}
+@media screen and (max-width: 850px) {
+  .myProfil {
+    margin-top: 100px;
+    width: 90%;
+  }
+}
+.myProfil__contact {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: "spB";
+  align-items: flex-start;
+  align-items: "flexS";
+}
+@media screen and (max-width: 850px) {
+  .myProfil__contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
+}
+.myProfil__contact__picture {
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(145deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+.myProfil__contact__picture img {
+  background: linear-gradient(35deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 10px;
+}
+.myProfil__contact__info {
+  width: calc(100% - 180px);
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+  background: linear-gradient(35deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 15px;
+}
+@media screen and (max-width: 850px) {
+  .myProfil__contact__info {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+}
+.myProfil__contact__info h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 370px) {
+  .myProfil__contact__info h2 {
+    font-size: 1.4rem;
+  }
+}
+.myProfil__contact__info h3 {
+  margin-bottom: 5px;
+}
+@media screen and (max-width: 370px) {
+  .myProfil__contact__info h3 {
+    font-size: 1.1rem;
+  }
+}
+.myProfil__contact__info p {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+@media screen and (max-width: 370px) {
+  .myProfil__contact__info p {
+    font-size: 1rem;
+  }
+}
+.myProfil__myInfo {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(35deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  justify-content: "flexS";
+  align-items: stretch;
+  align-items: "st";
+}
+.myProfil__myInfo__age {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: "flexS";
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+.myProfil__myInfo__age h3 {
+  width: auto;
+  padding: 10px 20px;
+  color: #04bbfc;
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: inset 2px 2px 4px #d6d6d6, inset -2px -2px 4px #04bbfc;
+  border-radius: 10px;
+}
+.myProfil__myInfo__age p {
+  margin-left: 20px;
+  width: calc(100%-120px);
+}
+.myProfil__myInfo__bio {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.myProfil__myInfo__bio h3 {
+  height: auto;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: inset 2px 2px 4px #d6d6d6, inset -2px -2px 4px #04bbfc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: #04bbfc;
+}
+.myProfil__myInfo__bio p {
+  text-indent: 2rem;
+  padding: 15px;
+}
+@media screen and (max-width: 370px) {
+  .myProfil__myInfo__bio p {
+    font-size: 1rem;
+    padding: 10px 0px;
+  }
+}
+.myProfil__modif {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-content: "spE";
+  align-items: center;
+  align-items: "cen";
+}
+@media screen and (max-width: 850px) {
+  .myProfil__modif {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
 }
 
 .messageError {

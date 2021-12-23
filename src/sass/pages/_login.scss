@@ -106,6 +106,9 @@
     @include flexCol("spE", "cen");
     width: 100%;
     padding: 30px;
+    @include mobile-limit {
+      padding: 10px;
+    }
 
     &__section--one {
       margin-right: 20px;

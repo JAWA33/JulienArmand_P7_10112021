@@ -15,7 +15,7 @@ const MyPage = () => {
     <Fragment>
       {uid ? (
         userData[0] ? (
-          <div className="myPage">
+          <div className="centerPage">
             <MyProfil
               data={userData}
               key={"myprofil" + userData[0].id_user}
@@ -23,7 +23,7 @@ const MyPage = () => {
             />
           </div>
         ) : (
-          ""
+          <div>En chargement ...</div>
         )
       ) : (
         (window.location = "/")

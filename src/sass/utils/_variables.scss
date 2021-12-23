@@ -23,6 +23,7 @@ $textColor_dark: rgb(2, 2, 2);
 
 //* ########### Breakpoints maps ###### */
 $breakpoints: (
+  smallMobile: 370px,
   mobile: 420px,
   logo: 670px,
   tablet: 850px,
@@ -31,7 +32,7 @@ $breakpoints: (
 
 //* ############# DIMENSIONS ############ *//
 
-$dim_header: 60px;
+$dim_header: 80px;
 $dim_footer: 60px;
 //! ############# OLD  ############ *//
 //! ############# OLD  ############ *//

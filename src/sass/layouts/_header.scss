@@ -6,6 +6,7 @@ header {
   z-index: 1;
   width: 96%;
   height: auto;
+  min-height: 60px;
 
   color: $textColor_dark;
   border-radius: 20px;
@@ -27,6 +28,12 @@ header {
   }
 }
 
+#connected {
+  @include logo-limit {
+    display: none;
+  }
+}
+
 .logoContainer {
   width: auto;
   max-width: 400px;
@@ -38,9 +45,6 @@ header {
   @include flexRow("cen", "cen");
   @include tablet-limit {
     @include flexCol("cen", "cen");
-  }
-  @include logo-limit {
-    display: none;
   }
 
   &__icon {
@@ -103,6 +107,10 @@ header {
         @include flexRow("cen", "cen");
         margin-right: 15px;
         margin-left: 15px;
+      }
+      @include smallMobile {
+        margin-right: 8px;
+        margin-left: 8px;
       }
 
       &--icon {

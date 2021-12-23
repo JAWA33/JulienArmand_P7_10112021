@@ -1,1 +1,134 @@
-// For Git
+.centerPage {
+  width: 100%;
+  @include flexRow("cen", "cen");
+}
+
+.myProfil {
+  @include container(20px, 145deg);
+  width: 70%;
+  max-width: 700px;
+  border: 1px $colorPrimary solid;
+  padding: 20px;
+  margin-top: $dim_header;
+  margin-bottom: $dim_footer;
+  @include flexCol("cen", "cen");
+  color: $textColor_light;
+  @include tablet-limit {
+    margin-top: $dim_header + 20px;
+    width: 90%;
+  }
+
+  &__contact {
+    width: 100%;
+    @include flexRow("spB", "flexS");
+    @include tablet-limit {
+      @include flexCol("cen", "cen");
+    }
+
+    &__picture {
+      width: 160px;
+      height: 160px;
+      @include container(15px, 145deg);
+      @include flexCol("cen", "cen");
+
+      & img {
+        @include container(10px, 35deg);
+      }
+    }
+
+    &__info {
+      width: calc(100% - 180px);
+      height: 160px;
+      @include flexCol("cen", "cen");
+      @include container(15px, 35deg);
+      @include tablet-limit {
+        margin-top: 20px;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+      }
+
+      & h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        @include smallMobile {
+          font-size: 1.4rem;
+        }
+      }
+      & h3 {
+        margin-bottom: 5px;
+        @include smallMobile {
+          font-size: 1.1rem;
+        }
+      }
+      & p {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        @include smallMobile {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  &__myInfo {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 20px;
+
+    @include container(15px, 35deg);
+    @include flexCol("flexS", "st");
+
+    &__age {
+      width: 100%;
+      height: auto;
+
+      @include flexRow("flexS", "base");
+
+      margin-bottom: 20px;
+      & h3 {
+        width: auto;
+        padding: 10px 20px;
+        color: $graphicTertiary;
+        @include insetContainer(10px, 120deg);
+      }
+      & p {
+        margin-left: 20px;
+        width: calc(100%-120px);
+      }
+    }
+
+    &__bio {
+      width: 100%;
+      margin-bottom: 20px;
+
+      & h3 {
+        height: auto;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        text-align: center;
+        @include insetContainer(10px, 120deg);
+        padding: 10px 20px;
+        color: $graphicTertiary;
+      }
+
+      & p {
+        text-indent: 2rem;
+        padding: 15px;
+        @include smallMobile {
+          font-size: 1rem;
+          padding: 10px 0px;
+        }
+      }
+    }
+  }
+  &__modif {
+    width: 100%;
+    margin-top: 30px;
+    @include flexRow("spE", "cen");
+
+    @include tablet-limit {
+      @include flexCol("cen", "cen");
+    }
+  }
+}

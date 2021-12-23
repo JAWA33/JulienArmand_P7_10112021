@@ -1,3 +1,4 @@
+//Bouton CONNEXION et CREATION COMPTE
 .outer {
   position: relative;
   background: linear-gradient(90deg, $graphicSecondary, $graphicPrimary);
@@ -74,6 +75,7 @@
   }
 }
 
+/// Bouton changement Login / signup
 .btn__changeLog {
   max-width: 90%;
   height: auto;
@@ -93,5 +95,44 @@
     color: $textColor_light;
     transform: scale(1.06);
     transition: ease-out 0.3s;
+  }
+}
+
+//Bouton Modification (Bleu) / Suppression (Rouge)
+.btn__profil {
+  border-radius: 15px;
+  width: 45%;
+  height: auto;
+  padding: 5px;
+  background-color: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 2px 2px 4px $shadowDark, -2px -2px 4px $shadowLight;
+
+    transform: scale(1.03);
+    transition: ease-out 0.3s;
+  }
+
+  &--delete {
+    border: 3px solid $errorColor;
+    color: $errorColor;
+    &:hover {
+      background-color: $errorColor;
+      color: $textColor_light;
+    }
+  }
+  &--modify {
+    border: 3px solid $graphicTertiary;
+    color: $graphicTertiary;
+    &:hover {
+      color: $textColor_light;
+      background-color: $graphicTertiary;
+    }
+  }
+
+  @include tablet-limit {
+    margin: 10px 0px;
+    width: 100%;
   }
 }

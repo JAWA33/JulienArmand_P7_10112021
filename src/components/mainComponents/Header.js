@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="logoContainer">
+      <div className="logoContainer" id={uid ? "connected" : "notConnected"}>
         <img src={icon} className="logoContainer__icon" />
         <h1 className="logoContainer__title">Groupomania</h1>
       </div>

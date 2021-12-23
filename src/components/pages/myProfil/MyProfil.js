@@ -45,16 +45,10 @@ const MyProfil = ({ data, modif }) => {
   const UpdateProfilForm = document.getElementById("UpdateProfilForm");
 
   //!!
-  console.log("updateUserImage");
-  console.log(updateUserImage);
-  console.log("updateFile");
-  console.log(updateFile);
 
   const makeCompressor = (file, options) => {
     return new Compressor(file, options);
   };
-
-  //!! FAIRE LA VERIFICATION DES CHAMPS ENVOYES !!!!!!!!!!!!!!!!!!
 
   //* ####### Attente du chargement pour remplissage de la liste déroulante
   const listingJobs = !isEmpty(jobData) ? (
@@ -452,30 +446,26 @@ const MyProfil = ({ data, modif }) => {
                 alt={"utilisateur" + data[0].user_firstname}
               />
             </div>
-            <div className="myProfil__contact__name">
+            <div className="myProfil__contact__info">
               <h2>
                 {isEmpty(data[0].user_lastname)
                   ? data[0].user_firstname
                   : data[0].user_firstname + " " + data[0].user_lastname}
               </h2>
-            </div>
-            <div className="myProfil__contact__info">
               <h3>{data[0].service_name}</h3>
               <h3>{data[0].job_name}</h3>
-              <br />
-              <h3>{data[0].user_email}</h3>
-              <h3>
+              <p>{data[0].user_email}</p>
+              <p>
                 Tel:{" "}
                 {isEmpty(data[0].user_phone)
                   ? "Non renseigné"
                   : data[0].user_phone}
-              </h3>
+              </p>
             </div>
           </div>
-          <hr />
           <div className="myProfil__myInfo">
             <div className="myProfil__myInfo__age">
-              <h2>Age :</h2>
+              <h3>Age :</h3>
               <p>
                 {isEmpty(data[0].user_age)
                   ? " Non renseigné"
@@ -483,36 +473,40 @@ const MyProfil = ({ data, modif }) => {
               </p>
             </div>
             <div className="myProfil__myInfo__bio">
-              <h2>Ce qu'il faut savoir sur moi :</h2>
+              <h3>Ce qu'il faut savoir sur moi :</h3>
               <p>
                 {isEmpty(data[0].user_bio) ? "Non renseigné" : data[0].user_bio}
               </p>
             </div>
             <div className="myProfil__myInfo__bio">
-              <h2>Mes compétences :</h2>
+              <h3>Mes compétences :</h3>
               <p>
                 {isEmpty(data[0].user_skill)
                   ? "Non renseigné"
                   : data[0].user_skill}
               </p>
-              <div className="myProfil__myInfo__bio">
-                <h2>Mes hobbies :</h2>
-                <p>
-                  {isEmpty(data[0].user_hobbie)
-                    ? "Non renseigné"
-                    : data[0].user_hobbie}
-                </p>
-              </div>
+            </div>
+            <div className="myProfil__myInfo__bio">
+              <h3>Mes hobbies :</h3>
+              <p>
+                {isEmpty(data[0].user_hobbie)
+                  ? "Non renseigné"
+                  : data[0].user_hobbie}
+              </p>
             </div>
           </div>
 
           {modif === true &&
           (data[0].user_status === "Moderateur" || data[0].id_user === uid) ? (
             <div className="myProfil__modif">
-              <button onClick={() => setIsUpdating(true)}>
+              <button
+                className="btn__profil btn__profil--modify"
+                onClick={() => setIsUpdating(true)}
+              >
                 Modifier mon profil
               </button>
               <button
+                className="btn__profil btn__profil--delete"
                 onClick={() => {
                   if (
                     window.confirm(
