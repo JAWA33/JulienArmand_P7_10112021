@@ -130,6 +130,21 @@
       background-color: $graphicTertiary;
     }
   }
+  &--select {
+    border: 3px solid $successColor;
+    color: $successColor;
+    cursor: pointer;
+    z-index: 10;
+    &:hover {
+      color: $textColor_light;
+      background-color: $successColor;
+    }
+  }
+
+  &--crop {
+    width: 100%;
+    margin: 20px 0px;
+  }
 
   @include tablet-limit {
     margin: 10px 0px;

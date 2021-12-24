@@ -316,7 +316,10 @@ const MyProfil = ({ data, modif }) => {
             <div className="myProfil__contact">
               {cars.map((car) => (
                 <div className="myProfil__contact__image">
-                  <div className="myProfil__contact__picture" key={car.id}>
+                  <div
+                    className="myProfil__contact__picture myProfil__contact__picture--modify"
+                    key={car.id}
+                  >
                     <img
                       id="cropperImg"
                       src={
@@ -448,7 +451,7 @@ const MyProfil = ({ data, modif }) => {
                 <input
                   type="submit"
                   className="btn__profil btn__profil--modify"
-                  value="Modifier"
+                  value="Valider"
                 />
                 <button
                   className="btn__profil btn__profil--delete"

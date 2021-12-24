@@ -234,6 +234,20 @@ textarea::placeholder {
   color: #f8f8f8;
   background-color: #04bbfc;
 }
+.btn__profil--select {
+  border: 3px solid #00b594;
+  color: #00b594;
+  cursor: pointer;
+  z-index: 10;
+}
+.btn__profil--select:hover {
+  color: #f8f8f8;
+  background-color: #00b594;
+}
+.btn__profil--crop {
+  width: 100%;
+  margin: 20px 0px;
+}
 @media screen and (max-width: 850px) {
   .btn__profil {
     margin: 10px 0px;
@@ -430,12 +444,12 @@ footer {
   bottom: 1rem;
   left: 2%;
   right: 2%;
-  z-index: 1;
   width: 96%;
   height: 60px;
   color: #020202;
   border-radius: 20px;
-  background: linear-gradient(145deg, #091921, #081f43);
+  background: #091921;
+  filter: hue-rotate(0);
   box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
   display: flex;
   flex-direction: column;
@@ -450,8 +464,14 @@ footer:after {
   width: calc(100% - 10px);
   height: calc(100% - 10px);
   border-radius: 15px;
-  background: linear-gradient(145deg, #091921, #081f43);
+  background: #091921;
+  filter: hue-rotate(0);
   box-shadow: inset 1px 1px 6px #04bbfc, inset -1px -1px 6px #d6d6d6;
+}
+footer label {
+  font-style: oblique;
+  font-size: 0.9rem;
+  color: #f8f8f8;
 }
 
 #app {
@@ -672,7 +692,7 @@ textarea {
   padding: 10px;
 }
 
-input[type=file] {
+.getFile {
   position: absolute;
   width: 160px;
   opacity: 1;
@@ -720,59 +740,6 @@ input[type=file] {
 }
 .createComment__btn {
   color: black;
-}
-
-.imageCard {
-  text-align: center;
-}
-.imageCard img {
-  width: 600px;
-}
-
-.backdrop {
-  position: fixed;
-  background: #000;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.crop-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 80px;
-}
-
-.controls {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  width: 100%;
-  height: 80px;
-}
-
-.controls-upper-area {
-  text-align: center;
-}
-
-.slider {
-  width: 50%;
-}
-
-.button-area {
-  text-align: center;
-  margin-top: 20px;
-}
-.button-area button {
-  margin-left: 10px;
-  margin-right: 10px;
-  background: #000;
-  color: white;
-  border: 2px solid yellow;
-  font-size: 20px;
 }
 
 .allUsers {
@@ -1157,6 +1124,8 @@ input[type=file] {
   justify-content: "cen";
   align-items: center;
   align-items: "cen";
+}
+.myProfil__contact__picture--modify {
   cursor: pointer;
 }
 .myProfil__contact__picture img {
@@ -1429,6 +1398,221 @@ input[type=file] {
   .bioModif textarea {
     padding: 10px 10px;
   }
+}
+
+.imageCard {
+  text-align: center;
+  border: 1px solid #ffc401;
+}
+.imageCard img {
+  width: 800px;
+}
+
+.backdrop {
+  position: fixed;
+  background: rgba(8, 31, 67, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.crop-container {
+  position: fixed;
+  top: 150px;
+  left: 0;
+  right: 25%;
+  bottom: 30%;
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 15px;
+  margin-left: 30px;
+  overflow: hidden;
+  min-height: 500px;
+}
+@media screen and (max-width: 850px) {
+  .crop-container {
+    right: 0;
+    margin-right: 30px;
+    min-height: 150px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .crop-container {
+    top: 130px;
+    bottom: 35%;
+    margin: auto 10px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .crop-container {
+    top: 120px;
+    bottom: 40%;
+  }
+}
+
+.controls {
+  position: fixed;
+  top: 150px;
+  right: 0;
+  bottom: 30%;
+  width: 20%;
+  margin-right: 30px;
+  min-height: 200px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+@media screen and (max-width: 850px) {
+  .controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+    bottom: 20px;
+    top: auto;
+    left: 0px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .controls {
+    bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
+}
+
+.controls-upper-area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90%;
+  height: 100%;
+  min-height: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+  background: linear-gradient(120deg, #081f43, #091921);
+  box-shadow: 2px 2px 2px #04bbfc, -2px -2px 2px #d6d6d6;
+  border-radius: 15px;
+  z-index: 1;
+  padding: 20px;
+}
+@media screen and (max-width: 850px) {
+  .controls-upper-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+    width: 92%;
+    min-height: 150px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .controls-upper-area {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: "cen";
+    align-items: center;
+    align-items: "cen";
+  }
+}
+.controls-upper-area input {
+  width: 100%;
+}
+.controls-upper-area p, .controls-upper-area label {
+  font-style: oblique;
+  font-weight: lighter;
+  margin-top: 20px;
+}
+
+.controls-blocks {
+  width: 50%;
+  z-index: 1;
+}
+
+.slider {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+@media screen and (max-width: 850px) {
+  .slider {
+    width: 40%;
+    margin: 0 20px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .slider {
+    display: none;
+  }
+}
+.slider input {
+  margin-top: 20px;
+}
+
+.button-area {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: "cen";
+  align-items: center;
+  align-items: "cen";
+}
+@media screen and (max-width: 850px) {
+  .button-area {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .button-area {
+    width: 90%;
+    margin-top: 0px;
+  }
+}
+
+.maskInput {
+  width: 100%;
+}
+@media screen and (max-width: 850px) {
+  .maskInput {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .maskInput {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .maskInput label {
+    display: none;
+  }
+}
+.maskInput input[type=file] {
+  display: none;
 }
 
 .messageError {

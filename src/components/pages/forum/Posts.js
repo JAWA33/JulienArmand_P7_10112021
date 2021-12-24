@@ -282,6 +282,7 @@ const Posts = () => {
                           name="file"
                           accept=".jpg, .jpeg, .png"
                           onInput={(e) => handlePicture(e)}
+                          className="getFile"
                         ></input>
                       </div>
                     </div>

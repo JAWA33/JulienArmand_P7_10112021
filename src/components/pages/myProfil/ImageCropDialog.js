@@ -104,29 +104,42 @@ const ImageCropDialog = ({
           onCropComplete={onCropComplete}
         />
       </div>
-      <div>
-        <input
-          type="file"
-          id="myFile"
-          name="file"
-          accept=".jpg, .jpeg, .png"
-          onInput={(e) => changeNewFile(e)}
-        />
-      </div>
+
       <div className="controls">
         <div className="controls-upper-area">
-          <input
-            type="range"
-            min={1}
-            max={3}
-            step={0.1}
-            value={zoom}
-            onInput={(e) => {
-              onZoomChange(e.target.value);
-            }}
-            className="slider"
-          ></input>
-          <select onChange={(e) => onAspectChange(e)}>
+          <div className="maskInput">
+            <label htmlFor="file">Choisissez une image</label>
+            <input
+              type="button"
+              className="btn__profil btn__profil--select btn__profil--crop"
+              value="Choisir"
+              onClick={() => document.getElementById("myFile").click()}
+            />
+            <input
+              type="file"
+              id="myFile"
+              name="file"
+              accept=".jpg, .jpeg, .png"
+              onInput={(e) => changeNewFile(e)}
+            />
+          </div>
+
+          <div className="slider">
+            <label htmlFor="zoom">Ajuster le zoom et positionner l'image</label>
+            <input
+              type="range"
+              name="zoom"
+              min={1}
+              max={3}
+              step={0.1}
+              value={zoom}
+              onInput={(e) => {
+                onZoomChange(e.target.value);
+              }}
+            />
+          </div>
+
+          {/* <select onChange={(e) => onAspectChange(e)}>
             {aspectRatios.map((ratio) => (
               <option
                 key={ratio.text}
@@ -136,12 +149,22 @@ const ImageCropDialog = ({
                 {ratio.text}
               </option>
             ))}
-          </select>
-        </div>
-        <div className="button-area">
-          <button onClick={onCancel}>Cancel</button>
-          <button onClick={onResetImage}>Reset</button>
-          <button onClick={onCrop}>Crop</button>
+          </select> */}
+          <div className="button-area">
+            <button
+              className="btn__profil btn__profil--modify btn__profil--crop"
+              onClick={onCrop}
+            >
+              Valider
+            </button>
+            <button
+              className="btn__profil btn__profil--delete btn__profil--crop"
+              onClick={onCancel}
+            >
+              Annuler
+            </button>
+            {/* <button onClick={onResetImage}>Reset</button> */}
+          </div>
         </div>
       </div>
     </div>

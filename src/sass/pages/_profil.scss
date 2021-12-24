@@ -48,7 +48,10 @@
       height: 160px;
       @include container(15px, 145deg);
       @include flexCol("cen", "cen");
-      cursor: pointer;
+
+      &--modify {
+        cursor: pointer;
+      }
 
       & img {
         @include container(10px, 35deg);
@@ -257,3 +260,170 @@
     }
   }
 }
+
+//Découpage de l'image de profil :
+.imageCard {
+  text-align: center;
+  border: 1px solid rgb(255, 196, 1);
+
+  & img {
+    width: 800px;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  background: rgba($graphicSecondary, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.crop-container {
+  position: fixed;
+  top: 150px;
+  left: 0;
+  right: 25%;
+  bottom: 30%;
+  @include container(15px, 120deg);
+  margin-left: 30px;
+  overflow: hidden;
+  min-height: 500px;
+
+  @include tablet-limit {
+    right: 0;
+    margin-right: 30px;
+    min-height: 150px;
+  }
+
+  @include mobile-limit {
+    top: 130px;
+    bottom: 35%;
+    margin: auto 10px;
+  }
+  @include smallMobile {
+    top: 120px;
+    bottom: 40%;
+  }
+}
+
+.controls {
+  position: fixed;
+  //left: 0;
+  top: 150px;
+  right: 0;
+  bottom: 30%;
+  width: 20%;
+  //height: 100%;
+  margin-right: 30px;
+  min-height: 200px;
+  z-index: 1;
+  @include flexCol("cen", "cen");
+
+  @include tablet-limit {
+    width: 100%;
+    @include flexRow("cen", "cen");
+    bottom: 20px;
+    top: auto;
+    left: 0px;
+  }
+  @include smallMobile {
+    bottom: 10px;
+    @include flexRow("cen", "cen");
+  }
+}
+
+.controls-upper-area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90%;
+  height: 100%;
+  min-height: 500px;
+  text-align: center;
+  @include flexCol("cen", "cen");
+  @include container(15px, 120deg);
+  z-index: 1;
+  padding: 20px;
+  @include tablet-limit {
+    @include flexRow("cen", "cen");
+    width: 92%;
+    min-height: 150px;
+  }
+  @include smallMobile {
+    padding: 5px;
+
+    @include flexCol("cen", "cen");
+  }
+
+  & input {
+    width: 100%;
+  }
+
+  & p,
+  & label {
+    font-style: oblique;
+    font-weight: lighter;
+    margin-top: 20px;
+  }
+}
+
+.controls-blocks {
+  width: 50%;
+  z-index: 1;
+}
+
+.slider {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+
+  @include tablet-limit {
+    width: 40%;
+    margin: 0 20px;
+  }
+  @include smallMobile {
+    display: none;
+  }
+
+  & input {
+    margin-top: 20px;
+  }
+}
+
+.button-area {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  @include flexCol("cen", "cen");
+  @include tablet-limit {
+    width: 40%;
+  }
+  @include smallMobile {
+    width: 90%;
+    margin-top: 0px;
+  }
+}
+
+.maskInput {
+  width: 100%;
+
+  @include tablet-limit {
+    width: 40%;
+  }
+  @include smallMobile {
+    width: 90%;
+  }
+
+  & label {
+    @include smallMobile {
+      display: none;
+    }
+  }
+
+  & input[type="file"] {
+    display: none;
+  }
+}
+//Cropper React :

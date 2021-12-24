@@ -171,6 +171,7 @@ const CreatePost = () => {
                   name="file"
                   accept=".jpg, .jpeg, .png"
                   onChange={(e) => handlePicture(e)}
+                  className="getFile"
                 ></input>
               </div>
             ) : (
