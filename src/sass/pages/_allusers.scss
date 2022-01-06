@@ -1,1 +1,214 @@
-// For Git
+.firstPlace {
+  z-index: 1;
+}
+
+.allUsers {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+
+  @include flexCol(initial, "flexE");
+  //flex-direction: column-reverse;
+
+  @include logo-limit {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(55deg, $graphicSecondary, $graphicPrimary);
+    }
+  }
+
+  &__organization {
+    position: relative;
+    width: 36%;
+    //max-width: 450px;
+    height: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+
+    padding: 120px 0px;
+    margin-left: 20px;
+
+    //padding-top: 120px;
+
+    @include flexCol(initial, "st");
+
+    @include logo-limit {
+      width: 90%;
+      margin-right: 5%;
+      margin-left: 5%;
+      padding: 40px 0px;
+    }
+  }
+
+  &__profil {
+    width: 60%;
+    min-height: 100%;
+    position: sticky;
+    overflow-y: scroll;
+    top: 120px;
+    right: 0;
+    margin-top: 0px;
+
+    //padding: 120px 0px;
+    @include flexCol(initial, "cen");
+    @include logo-limit {
+      //display: none;
+      width: 100%;
+      height: 100vh;
+      //z-index: 1;
+      //background: #000;
+    }
+
+    &__waiting {
+      height: 70vh;
+      color: $textColor_light;
+      font-size: 1.4rem;
+      font-style: oblique;
+      @include flexCol("cen", "cen");
+      @include logo-limit {
+        display: none;
+      }
+    }
+  }
+}
+
+.service {
+  width: 90%;
+  height: auto;
+  @include container(15px, 50deg);
+  color: $textColor_light;
+  margin: 0px 20px 20px 20px;
+  @include flexCol("flexS", "cen");
+
+  &__title {
+    width: 100%;
+    //text-align: center;
+    @include flexRow("spB", "cen");
+    padding: 10px;
+
+    &__button {
+      position: relative;
+      min-width: 30px;
+      min-height: 30px;
+      border: 2px solid $graphicTertiary;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      margin: 0 10px;
+
+      &::after {
+        content: "";
+        width: 20px;
+        height: 2px;
+        position: absolute;
+        transform-origin: center center;
+        transform: translate(3px, 12px);
+        background-color: $graphicTertiary;
+      }
+
+      &--plus {
+        position: relative;
+        min-width: 30px;
+        min-height: 30px;
+        border: 2px solid $graphicTertiary;
+        border-radius: 50%;
+        background-color: transparent;
+        cursor: pointer;
+        margin: 0 10px;
+
+        &::before,
+        &::after {
+          content: "";
+          width: 20px;
+          height: 2px;
+          position: absolute;
+          transform-origin: center center;
+          background-color: $graphicTertiary;
+        }
+        &::before {
+          transform: translate(3px, 12px);
+        }
+
+        &::after {
+          transform: translate(3px, 12px) rotate(90deg);
+        }
+      }
+    }
+  }
+
+  &__jobs {
+    min-width: 100%;
+    @include flexCol("cen", "flexS");
+    padding: 10px;
+
+    &__title {
+      width: 100%;
+      @include flexCol("cen", "cen");
+    }
+
+    &__name {
+      width: 94%;
+      text-align: center;
+      margin: 15px 0px;
+      padding: 5px;
+      @include container(10px, 300deg);
+    }
+
+    &__users {
+      width: 94%;
+      @include flexRow("spE", "cen");
+      flex-wrap: wrap;
+      &:first-child {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.user {
+  min-width: 100px;
+  max-width: 110px;
+  min-height: 150px;
+  margin: 10px;
+  @include container(10px, 30deg);
+  @include flexCol("spB", "cen");
+  overflow: hidden;
+  cursor: pointer;
+
+  & img {
+    width: 100%;
+    height: 100px;
+    border-radius: 2px;
+    border-bottom: 2px solid $shadowLight;
+  }
+
+  & p {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-size: 1rem;
+  }
+}
+
+.selected {
+  background: linear-gradient(0deg, $textColor_light, $graphicTertiary);
+  box-shadow: inset 2px 2px 4px $shadowLight, inset -2px -2px 4px $shadowDark;
+  border-radius: 10px;
+  color: $graphicPrimary;
+
+  & img {
+    border-radius: 10px;
+    padding: 3px;
+    border: none;
+  }
+}

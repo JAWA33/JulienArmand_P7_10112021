@@ -7,7 +7,7 @@ import { getJobs } from "../../../actions/job.actions.js";
 import { getUser } from "../../../actions/user.actions.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import MyProfil from "../myProfil/MyProfil.js";
-import { getUserProfile } from "../../../actions/userProfil.action.js";
+import Loader from "../../mainComponents/Loader.js";
 
 const AllUsers = () => {
   const uid = useContext(UidContext);
@@ -23,38 +23,64 @@ const AllUsers = () => {
     if (loading) {
       isEmpty(allUsersData) && dispatch(getAllUsers());
       isEmpty(jobData) && dispatch(getJobs());
-      isEmpty(userData) && dispatch(getUser());
+      //isEmpty(userData) && dispatch(getUser());
       setLoading(false);
+
       console.log(userProfileData);
     }
   }, [loading, allUsersData, jobData, userData, userProfileData, dispatch]);
 
-  //orage.setItem("user_selected", JSON.stringify(user));
+  const changePosition = () => {
+    document.getElementById("organization").classList.add("firstPlace");
+    document.getElementById("profil").classList.remove("firstPlace");
+  };
 
   return (
     <div className="allUsers">
-      {uid &&
-      !isEmpty(userData) &&
-      !isEmpty(allUsersData) &&
-      !isEmpty(jobData) ? (
-        <Fragment>
-          <div className="allUsers__organization">
-            <Organization
-              allusers={allUsersData}
-              jobs={jobData}
-              key={"myprofil" + userData[0].id_user}
-            />
-          </div>
-          {!isEmpty(userProfileData) ? (
-            <MyProfil data={userProfileData} modif={false} />
-          ) : (
-            "Veuillez sélectionner un profil pour l'afficher"
-          )}
-        </Fragment>
+      {uid ? (
+        !isEmpty(userData) && !isEmpty(allUsersData) && !isEmpty(jobData) ? (
+          <Fragment>
+            <div
+              className="allUsers__organization firstPlace"
+              id="organization"
+            >
+              <Organization
+                allusers={allUsersData}
+                jobs={jobData}
+                key={"myprofil" + userData[0].id_user}
+              />
+            </div>
+            <div className="allUsers__profil" id="profil">
+              {!isEmpty(userProfileData) ? (
+                <Fragment>
+                  <button
+                    title="Fermer"
+                    className="closeProfil closeProfil--top"
+                    onClick={() => changePosition()}
+                  >
+                    X
+                  </button>
+                  <MyProfil data={userProfileData} modif={false} />
+                  <button
+                    title="Fermer"
+                    className="closeProfil closeProfil--bottom"
+                    onClick={() => changePosition()}
+                  >
+                    X
+                  </button>
+                </Fragment>
+              ) : (
+                <p className="allUsers__profil__waiting">
+                  Veuillez sélectionner un profil pour l'afficher
+                </p>
+              )}
+            </div>
+          </Fragment>
+        ) : (
+          <Loader />
+        )
       ) : (
-        <div>
-          <h1>Chargement en cours ... </h1>
-        </div>
+        (window.location = "/")
       )}
     </div>
   );

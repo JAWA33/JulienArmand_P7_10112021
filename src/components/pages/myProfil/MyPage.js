@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from "react";
 import { UidContext } from "../../routes/AppContext.js";
 import MyProfil from "./MyProfil";
 import { useSelector } from "react-redux";
+import Loader from "../../mainComponents/Loader.js";
 
 const MyPage = () => {
   const uid = useContext(UidContext);
@@ -12,7 +13,7 @@ const MyPage = () => {
   console.log(uid);
 
   return (
-    <Fragment>
+    <div className="centerPage">
       {uid ? (
         userData[0] ? (
           <div className="centerPage">
@@ -23,12 +24,12 @@ const MyPage = () => {
             />
           </div>
         ) : (
-          <div>En chargement ...</div>
+          <Loader />
         )
       ) : (
         (window.location = "/")
       )}
-    </Fragment>
+    </div>
   );
 };
 

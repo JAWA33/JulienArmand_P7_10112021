@@ -1,5 +1,4 @@
-
-   {
+{
   "name": "groupcom",
   "version": "0.1.0",
   "private": true,
@@ -8,17 +7,19 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.17.4",
- 
     "axios": "^0.24.0",
     "compressorjs": "^1.1.1",
     "cropperjs": "^1.5.12",
     "dotenv": "^10.0.0",
+    "package": "^1.0.1",
     "react": "^17.0.2",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.2",
     "react-easy-crop": "^3.5.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "reactjs-popup": "^2.0.5",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",

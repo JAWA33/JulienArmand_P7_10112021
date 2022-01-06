@@ -1,0 +1,188 @@
+.loader {
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+
+  @include flexRow("cen", "cen");
+
+  //   &--end {
+  //     animation: endLoader 0.3s ease-out 3s forwards;
+  //   }
+
+  &__text {
+    position: absolute;
+    top: 65%;
+    &--letter {
+      color: $graphicTertiary;
+      font-size: 1.5rem;
+      animation: textNeon 1s linear infinite;
+      @include incrementDelayForLetter;
+    }
+  }
+
+  &__spinner {
+    width: 120px;
+    height: 120px;
+
+    position: relative;
+
+    &--element {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      @include circlePositionForChild;
+      @include incrementDelayForCircle;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: $graphicTertiary;
+        box-shadow: 0 0 10px $graphicTertiary, 0 0 20px $graphicTertiary,
+          0 0 40px $graphicTertiary, 0 0 60px $graphicTertiary;
+
+        animation: rotateCircle 1s linear infinite;
+        transform: scale(0);
+      }
+    }
+  }
+}
+
+//! Loader keyframes
+
+@keyframes textNeon {
+  0% {
+    color: $graphicSecondary;
+  }
+  90% {
+    color: $graphicTertiary;
+  }
+  100% {
+    color: $graphicSecondary;
+  }
+}
+
+@keyframes endLoader {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -99;
+  }
+}
+
+@keyframes rotateCircle {
+  0% {
+    transform: scale(0);
+  }
+  3% {
+    transform: scale(1);
+  }
+
+  20%,
+  33% {
+    transform: scale(0);
+    background: $graphicSecondary;
+    box-shadow: 0 0 10px $graphicSecondary, 0 0 20px $graphicSecondary,
+      0 0 40px $graphicSecondary, 0 0 60px $graphicSecondary;
+  }
+  36% {
+    transform: scale(1);
+  }
+
+  53%,
+  66% {
+    transform: scale(0);
+    background: $graphicTertiary;
+    box-shadow: 0 0 10px $graphicTertiary, 0 0 20px $graphicTertiary,
+      0 0 40px $graphicTertiary, 0 0 60px $graphicTertiary;
+  }
+
+  69% {
+    transform: scale(1);
+  }
+
+  86%,
+  100% {
+    transform: scale(0);
+  }
+}
+
+// @keyframes rotateCircleB{
+//     0%{
+//         transform: scale(0);
+//     }
+//     10%{
+//         transform: scale(1);
+//     }
+
+//     33%{
+//         background: $colorSecondary;
+//         box-shadow: 0 0 10px $colorSecondary,
+//                     0 0 20px $colorSecondary,
+//                     0 0 40px $colorSecondary,
+//                     0 0 60px $colorSecondary;
+//     }
+
+//     66%{
+//         background: $colorTertiary;
+//         box-shadow: 0 0 10px $colorTertiary,
+//                     0 0 20px $colorTertiary,
+//                     0 0 40px $colorTertiary,
+//                     0 0 60px $colorTertiary;
+//     }
+
+//     90%,100%{
+//         transform: scale(0);
+//     }
+// }
+
+// @keyframes bumpLoader {
+//   0% {
+//     stroke: $colorPrimary; //couleur tracé
+//     transform: scale(1);
+//   }
+
+//   10% {
+//     transform: scale(0.8);
+//   }
+
+//   30% {
+//     transform: scale(1);
+//   }
+
+//   33% {
+//     stroke: $colorSecondary; //couleur tracé
+//   }
+
+//   50% {
+//     transform: scale(0.8);
+//   }
+
+//   66% {
+//     stroke: $colorTertiary; //couleur tracé
+//   }
+
+//   70% {
+//     transform: scale(1);
+//   }
+
+//   100% {
+//     stroke: $colorPrimary;
+//     transform: scale(1);
+//   }
+// }

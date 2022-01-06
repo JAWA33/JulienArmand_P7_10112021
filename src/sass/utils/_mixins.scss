@@ -140,3 +140,33 @@
   box-shadow: inset 2px 2px 4px $shadowLight, inset -2px -2px 4px $shadowDark;
   border-radius: $radius;
 }
+
+//* Loader Letter mixins for nth-child
+
+@mixin incrementDelayForLetter {
+  @for $i from 1 through 13 {
+    &:nth-child(#{$i}) {
+      animation-delay: (0.07s * $i);
+    }
+  }
+}
+
+//* Loader Circle position mixins for nth-child
+
+@mixin circlePositionForChild {
+  @for $p from 1 through 20 {
+    &:nth-child(#{$p}) {
+      transform: rotate(calc(-18deg * #{$p}));
+    }
+  }
+}
+
+//* Loader Circle Delay mixins for nth-child
+
+@mixin incrementDelayForCircle {
+  @for $c from 1 through 20 {
+    &:nth-child(#{$c})::before {
+      animation-delay: (0.05s * $c);
+    }
+  }
+}

@@ -8,6 +8,7 @@ import {
 import { isEmpty } from "../../Utils/isEmpty.js";
 import TrashIcon from "../../svgComponents/TrashIcon.js";
 import EditIcon from "../../svgComponents/EditIcon.js";
+import DeleteCommentAlert from "../../mainComponents/DeleteCommentAlert.js";
 
 //
 
@@ -22,9 +23,9 @@ const Comments = ({ data }) => {
   const userData = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
-  const deleteMyComment = async (idcomment, data) => {
-    await dispatch(deleteComment(idcomment, data));
-  };
+  // const deleteMyComment = async (idcomment, data) => {
+  //   await dispatch(deleteComment(idcomment, data));
+  // };
 
   const updateMyComment = async (idcomment) => {
     await dispatch(updateComment(idcomment, { comment_text: newComment }));
@@ -65,11 +66,11 @@ const Comments = ({ data }) => {
                     </div>
                     {isToUpdate && commentToUpdate === comment.id_comment ? (
                       <Fragment>
-                        <input
+                        <textarea
                           type="text"
                           defaultValue={comment.comment_text}
                           onInput={(e) => setNewComment(e.target.value)}
-                        ></input>
+                        ></textarea>
                         <button
                           onClick={() => updateMyComment(comment.id_comment)}
                         >
@@ -80,41 +81,25 @@ const Comments = ({ data }) => {
                       <p>{comment.comment_text}</p>
                     )}
                   </div>
-                  <div>
-                    {userData[0].user_status === "Moderateur" ||
-                    userData[0].id_user == data.post_id_user ? (
-                      <div>
-                        <div onClick={() => toggleUpdate(comment.id_comment)}>
-                          <EditIcon
-                            fillColor="#081f43"
-                            lineColor="#081f43"
-                            height="24"
-                            width="24"
-                          ></EditIcon>
-                        </div>
-                        <div
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Voulez-vous vraiment supprimer ce post ?"
-                              )
-                            ) {
-                              deleteMyComment(comment.id_comment, data);
-                            }
-                          }}
-                        >
-                          <TrashIcon
-                            fillColor="#081f43"
-                            lineColor="#081f43"
-                            height="24"
-                            width="24"
-                          ></TrashIcon>
-                        </div>
+                  {userData[0].user_status === "Moderateur" ||
+                  userData[0].id_user == comment.comment_id_user ? (
+                    <div className="commentContainer__modify">
+                      <div
+                        className="commentContainer__modify--edit"
+                        onClick={() => toggleUpdate(comment.id_comment)}
+                      >
+                        <EditIcon />
                       </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                      <div className="commentContainer__modify--delete">
+                        <DeleteCommentAlert
+                          idcomment={comment.id_comment}
+                          data={data}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             );

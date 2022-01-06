@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllPosts,
@@ -15,7 +15,9 @@ import PictureIcon from "../../svgComponents/PictureIcon.js";
 import Comments from "./Comments.js";
 import CreateComments from "./CreateComment";
 import Compressor from "compressorjs";
-import { Spin } from "antd";
+import LikeIcon from "../../svgComponents/LikeIcon.js";
+import CommentIcon from "../../svgComponents/CommentIcon.js";
+import DeletePostAlert from "../../mainComponents/DeletePostAlert";
 
 const Posts = () => {
   //* Hooks :
@@ -64,7 +66,7 @@ const Posts = () => {
   //* Création du fichier lors d'un update :
   const handlePicture = (e) => {
     makeCompressor(e.target.files[0], {
-      maxWidth: 500,
+      maxWidth: 700,
       quality: 0.6,
       success(imgBlob) {
         setPictureUpdate(URL.createObjectURL(imgBlob));
@@ -122,9 +124,9 @@ const Posts = () => {
   };
 
   //* Effacer un post :
-  const deleteMyPost = async (idpost) => {
-    await dispatch(deletePost(idpost));
-  };
+  // const deleteMyPost = async (idpost) => {
+  //   await dispatch(deletePost(idpost));
+  // };
 
   //* useEffect pour l'infinite-scroll :
   useEffect(() => {
@@ -171,23 +173,41 @@ const Posts = () => {
         !isEmpty(userData) &&
         postData.map((data) => (
           <div key={data.id_post} className="post" id={"post" + data.id_post}>
-            <div className="post__userInfo">
-              <img
-                src={data.user_url_image}
-                alt={"photo" + data.user_firstname}
-                className="post__userInfo__img"
-              ></img>
-              <div className="post__userInfo__text">
-                <p>
-                  <strong>
+            <div className="post__topPart">
+              <div className="post__userInfo">
+                <img
+                  src={data.user_url_image}
+                  alt={"photo" + data.user_firstname}
+                  className="post__userInfo__img"
+                ></img>
+                <div className="post__userInfo__text">
+                  <p>
                     {data.user_firstname +
                       " " +
                       (data.user_lastname !== null ? data.user_lastname : "")}
-                  </strong>
-                </p>
-                <p>{data.job_name}</p>
-                <p>{nowToDate(data.post_create)}</p>
+                  </p>
+                  <p>{data.job_name}</p>
+                  <p>{nowToDate(data.post_create)}</p>
+                </div>
               </div>
+              {userData[0].user_status === "Moderateur" ||
+              userData[0].id_user === data.post_id_user ? (
+                <div className="post__edit">
+                  <div
+                    title="modifier le post"
+                    className="post__edit__modify"
+                    onClick={() => toggleUpdate(data.id_post)}
+                  >
+                    <EditIcon />
+                  </div>
+                  <br />
+                  <div title="supprimer le post" className="post__edit__delete">
+                    <DeletePostAlert idpost={data.id_post} />
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
             <hr />
@@ -197,12 +217,12 @@ const Posts = () => {
                   <p>{data.post_text}</p>
                 )}
                 {isUpdated && toUpdated === data.id_post ? (
-                  <div>
+                  <Fragment>
                     <textarea
                       defaultValue={data.post_text}
                       onChange={(e) => setTextUpdate(e.target.value)}
                     />
-                  </div>
+                  </Fragment>
                 ) : null}
               </div>
               {/* //? Affiche la video si elle existe et si pas d'update du post */}
@@ -218,12 +238,10 @@ const Posts = () => {
                 )}
               {/* //? Affiche la modification de video si elle existe et si update du post en cours */}
               {isUpdated && toUpdated == data.id_post ? (
-                <div>
+                <Fragment>
                   {!isEmpty(data.post_video) && (
-                    <div>
+                    <Fragment>
                       <iframe
-                        height="200"
-                        width="200"
                         src={
                           isEmpty(videoUpdate) ? data.post_video : videoUpdate
                         }
@@ -236,12 +254,12 @@ const Posts = () => {
                         type="text"
                         //defaultValue={data.post_video}
                         //value={!isEmpty(videoUpdate) ? videoUpdate : ""}
-                        placeholder="Coller votre lien Youtube"
+                        placeholder="Pour modifier le lien, coller-en un nouveau ici ..."
                         onInput={(e) => setLinkUpdate(e.target.value)}
                       />
-                    </div>
+                    </Fragment>
                   )}
-                </div>
+                </Fragment>
               ) : null}
               {/* //? Affiche l'image si elle existe et si pas d'update du post */}
               {(!isUpdated || toUpdated !== data.id_post) &&
@@ -268,21 +286,21 @@ const Posts = () => {
                           className="post__container__img"
                         ></img>
                       </div>
-                      <div>
-                        <PictureIcon
-                          fillColor="#081f43"
-                          lineColor="transparent"
-                          height="40"
-                          width="40"
-                        ></PictureIcon>
-                        {/* <label htmlFor="filePost">Modifiez votre image :</label> */}
+                      <div className="changeImage">
+                        <input
+                          type="button"
+                          className="btn__profil btn__profil--select"
+                          value="Changer d'image"
+                          onClick={() =>
+                            document.getElementById("changeFile").click()
+                          }
+                        />
                         <input
                           type="file"
-                          //id="changeFile"
+                          id="changeFile"
                           name="file"
                           accept=".jpg, .jpeg, .png"
-                          onInput={(e) => handlePicture(e)}
-                          className="getFile"
+                          onChange={(e) => handlePicture(e)}
                         ></input>
                       </div>
                     </div>
@@ -291,45 +309,15 @@ const Posts = () => {
               ) : null}
             </div>
             {isUpdated && toUpdated === data.id_post ? (
-              <div>
-                <button onClick={() => updateMyPost(data.id_post)}>
+              <div className="post__validBtn">
+                <button
+                  className="btn__profil btn__profil--modify"
+                  onClick={() => updateMyPost(data.id_post)}
+                >
                   Valider les modifications
                 </button>
               </div>
             ) : null}
-
-            {userData[0].user_status === "Moderateur" ||
-            userData[0].id_user === data.post_id_user ? (
-              <div className="post__edit">
-                <div onClick={() => toggleUpdate(data.id_post)}>
-                  <EditIcon
-                    fillColor="#081f43"
-                    lineColor="#081f43"
-                    height="24"
-                    width="24"
-                  ></EditIcon>
-                </div>
-                <br />
-                <div
-                  onClick={() => {
-                    if (
-                      window.confirm("Voulez-vous vraiment supprimer ce post ?")
-                    ) {
-                      deleteMyPost(data.id_post);
-                    }
-                  }}
-                >
-                  <TrashIcon
-                    fillColor="#081f43"
-                    lineColor="#081f43"
-                    height="24"
-                    width="24"
-                  ></TrashIcon>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
 
             <hr />
             <div className="post__info">
@@ -338,7 +326,8 @@ const Posts = () => {
                   <strong>{data.nbr_likes}</strong> J'aime
                 </p>
                 <p
-                  className="postInfo__count"
+                  className="postInfo__count postInfo__count--comment"
+                  title="Voir les commentaires"
                   onClick={() => showComments(data.id_post)}
                 >
                   <strong>{data.nbr_comments}</strong> Commentaire
@@ -353,7 +342,7 @@ const Posts = () => {
                   className="post__action__container post__action__container--liked"
                   onClick={() => IDislikePost(data.id_post)}
                 >
-                  <p>X -</p>
+                  <LikeIcon />
                   <p>J'aime</p>
                 </div>
               ) : (
@@ -361,7 +350,7 @@ const Posts = () => {
                   className="post__action__container post__action__container--disliked"
                   onClick={() => ILikePost(data.id_post)}
                 >
-                  <p>O -</p>
+                  <LikeIcon />
                   <p>J'aime</p>
                 </div>
               )}
@@ -371,7 +360,7 @@ const Posts = () => {
                   addComment(data.id_post);
                 }}
               >
-                <p>O -</p>
+                <CommentIcon />
                 <p>Commenter</p>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { UidContext } from "../../routes/AppContext.js";
 import { pickerAge } from "../../Utils/pickerAge";
 import { useDispatch, useSelector } from "react-redux";
 import { getJobs } from "../../../actions/job.actions";
-import { deleteUser, updateUser } from "../../../actions/user.actions";
+import { updateUser } from "../../../actions/user.actions";
 import Compressor from "compressorjs";
 import {
   validName,
@@ -17,10 +17,10 @@ import {
 } from "../../Utils/regExpProfil.js";
 import { stringToDate } from "../../Utils/stringToDate";
 import ImageCropDialog from "./ImageCropDialog.js";
+//import PopupAlert from "../../mainComponents/PopupAlert";
+import ConfimAlert from "../../mainComponents/ConfirmAlert";
 
 const MyProfil = ({ data, modif }) => {
-  console.log("MODIFIY");
-  console.log(modif);
   const uid = useContext(UidContext);
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateFirstname, setUpdateFirstname] = useState("");
@@ -91,12 +91,12 @@ const MyProfil = ({ data, modif }) => {
   ]);
 
   //* ########### Suppresion du Profil :
-  const deleteMyAccount = (iduser) => {
-    sessionStorage.removeItem("id_user");
-    sessionStorage.removeItem("connectedUser");
-    dispatch(deleteUser(iduser));
-    window.location = "/";
-  };
+  // const deleteMyAccount = (iduser) => {
+  //   sessionStorage.removeItem("id_user");
+  //   sessionStorage.removeItem("connectedUser");
+  //   dispatch(deleteUser(iduser));
+  //   window.location = "/";
+  // };
   //* ########### Update du Profil :
   const updateProfil = async (e, iduser) => {
     e.preventDefault();
@@ -291,9 +291,9 @@ const MyProfil = ({ data, modif }) => {
   //* CROPPER ###################### :
 
   return (
-    <div className="myProfil">
+    <div className={modif === true ? "myProfil" : "myProfil myProfil--full"}>
       {isUpdating ? (
-        <Fragment>
+        <Fragment key={data[0].id_user}>
           {selectedCar ? (
             <ImageCropDialog
               id={selectedCar.id}
@@ -315,11 +315,8 @@ const MyProfil = ({ data, modif }) => {
           >
             <div className="myProfil__contact">
               {cars.map((car) => (
-                <div className="myProfil__contact__image">
-                  <div
-                    className="myProfil__contact__picture myProfil__contact__picture--modify"
-                    key={car.id}
-                  >
+                <div key={car.id} className="myProfil__contact__image">
+                  <div className="myProfil__contact__picture myProfil__contact__picture--modify">
                     <img
                       id="cropperImg"
                       src={
@@ -337,7 +334,7 @@ const MyProfil = ({ data, modif }) => {
 
               <div className="myProfil__contact__info">
                 <div className="containerModif">
-                  <label htmlFor="firstname">Votre nom :</label>
+                  <label htmlFor="firstname">Votre prénom :</label>
                   <div className="containerModif__modif">
                     <input
                       type="text"
@@ -349,12 +346,17 @@ const MyProfil = ({ data, modif }) => {
                   </div>
                 </div>
                 <div className="containerModif">
-                  <label htmlFor="lastname">Votre prénom :</label>
+                  <label htmlFor="lastname">Votre nom :</label>
                   <div className="containerModif__modif">
                     <input
                       type="text"
                       name="lastname"
-                      defaultValue={data[0].user_lastname}
+                      defaultValue={
+                        data[0].user_lastname === "null" ||
+                        isEmpty(data[0].user_lastname)
+                          ? ""
+                          : data[0].user_lastname
+                      }
                       onChange={(e) => setUpdateLastname(e.target.value)}
                     ></input>
                     <p className="errorText"></p>
@@ -389,7 +391,12 @@ const MyProfil = ({ data, modif }) => {
                     <input
                       type="text"
                       name="phone"
-                      defaultValue={data[0].user_phone}
+                      defaultValue={
+                        data[0].user_phone === "null" ||
+                        isEmpty(data[0].user_phone)
+                          ? ""
+                          : data[0].user_phone
+                      }
                       onChange={(e) => setUpdatePhone(e.target.value)}
                     ></input>
                     <p className="errorText"></p>
@@ -408,8 +415,13 @@ const MyProfil = ({ data, modif }) => {
                   <input
                     type="date"
                     name="date"
-                    value={updateAge ? updateAge : pickerAge(data[0].user_age)}
-                    onChange={(e) => setUpdateAge(e.target.value)}
+                    //value={updateAge ? updateAge : pickerAge(data[0].user_age)}
+                    defaultValue={
+                      isEmpty(data[0].user_age)
+                        ? new Date(Date.now()).toISOString().split("T")[0]
+                        : pickerAge(data[0].user_age)
+                    }
+                    onInput={(e) => setUpdateAge(e.target.value)}
                     max={new Date(Date.now()).toISOString().split("T")[0]}
                   ></input>
                   <p className="errorText"></p>
@@ -420,6 +432,11 @@ const MyProfil = ({ data, modif }) => {
                 <textarea
                   name="bio"
                   defaultValue={data[0].user_bio}
+                  defaultValue={
+                    data[0].user_bio === "null" || isEmpty(data[0].user_bio)
+                      ? ""
+                      : data[0].user_bio
+                  }
                   onChange={(e) => setUpdateBio(e.target.value)}
                 ></textarea>
                 <p className="errorText"></p>
@@ -428,7 +445,11 @@ const MyProfil = ({ data, modif }) => {
                 <label htmlFor="skill">Mes compétences :</label>
                 <textarea
                   name="skill"
-                  defaultValue={data[0].user_skill}
+                  defaultValue={
+                    data[0].user_skill === "null" || isEmpty(data[0].user_skill)
+                      ? ""
+                      : data[0].user_skill
+                  }
                   onChange={(e) => setUpdateSkill(e.target.value)}
                 ></textarea>
                 <p className="errorText"></p>
@@ -436,7 +457,12 @@ const MyProfil = ({ data, modif }) => {
                   <label htmlFor="hobbie">Mes hobbies :</label>
                   <textarea
                     name="hobbie"
-                    defaultValue={data[0].user_hobbie}
+                    defaultValue={
+                      data[0].user_hobbie === "null" ||
+                      isEmpty(data[0].user_hobbie)
+                        ? ""
+                        : data[0].user_hobbie
+                    }
                     onChange={(e) => setUpdateHobbie(e.target.value)}
                   ></textarea>
                   <p className="errorText"></p>
@@ -448,17 +474,21 @@ const MyProfil = ({ data, modif }) => {
             (data[0].user_status === "Moderateur" ||
               data[0].id_user === uid) ? (
               <div className="myProfil__modif">
-                <input
-                  type="submit"
-                  className="btn__profil btn__profil--modify"
-                  value="Valider"
-                />
-                <button
-                  className="btn__profil btn__profil--delete"
-                  onClick={() => setIsUpdating(false)}
-                >
-                  Annuler la modification
-                </button>
+                <div className="myProfil__modif__btn">
+                  <input
+                    type="submit"
+                    className="btn__profil btn__profil--modify"
+                    value="Valider"
+                  ></input>
+                </div>
+                <div className="myProfil__modif__btn">
+                  <button
+                    className="btn__profil btn__profil--delete"
+                    onClick={() => setIsUpdating(false)}
+                  >
+                    Annuler la modification
+                  </button>
+                </div>
               </div>
             ) : (
               ""
@@ -467,7 +497,7 @@ const MyProfil = ({ data, modif }) => {
         </Fragment>
       ) : (
         <Fragment>
-          <div className="myProfil__contact">
+          <div className="myProfil__contact" key={data[0].id_user}>
             <div className="myProfil__contact__picture">
               <img
                 src={data[0].user_url_image}
@@ -476,7 +506,8 @@ const MyProfil = ({ data, modif }) => {
             </div>
             <div className="myProfil__contact__info">
               <h2>
-                {isEmpty(data[0].user_lastname)
+                {isEmpty(data[0].user_lastname) ||
+                data[0].user_lastname === "null"
                   ? data[0].user_firstname
                   : data[0].user_firstname + " " + data[0].user_lastname}
               </h2>
@@ -485,7 +516,7 @@ const MyProfil = ({ data, modif }) => {
               <p>{data[0].user_email}</p>
               <p>
                 Tel:{" "}
-                {isEmpty(data[0].user_phone)
+                {isEmpty(data[0].user_phone) || data[0].user_phone === "null"
                   ? "Non renseigné"
                   : data[0].user_phone}
               </p>
@@ -495,7 +526,7 @@ const MyProfil = ({ data, modif }) => {
             <div className="myProfil__myInfo__age">
               <h3>Age :</h3>
               <p>
-                {isEmpty(data[0].user_age)
+                {isEmpty(data[0].user_age) || data[0].user_age === "null"
                   ? " Non renseigné"
                   : myAge(data[0].user_age)}
               </p>
@@ -503,13 +534,15 @@ const MyProfil = ({ data, modif }) => {
             <div className="myProfil__myInfo__bio">
               <h3>Ce qu'il faut savoir sur moi :</h3>
               <p>
-                {isEmpty(data[0].user_bio) ? "Non renseigné" : data[0].user_bio}
+                {isEmpty(data[0].user_bio) || data[0].user_bio === "null"
+                  ? "Non renseigné"
+                  : data[0].user_bio}
               </p>
             </div>
             <div className="myProfil__myInfo__bio">
               <h3>Mes compétences :</h3>
               <p>
-                {isEmpty(data[0].user_skill)
+                {isEmpty(data[0].user_skill) || data[0].user_skill === "null"
                   ? "Non renseigné"
                   : data[0].user_skill}
               </p>
@@ -517,7 +550,7 @@ const MyProfil = ({ data, modif }) => {
             <div className="myProfil__myInfo__bio">
               <h3>Mes hobbies :</h3>
               <p>
-                {isEmpty(data[0].user_hobbie)
+                {isEmpty(data[0].user_hobbie) || data[0].user_hobbie === "null"
                   ? "Non renseigné"
                   : data[0].user_hobbie}
               </p>
@@ -527,26 +560,17 @@ const MyProfil = ({ data, modif }) => {
           {modif === true &&
           (data[0].user_status === "Moderateur" || data[0].id_user === uid) ? (
             <div className="myProfil__modif">
-              <button
-                className="btn__profil btn__profil--modify"
-                onClick={() => setIsUpdating(true)}
-              >
-                Modifier mon profil
-              </button>
-              <button
-                className="btn__profil btn__profil--delete"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Voulez-vous vraiment supprimer votre compte ?"
-                    )
-                  ) {
-                    deleteMyAccount(data[0].id_user);
-                  }
-                }}
-              >
-                Supprimer mon compte
-              </button>
+              <div className="myProfil__modif__btn">
+                <button
+                  className="btn__profil btn__profil--modify"
+                  onClick={() => setIsUpdating(true)}
+                >
+                  Modifier mon profil
+                </button>
+              </div>
+              <div className="myProfil__modif__btn">
+                <ConfimAlert iduser={data[0].id_user} />
+              </div>
             </div>
           ) : (
             ""

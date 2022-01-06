@@ -58,12 +58,12 @@ const CreateComments = ({ data }) => {
     <Fragment>
       <hr />
       <div className="createComment">
-        <h3>Faites un commentaire</h3>
         <textarea
           type="text"
           className="createComment__input"
           value={myComment}
           onChange={(e) => setMyComment(e.target.value)}
+          placeholder="Faites votre commentaire ..."
         />
         <button
           className="createComment__btn"

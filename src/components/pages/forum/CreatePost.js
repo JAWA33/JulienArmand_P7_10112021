@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../../actions/post.actions.js";
 import PictureIcon from "../../svgComponents/PictureIcon.js";
@@ -7,6 +7,7 @@ import Compressor from "compressorjs";
 //import axios from "axios";
 
 import { validParagraph } from "../../Utils/regExp.js";
+import Loader from "../../mainComponents/Loader.js";
 
 const CreatePost = () => {
   //* Hooks pour formulaire :
@@ -22,12 +23,17 @@ const CreatePost = () => {
   const alertMessage = document.getElementById("alertMessage");
 
   //* ########  Controle pré-requête lors de la saisie du formulaire :
-
-  if (CreatePostForm) {
-    CreatePostForm.textPost.addEventListener("change", function () {
-      validParagraph(this);
-    });
-  }
+  // useEffect(() => {
+  //   if (!isEmpty(textPost)) {
+  //     if (CreatePostForm) {
+  //       CreatePostForm.textPost.addEventListener("change", function () {
+  //         validParagraph(this);
+  //       });
+  //     }
+  //   } else {
+  //     alertMessage.innerHTML = "";
+  //   }
+  // }, [textPost]);
 
   const handleVideo = () => {
     let findLink = textPost.split(" ");
@@ -59,7 +65,7 @@ const CreatePost = () => {
 
   const handlePicture = (e) => {
     makeCompressor(e.target.files[0], {
-      maxWidth: 500,
+      maxWidth: 700,
       quality: 0.6,
       success(imgBlob) {
         setPostPicture(URL.createObjectURL(imgBlob));
@@ -113,82 +119,102 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="createPost">
-      <div className="createPost__title">
-        <h2>Partagez avec le groupe</h2>
-      </div>
-      <div className="createPost__container">
-        {isLoading ? (
-          <p>En chargement ...</p>
-        ) : (
-          <form
-            action=""
-            className="createPost__container__form"
-            id="CreatePostForm"
-            onSubmit={(e) => postFormSubmit(e)}
-          >
-            <div>
+    <Fragment>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="createPost">
+          <div className="createPost__title">
+            <h2>Partagez avec le groupe</h2>
+          </div>
+          <div className="createPost__container">
+            <form
+              action=""
+              className="createPost__container__form"
+              id="CreatePostForm"
+              onSubmit={(e) => postFormSubmit(e)}
+            >
               <div>
-                <label htmlFor="textPost">Que souhaitez vous dire :</label>
-                <textarea
-                  id="myComment"
-                  name="textPost"
-                  rows="5"
-                  cols="50"
-                  onChange={(e) => setTextPost(e.target.value)}
-                  value={textPost}
-                ></textarea>
-                <p id="alertMessage"></p>
-              </div>
-              {postPicture || postVideo.length > 20 ? (
-                <div>
-                  <img src={postPicture} alt="" />
-                  {postVideo && (
-                    <iframe
-                      src={postVideo}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      title={postVideo}
-                    ></iframe>
+                <div className="firstRow">
+                  <textarea
+                    id="myComment"
+                    name="textPost"
+                    onChange={(e) => setTextPost(e.target.value)}
+                    value={textPost}
+                    placeholder="Partagez vos succès, informez vos collègues ..."
+                  ></textarea>
+                  {isEmpty(postVideo) ? (
+                    <div className="iconImage">
+                      <label htmlFor="file">Ajoutez une image</label>
+                      <input
+                        type="button"
+                        className="btn__profil btn__profil--select btn__profil--crop"
+                        value="Choisir"
+                        onClick={() =>
+                          document.getElementById("myFile").click()
+                        }
+                      />
+                      {/* <label htmlFor="filePost">Modifiez votre image :</label> */}
+                      <input
+                        type="file"
+                        id="myFile"
+                        name="file"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={(e) => handlePicture(e)}
+                      ></input>
+                    </div>
+                  ) : (
+                    <button
+                      className="btn__profil btn__profil--select"
+                      onClick={() => setPostVideo("")}
+                    >
+                      Supprimer la vidéo
+                    </button>
                   )}
+                  <p id="alertMessage"></p>
                 </div>
-              ) : null}
-            </div>
-
-            {isEmpty(postVideo) ? (
-              <div className="iconImage">
-                <PictureIcon
-                  fillColor="#081f43"
-                  lineColor="transparent"
-                  height="40"
-                  width="40"
-                ></PictureIcon>
-                {/* <label htmlFor="filePost">Modifiez votre image :</label> */}
-                <input
-                  type="file"
-                  id="myFile"
-                  name="file"
-                  accept=".jpg, .jpeg, .png"
-                  onChange={(e) => handlePicture(e)}
-                  className="getFile"
-                ></input>
+                {postPicture || postVideo.length > 20 ? (
+                  <div className="imageContainer">
+                    <img src={postPicture} alt="" />
+                    {postVideo && (
+                      <iframe
+                        src={postVideo}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title={postVideo}
+                      ></iframe>
+                    )}
+                  </div>
+                ) : null}
               </div>
-            ) : (
-              <button onClick={() => setPostVideo("")}>
-                Supprimer la vidéo
-              </button>
-            )}
-            <div>
-              <input type="submit"></input>
-              {textPost || postPicture || postVideo.length > 20 ? (
-                <button onClick={cancelPost}>Annuler mon post</button>
-              ) : null}
-            </div>
-          </form>
-        )}
-      </div>
-    </div>
+
+              <div className="secondRow">
+                {textPost || postPicture || postVideo.length > 20 ? (
+                  <Fragment>
+                    <div className="blockBtn">
+                      <input
+                        type="submit"
+                        className="btn__profil btn__profil--modify"
+                      ></input>
+                    </div>
+
+                    <div className="blockBtn">
+                      <button
+                        className="btn__profil btn__profil--delete"
+                        onClick={cancelPost}
+                      >
+                        Annuler mon post
+                      </button>
+                    </div>
+                  </Fragment>
+                ) : null}
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </Fragment>
   );
 };
 

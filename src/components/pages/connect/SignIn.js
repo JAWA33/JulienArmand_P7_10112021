@@ -99,7 +99,7 @@ const SignIn = () => {
       </div>
       <AnimeGroupomania className="sign__icon animIcon"></AnimeGroupomania>
       <form
-        action=""
+        action="submit"
         onSubmit={sendForm}
         className="sign__form"
         id="signInForm"

@@ -1,1 +1,430 @@
-// For Git
+.createPost {
+  width: 700px;
+  height: auto;
+  margin: 20px 0;
+  @include flexCol("cen", "st");
+  @include container(10px, 120deg);
+  background: $successColor;
+  overflow: hidden;
+  @include tablet-limit {
+    width: 100%;
+  }
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    height: auto;
+    padding: 10px 0px;
+    color: $textColor_light;
+    @include flexCol("cen", "cen");
+  }
+
+  &__container {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(120deg, $graphicSecondary, $graphicPrimary);
+
+    &__form {
+      width: 100%;
+      padding: 0 10px 10px 10px;
+      @include tablet-limit {
+        padding: 10px;
+      }
+
+      & textarea {
+        width: 70%;
+        height: 100%;
+        padding: 10px;
+
+        min-height: 80px;
+        border-radius: 10px;
+        overflow-y: scroll;
+
+        @include tablet-limit {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.firstRow {
+  width: 100%;
+  @include flexRow("cen", "cen");
+  @include tablet-limit {
+    @include flexCol("cen", "cen");
+  }
+}
+
+.iconImage {
+  width: 30%;
+  padding: 0 20px;
+  @include flexCol("cen", "cen");
+  cursor: pointer;
+  @include tablet-limit {
+    width: 100%;
+  }
+
+  & label {
+    color: $textColor_light;
+    font-style: oblique;
+    font-size: 0.9rem;
+    padding-top: 20px;
+    margin-bottom: -10px;
+    text-align: center;
+    @include tablet-limit {
+      padding: 0;
+      margin: 0;
+    }
+    @include tablet-limit {
+      margin: 10px;
+    }
+  }
+
+  & input[type="file"] {
+    display: none;
+  }
+}
+
+.secondRow {
+  margin-top: 20px;
+  @include flexRow("spB", "cen");
+  @include tablet-limit {
+    @include flexCol("cen", "cen");
+  }
+}
+
+.imageContainer {
+  width: 70%;
+
+  @include flexCol("cen", "cen");
+  @include tablet-limit {
+    width: 100%;
+  }
+  & img {
+    max-width: 100%;
+    max-height: 350px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  & iframe {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 10px;
+  }
+}
+
+.post {
+  background: $textColor_light;
+  margin-bottom: 20px;
+  width: 700px;
+  border-radius: 10px;
+  @include tablet-limit {
+    width: 100%;
+  }
+  @include logo-limit {
+    border-radius: 0px;
+  }
+
+  &__topPart {
+    width: 100%;
+    @include flexRow("spB", "cen");
+  }
+
+  &__userInfo {
+    width: 80%;
+    height: 80px;
+    margin: 0px 10px;
+    @include flexRow("flexS", "cen");
+
+    &__img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 10px 0px;
+      padding: 2px;
+      border: 3px solid $graphicTertiary;
+    }
+
+    &__text {
+      margin-top: 5px;
+      margin-left: 10px;
+
+      & p:nth-child(1) {
+        font-size: 1.1rem;
+        font-weight: bolder;
+      }
+      & p:nth-child(2) {
+        font-size: 1rem;
+      }
+      & p:nth-child(3) {
+        color: $shadowDark;
+        font-size: 0.9rem;
+        font-style: oblique;
+      }
+    }
+  }
+
+  &__edit {
+    width: 20%;
+    @include flexRow("spE", "cen");
+
+    &__modify {
+      cursor: pointer;
+      fill: darken($shadowLight, 15%);
+
+      &:hover {
+        fill: $graphicTertiary;
+      }
+    }
+    &__delete {
+      fill: darken($shadowLight, 15%);
+      cursor: pointer;
+      &:hover {
+        fill: $errorColor;
+      }
+    }
+  }
+
+  &__container {
+    width: 100%;
+    //min-height: 100px;
+    margin-bottom: 30px;
+    @include flexCol("cen", "cen");
+    background-color: $shadowLight;
+
+    & iframe {
+      width: 80%;
+      height: 300px;
+      justify-content: center;
+    }
+
+    & input {
+      width: 80%;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px 0px;
+      background-color: white;
+      border: 2px solid $graphicTertiary;
+    }
+    &__text {
+      width: 100%;
+      //min-height: 70px;
+      height: auto;
+      justify-content: flex-start;
+      text-align: start;
+      padding: 20px 20px 10px 20px;
+      background-color: $textColor_light;
+
+      & textarea {
+        width: 100%;
+        min-height: 70px;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: white;
+        border: 2px solid $graphicTertiary;
+      }
+    }
+    //* ######################@@
+    & img {
+      max-width: 100%;
+      max-height: 500px;
+      justify-content: center;
+    }
+  }
+
+  &__info {
+    @include flexRow("spB", "cen");
+  }
+
+  &__action {
+    width: 100%;
+    min-height: 50px;
+    @include flexRow("spE", "cen");
+
+    &__container {
+      //width: 45%;
+
+      @include flexRow("cen", "flexE");
+
+      &:hover {
+        color: $graphicTertiary;
+        fill: $graphicTertiary;
+        cursor: pointer;
+      }
+
+      &--liked {
+        //color: darken($graphicTertiary, 5%);
+        fill: $graphicTertiary;
+      }
+
+      &--disliked {
+        color: $graphicPrimary;
+        fill: $graphicPrimary;
+      }
+
+      & p {
+        margin-left: 8px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__validBtn {
+    width: 90%;
+    margin: -10px auto 20px auto;
+  }
+}
+
+.postInfo {
+  height: 40px;
+  padding-left: 10px;
+  @include flexRow("flexS", "cen");
+  &__count {
+    font-size: 1rem;
+    margin: 5px 5px 5px 15px;
+
+    & strong {
+      font-size: 1.1rem;
+      font-weight: bolder;
+    }
+
+    &--comment {
+      cursor: pointer;
+
+      &:hover {
+        color: $graphicTertiary;
+      }
+    }
+  }
+}
+
+.createComment {
+  width: 100%;
+  height: 70px;
+  background-color: $graphicTertiary;
+  color: $textColor_light;
+  @include flexRow("spB", "cen");
+
+  &__input {
+    width: 80%;
+    height: 80%;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+
+    color: $textColor_dark;
+  }
+
+  &__btn {
+    width: 15%;
+    height: 50%;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 2px solid $graphicSecondary;
+    color: $textColor_dark;
+    background-color: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid $textColor_light;
+      color: $textColor_light;
+      background-color: $graphicSecondary;
+    }
+  }
+}
+
+.commentContainer {
+  width: 100%;
+  min-height: 40px;
+  @include flexRow("spB", "flexS");
+
+  &__comment {
+    width: calc(100% - 50px);
+    height: auto;
+    padding: 10px 0px;
+    @include flexRow("flexS", "flexS");
+  }
+  &__image {
+    min-width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 0px 10px;
+  }
+
+  & p {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+
+  & textarea {
+    height: auto;
+    width: 70%;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+    border: 2px solid $graphicTertiary;
+  }
+
+  & button {
+    height: 60%;
+    width: 15%;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid $graphicTertiary;
+    background-color: transparent;
+    color: $graphicTertiary;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid $textColor_light;
+      background-color: $graphicTertiary;
+      color: $textColor_light;
+    }
+  }
+
+  &__modify {
+    height: 65px;
+    margin: 5px;
+    @include flexCol("cen", "cen");
+    fill: darken($shadowLight, 15%);
+
+    &--edit {
+      margin: 5px;
+      cursor: pointer;
+
+      &:hover {
+        fill: $graphicTertiary;
+      }
+    }
+
+    &--delete {
+      margin: 5px;
+      cursor: pointer;
+
+      &:hover {
+        fill: $errorColor;
+      }
+    }
+  }
+}
+
+.changeImage {
+  width: 100%;
+  padding: 0 20px;
+  @include flexCol("cen", "cen");
+  cursor: pointer;
+
+  & input {
+    border-radius: 10px;
+    border: 3px $successColor solid;
+  }
+
+  & input[type="file"] {
+    display: none;
+  }
+}

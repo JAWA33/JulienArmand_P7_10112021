@@ -158,7 +158,7 @@ const ImageCropDialog = ({
               Valider
             </button>
             <button
-              className="btn__profil btn__profil--delete btn__profil--crop"
+              className="btn__profil btn__profil--cancel btn__profil--crop"
               onClick={onCancel}
             >
               Annuler

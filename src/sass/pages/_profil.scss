@@ -7,7 +7,6 @@
   @include container(20px, 145deg);
   width: 70%;
   max-width: 700px;
-  border: 1px $colorPrimary solid;
   padding: 20px;
   margin-top: $dim_header;
   margin-bottom: $dim_footer;
@@ -16,6 +15,10 @@
   @include tablet-limit {
     margin-top: $dim_header + 20px;
     width: 90%;
+  }
+  &--full {
+    width: 90%;
+    margin: 50px auto;
   }
 
   &__form {
@@ -153,6 +156,13 @@
     @include tablet-limit {
       @include flexCol("cen", "cen");
     }
+
+    &__btn {
+      width: 45%;
+      @include tablet-limit {
+        width: 95%;
+      }
+    }
   }
 }
 
@@ -262,14 +272,6 @@
 }
 
 //Découpage de l'image de profil :
-.imageCard {
-  text-align: center;
-  border: 1px solid rgb(255, 196, 1);
-
-  & img {
-    width: 800px;
-  }
-}
 
 .backdrop {
   position: fixed;
@@ -426,4 +428,3 @@
     display: none;
   }
 }
-//Cropper React :

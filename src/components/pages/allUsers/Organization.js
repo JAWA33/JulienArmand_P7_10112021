@@ -23,6 +23,8 @@ const Organization = ({ allusers, jobs }) => {
 
   const getUserProfil = (user) => {
     setSelected(user.id_user);
+    document.getElementById("profil").classList.add("firstPlace");
+    document.getElementById("organization").classList.remove("firstPlace");
     dispatch(getUserProfile([user]));
   };
 
@@ -32,28 +34,24 @@ const Organization = ({ allusers, jobs }) => {
         service.map((serv) => {
           return (
             <div key={serv} className="service">
-              <div>
+              <div className="service__title">
                 <h2>{serv}</h2>
                 {showService && whatService === serv ? (
-                  <button
+                  <div
+                    className="service__title__button"
                     onClick={() => {
                       setShowService(false);
                       setWhatService(serv);
                     }}
-                  >
-                    {" "}
-                    -{" "}
-                  </button>
+                  ></div>
                 ) : (
-                  <button
+                  <div
+                    className="service__title__button--plus"
                     onClick={() => {
                       setShowService(true);
                       setWhatService(serv);
                     }}
-                  >
-                    {" "}
-                    X{" "}
-                  </button>
+                  ></div>
                 )}
               </div>
 
@@ -62,37 +60,41 @@ const Organization = ({ allusers, jobs }) => {
                   {jobs.map((job) => {
                     if (job.service_name === serv) {
                       return (
-                        <div key={job.id_job}>
-                          <h3>{job.job_name}</h3>
-                          {allusers.map((user) => {
-                            if (
-                              user.service_name === serv &&
-                              user.job_name === job.job_name
-                            ) {
-                              return (
-                                <div
-                                  className={
-                                    selected && selected === user.id_user
-                                      ? "user selected"
-                                      : "user"
-                                  }
-                                  onClick={() => getUserProfil(user)}
-                                >
-                                  <img
-                                    src={user.user_url_image}
-                                    alt={user.user_firstname}
-                                  />
-                                  <p>
-                                    {user.user_lastname
-                                      ? user.user_firstname +
-                                        " " +
-                                        user.user_lastname
-                                      : user.user_firstname}
-                                  </p>
-                                </div>
-                              );
-                            } else return null;
-                          })}
+                        <div key={job.id_job} className="service__jobs__title">
+                          <h3 className="service__jobs__name">
+                            {job.job_name}
+                          </h3>
+                          <div className="service__jobs__users">
+                            {allusers.map((user) => {
+                              if (
+                                user.service_name === serv &&
+                                user.job_name === job.job_name
+                              ) {
+                                return (
+                                  <div
+                                    className={
+                                      selected && selected === user.id_user
+                                        ? "user selected"
+                                        : "user"
+                                    }
+                                    onClick={() => getUserProfil(user)}
+                                  >
+                                    <img
+                                      src={user.user_url_image}
+                                      alt={user.user_firstname}
+                                    />
+                                    <p>
+                                      {user.user_lastname
+                                        ? user.user_firstname +
+                                          " " +
+                                          user.user_lastname
+                                        : user.user_firstname}
+                                    </p>
+                                  </div>
+                                );
+                              } else return null;
+                            })}
+                          </div>
                         </div>
                       );
                     }

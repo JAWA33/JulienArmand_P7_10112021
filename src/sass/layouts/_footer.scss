@@ -8,6 +8,7 @@ footer {
 
   color: $textColor_dark;
   border-radius: 20px;
+  z-index: 10;
 
   @include changeBgColor($graphicPrimary, $rotationValue);
 
@@ -22,6 +23,7 @@ footer {
     width: calc(100% - 10px);
     height: calc(100% - 10px);
     border-radius: 15px;
+    z-index: 10;
     @include changeBgColor($graphicPrimary, $rotationValue);
     //background: linear-gradient(145deg, $graphicPrimary, $graphicSecondary);
     box-shadow: inset 1px 1px 6px $shadowDark, inset -1px -1px 6px $shadowLight;
@@ -31,5 +33,25 @@ footer {
     font-style: oblique;
     font-size: 0.9rem;
     color: $textColor_light;
+    z-index: 10;
+  }
+}
+
+.textFooter {
+  width: 90%;
+  @include flexRow("spB", "cen");
+  color: $textColor_light;
+  font-size: 1.2rem;
+  font-weight: lighter;
+  font-style: oblique;
+  z-index: 11;
+  @include tablet-limit {
+    @include flexRow("cen", "cen");
+  }
+
+  &--delete {
+    @include tablet-limit {
+      display: none;
+    }
   }
 }

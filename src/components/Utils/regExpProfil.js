@@ -4,7 +4,7 @@
 //? Regex de type "nom" : 3 lettres mini, pas de chiffre ni caractères spéciaux sauf "-" ############## //
 const validName = (input) => {
   console.log("TEST NAME");
-  let regexName = new RegExp("^[A-Za-z-]{3,}$").test(input);
+  let regexName = new RegExp("^[A-Za-z-éèàïî]{3,}$").test(input);
 
   if (regexName) {
     return true;

@@ -44,31 +44,3 @@ $breakpoints: (
 
 $dim_header: 80px;
 $dim_footer: 60px;
-//! ############# OLD  ############ *//
-//! ############# OLD  ############ *//
-//! ############# OLD  ############ *//
-//! ############# OLD  ############ *//
-//! ############# OLD  ############ *//
-
-//----- Graphic charter-----//
-
-$colorPrimary: #081f43;
-$colorSecondary: #ffd7d6;
-$colorTertiary: #d4d4d4;
-
-//-----Option Color : Red Variations-------//
-
-$optionColor: #d94530;
-$optionColor_light: #ff2a00;
-
-//---- Additionnal colors : Grey variations------ //
-$addColor: #f5f5f5;
-$addColor_light: darken($addColor, 5%);
-$addColor_dark: darken($addColor, 17%);
-
-//? ######## NEW #########
-
-//---- Bg colors : Grey variations------ //
-$bg_Primary: #e6e6e6;
-$bg_Secondary: darken($bg_Primary, 35%);
-$bg_Tertiary: lighten($bg_Primary, 6%);

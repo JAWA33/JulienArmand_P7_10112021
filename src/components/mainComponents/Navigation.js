@@ -1,32 +1,14 @@
 import React, { Fragment } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { isEmpty } from "../Utils/isEmpty.js";
 import allUsers from "../../images/icons/users.svg";
 import home from "../../images/icons/home.svg";
 import logOut from "../../images/icons/logout.svg";
+import { logout } from "../Utils/logout.js";
 
 const Navigation = () => {
   const userData = useSelector((state) => state.userReducer);
-
-  const logout = () => {
-    axios({
-      method: "delete",
-      url: process.env.REACT_APP_API_URL + "api/user/logout",
-      withCredentials: true,
-    })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        sessionStorage.removeItem("id_user");
-        sessionStorage.removeItem("connectedUser");
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <Fragment>
@@ -44,7 +26,8 @@ const Navigation = () => {
               exact
               to="/"
               activeClassName="current"
-              className="nav__link__btn"
+              className="nav__link__btn  tooltip"
+              title="Forum"
             >
               <img src={home} alt="Forum" className="nav__link__btn--icon" />
             </NavLink>
@@ -52,7 +35,8 @@ const Navigation = () => {
               exact
               to="/allusers"
               activeClassName="current"
-              className="nav__link__btn"
+              className="nav__link__btn  tooltip"
+              title="Organigramme"
             >
               <img
                 src={allUsers}
@@ -64,7 +48,8 @@ const Navigation = () => {
               exact
               to="/mypage"
               activeClassName="current"
-              className="nav__link__btn"
+              className="nav__link__btn tooltip"
+              title="Mon_Profil"
             >
               <img
                 src={userData[0].user_url_image}
@@ -72,7 +57,11 @@ const Navigation = () => {
                 className="nav__link__btn--user"
               ></img>
             </NavLink>
-            <div className="nav__link__btn" onClick={() => logout()}>
+            <div
+              title="Deconnexion"
+              className="nav__link__btn  tooltip"
+              onClick={() => logout()}
+            >
               <img
                 src={logOut}
                 alt={userData[0].user_firstname}
