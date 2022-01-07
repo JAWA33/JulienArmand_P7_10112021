@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# GROUP'COM by GROUPOMANIA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Partie Frontend du Projet 7 - OC developpeur web
 
-## Available Scripts
+## Pré-requis "backend du projet":
 
-In the project directory, you can run:
+Vous aurez également besoin du backend disponible ici : (https://github.com/JAWA33/JulienArmand_P7_back_10112021.git)
 
-### `npm start`
+## Installation du "Frontend"", ce depot GIT :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Commencer par cloner ce dépot git, puis lancer npm install pour télécharger le node_modules.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Cette WebApp fonction sous REACT pour la partie frontend, vous aurez besoin des packages suivants :
 
-### `npm test`
+"axios": "^0.24.0",
+"compressorjs": "^1.1.1",
+"cropperjs": "^1.5.12",
+"dotenv": "^10.0.0",
+"package": "^1.0.1",
+"react": "^17.0.2",
+"react-confirm-alert": "^2.7.0",
+"react-dom": "^17.0.2",
+"react-easy-crop": "^3.5.2",
+"react-redux": "^7.2.6",
+"react-router-dom": "^5.3.0",
+"react-scripts": "4.0.3",
+"redux": "^4.1.2",
+"redux-devtools-extension": "^2.13.9",
+"redux-thunk": "^2.4.1",
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Eléments à créer pour faire fonctionner le frontend :
 
-### `npm run build`
+Vous devrez également créer les éléments suivants :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. un fichier .env avec les informations suivantes :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- L'adresse local de fonctionnement du frontend :
+  REACT_APP_API_URL= http://localhost:5000/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Lancement du serveur :
 
-### `npm run eject`
+Pour lancer le serveur sur le port 5000 : Entrer npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Fonctionnalités de l'application :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ce projet est un réseau social d'entreprise, il a les fonctionnalités suivantes :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Création de nouveaux utilsateurs
+- Connexion de chaque utilsateurs avec email et mot de passe
+- Création de profil personnalisé pour chaque utilisateur
+- Possibilité de création de posts sur la partie Forum
+- Consultation des profils des utilisateurs dans un organigramme de l'entreprise
+- Modification ou suppression des posts, profils pour l'utilisateur qui les a créer
+- Modification ou suppression des posts, profils par un modérateur (à renseigner dans la base de données)
+- Stockage des images sur le serveur Backend : Dimensionnement et compression des images
+- Supression des images obsolètes lors de la suppression ou modifictions des posts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## NOTA :
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Cette WebApp n'est pas encore validée, pour consulter sa version la plus récente, vous devrez utiliser la branche : "modifcss".
