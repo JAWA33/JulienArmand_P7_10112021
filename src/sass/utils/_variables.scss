@@ -6,16 +6,6 @@ $graphicPrimary: rgb(9, 25, 33);
 $graphicSecondary: rgb(8, 31, 67);
 $graphicTertiary: rgb(4, 187, 252);
 
-$rotationValue: 0;
-@mixin changeBgColor($color: white, $hue: $rotationValue) {
-  background: $color;
-  filter: hue-rotate($hue);
-}
-
-//! $graphicPrimary: rgb(9, 25, 33);
-//! $graphicSecondary: rgb(8, 31, 67);
-//! $graphicTertiary: rgb(4, 187, 252);
-
 //---- Addcolor ---------//
 
 $errorColor: #ff421c;

@@ -4,7 +4,6 @@ import Organization from "./Organization.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../../actions/allusers.action.js";
 import { getJobs } from "../../../actions/job.actions.js";
-import { getUser } from "../../../actions/user.actions.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import MyProfil from "../myProfil/MyProfil.js";
 import Loader from "../../mainComponents/Loader.js";

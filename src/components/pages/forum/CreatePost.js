@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../../actions/post.actions.js";
-import PictureIcon from "../../svgComponents/PictureIcon.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import Compressor from "compressorjs";
 //import axios from "axios";
 
-import { validParagraph } from "../../Utils/regExp.js";
+//import { validParagraph } from "../../Utils/regExp.js";
 import Loader from "../../mainComponents/Loader.js";
 
 const CreatePost = () => {

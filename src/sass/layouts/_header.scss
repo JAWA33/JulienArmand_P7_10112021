@@ -71,7 +71,7 @@ header {
   z-index: 10;
   @include flexRow("spB", "cen");
   @include desktop-limit {
-    @include flexRow(end, "cen");
+    @include flexRow(flex-end, "cen");
     width: 57%;
   }
   @include logo-limit {

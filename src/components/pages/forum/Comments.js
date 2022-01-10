@@ -2,11 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllComments,
-  deleteComment,
   updateComment,
 } from "../../../actions/comment.action.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
-import TrashIcon from "../../svgComponents/TrashIcon.js";
 import EditIcon from "../../svgComponents/EditIcon.js";
 import DeleteCommentAlert from "../../mainComponents/DeleteCommentAlert.js";
 

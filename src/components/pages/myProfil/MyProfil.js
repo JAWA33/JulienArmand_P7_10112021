@@ -17,7 +17,6 @@ import {
 } from "../../Utils/regExpProfil.js";
 import { stringToDate } from "../../Utils/stringToDate";
 import ImageCropDialog from "./ImageCropDialog.js";
-//import PopupAlert from "../../mainComponents/PopupAlert";
 import ConfimAlert from "../../mainComponents/ConfirmAlert";
 
 const MyProfil = ({ data, modif }) => {
@@ -323,6 +322,7 @@ const MyProfil = ({ data, modif }) => {
                         car.croppedImageUrl ? car.croppedImageUrl : car.imageUrl
                       }
                       onClick={() => setSelectedCar(car)}
+                      alt={data[0].user_firstname}
                     />
                   </div>
                   <p>
@@ -431,7 +431,6 @@ const MyProfil = ({ data, modif }) => {
                 <label htmlFor="bio">Ce qu'il faut savoir sur moi :</label>
                 <textarea
                   name="bio"
-                  defaultValue={data[0].user_bio}
                   defaultValue={
                     data[0].user_bio === "null" || isEmpty(data[0].user_bio)
                       ? ""

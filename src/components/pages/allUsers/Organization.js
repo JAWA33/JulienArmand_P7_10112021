@@ -97,7 +97,7 @@ const Organization = ({ allusers, jobs }) => {
                           </div>
                         </div>
                       );
-                    }
+                    } else return null;
                   })}
                 </div>
               ) : (

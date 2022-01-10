@@ -5,13 +5,10 @@ import {
   likePost,
   dislikePost,
   updatePost,
-  deletePost,
 } from "../../../actions/post.actions";
 import EditIcon from "../../svgComponents/EditIcon.js";
-import TrashIcon from "../../svgComponents/TrashIcon.js";
 import { isEmpty } from "../../Utils/isEmpty.js";
 import { nowToDate } from "../../Utils/nowToDate.js";
-import PictureIcon from "../../svgComponents/PictureIcon.js";
 import Comments from "./Comments.js";
 import CreateComments from "./CreateComment";
 import Compressor from "compressorjs";
